@@ -27,7 +27,7 @@ class AddUsers extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
             ],
-            'alamat' => [
+            'domisili' => [
                 'type'       => 'TEXT',
                 'null'       => true,
             ],
@@ -69,6 +69,10 @@ class AddUsers extends Migration
             'jenis_kelamin' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
+            ],
+            'foto' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
 
 

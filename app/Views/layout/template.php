@@ -9,6 +9,7 @@ if ($session->get('logged_in')) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="<?php echo base_url('assets'); ?>/dist/img/logo-rohis.png" type="image/x-icon">
         <title><?php echo $judul; ?></title>
 
         <!-- Google Font: Source Sans Pro -->

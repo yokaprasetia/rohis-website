@@ -2,18 +2,17 @@
 
 <?php echo $this->section('content'); ?>
 
-
 <!-- ISI KONTEN -->
 <div class="content">
     <div class="col-md-10">
         <div class="card card-widget widget-user">
 
             <div class="widget-user-header bg-success">
-                <h3 class="widget-user-desc ">Alexander Pierce</h3>
+                <h3 class="widget-user-desc "><?php echo $profil['nama']; ?></h3>
             </div>
 
             <div class="widget-user-image">
-                <img class="img-circle elevation-2" src=" <?php echo base_url('assets'); ?>/dist/img/user1-128x128.jpg" alt="User Avatar">
+                <img class="img-circle elevation-2" src="<?php echo base_url(); ?>/foto-profil/<?php echo $profil['foto']; ?>" alt="Avatar">
             </div>
 
             <div class="card-footer">
@@ -21,43 +20,67 @@
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
                             <h5 class="description-header">NIM</h5>
-                            <span class="description-text">221910846</span>
+                            <span class="description-text"><?php echo $profil['nim']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
                             <h5 class="description-header">KELAS</h5>
-                            <span class="description-text">4SI2</span>
+                            <span class="description-text"><?php echo $profil['kelas']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
                             <h5 class="description-header">ANGKATAN</h5>
-                            <span class="description-text">61</span>
+                            <span class="description-text">
+                                <?php
+                                echo $profil['angkatan'];
+                                echo " / ";
+                                echo $profil['prodi'];
+                                ?>
+                            </span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
                             <h5 class="description-header">NO HP</h5>
-                            <span class="description-text">0895379261962</span>
+                            <span class="description-text"><?php echo $profil['no_hp']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
-                            <h5 class="description-header">ALAMAT</h5>
-                            <span class="description-text">YOGYAKARTA</span>
+                            <h5 class="description-header">DOMISILI</h5>
+                            <span class="description-text"><?php echo $profil['domisili']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
                             <h5 class="description-header">EMAIL</h5>
-                            <span class="description-text">prasetia356@gmail.com</span>
+                            <span class="description-text"><?php echo $profil['email']; ?></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-top">
+                        <div class="description-block">
+                            <h5 class="description-header">TANGGAL LAHIR</h5>
+                            <span class="description-text"><?php echo $profil['tanggal_lahir']; ?></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-top">
+                        <div class="description-block">
+                            <h5 class="description-header">ALAMAT KOST</h5>
+                            <span class="description-text"><?php echo $profil['alamat_kost']; ?></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-top">
+                        <div class="description-block">
+                            <h5 class="description-header">JENIS KELAMIN</h5>
+                            <span class="description-text"><?php echo $profil['jenis_kelamin']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-12 border-top">
                         <div class="description-block">
                             <h5 class="description-header">JABATAN ROHIS</h5>
-                            <span class="description-text">ANGGOTA</span>
+                            <span class="description-text"><?php echo $profil['role']; ?></span>
                         </div>
                     </div>
                 </div>
