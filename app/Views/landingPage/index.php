@@ -46,7 +46,7 @@
                     <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
                     <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
                     <li><a class="nav-link scrollto" href="#team">Struktur</a></li>
-                    <li><a class="getstarted scrollto" href="#about">Log In</a></li>
+                    <li><a class="getstarted scrollto" href="<?php echo base_url('login'); ?>">Log In</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -64,7 +64,7 @@
                     <h2 data-aos="fade-up" data-aos-delay="400">Sistem Informasi UKM Kerohanian Islam Politeknik Statistika STIS</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
-                            <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                            <a href="<?php echo base_url('login'); ?>" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                                 <span>Log In</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -93,8 +93,8 @@
                             <p>“Kamu (umat Islam) adalah umat yang terbaik yang dilahirkan untuk manusia (karena kamu), menyuruh (berbuat) yang ma'ruf, dan mencegah dari yang mungkar, dan beriman kepada Allah. Sekiranya Ahli kitab beriman, tentulah itu lebih baik bagi mereka. Di antara mereka adalah orang-orang fasik.”</p>
                             <p><strong>(Ali ‘Imran : 110)</strong></p>
                             <div class="text-center text-lg-start">
-                                <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                    <span>Baca Selengkapnya</span>
+                                <a href="<?php echo base_url('login'); ?>" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                                    <span>Lihat Selengkapnya</span>
                                     <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
@@ -300,7 +300,7 @@
                             <div class="member-info">
                                 <h4>William Anderson</h4>
                                 <span>Sekretaris</span>
-                                <p>Softskill juga diperlukan dalam suatu organisasi, sehingga hadapi semua rintangan yang menghadang.</p>
+                                <p>Soft skill juga diperlukan dalam suatu organisasi, sehingga hadapi semua rintangan yang menghadang.</p>
                             </div>
                         </div>
                     </div>
@@ -374,7 +374,7 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row gy-4">
-                    <div class="col-lg-5 col-md-12 footer-info">
+                    <div class="col-lg-7 col-md-12 footer-info">
                         <a href="index.html" class="logo d-flex align-items-center">
                             <img src="<?php echo base_url('assets-landing'); ?>/img/logo-rohis.png" alt="">
                             <span>SiROHIS</span>
@@ -397,17 +397,8 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-2 col-6 footer-links">
-                        <h4>Also Support</h4>
-                        <ul>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#hero">Efficiency</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#hero">Economy</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#hero">Accuracy</a></li>
-                        </ul>
-                    </div>
-
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                        <h4>Contact Us</h4>
+                        <h4>Hubungi Kami</h4>
                         <p>
                             Jl. Otto Iskandardinata No.64C <br>
                             Jatinegara, Jakarta Timur 13330<br>

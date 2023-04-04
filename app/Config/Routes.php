@@ -39,6 +39,8 @@ $routes->get('/', 'LandingPage::index');
 
 // LOGIN
 $routes->get('/login', 'Login::index');
+$routes->post('/prosesLogin', 'Login::proses');
+$routes->get('/logout', 'Login::logout');
 
 
 

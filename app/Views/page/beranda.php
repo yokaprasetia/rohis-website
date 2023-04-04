@@ -2,10 +2,14 @@
 
 <?php echo $this->section('content'); ?>
 
-
 <!-- ISI KONTEN -->
 <div class="content">
     <div class="container-fluid">
+
+        <?php if (session()->getFlashdata('msg')) : ?>
+            <div class="alert alert-success toastsDefaultSuccess"><?= session()->getFlashdata('msg') ?></div>
+        <?php endif; ?>
+
         <div class="row">
 
             <div class="col-6">

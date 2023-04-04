@@ -11,7 +11,6 @@ class Beranda extends BaseController
             'subjudul' => 'Beranda',
             'active' => 'beranda'
         ];
-
         return view('page/beranda', $data);
     }
 }

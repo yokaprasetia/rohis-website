@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>" onClick="return confirm('Apakah Anda yakin ingin Log Out?')" class="nav-link">
+                    <a href="<?php echo base_url('logout'); ?>" onClick="return confirm('Apakah Anda yakin ingin Log Out?')" class="nav-link">
                         <i class="nav-icon fa fa-sign-out-alt"></i>
                         <p>Log Out</p>
                     </a>
