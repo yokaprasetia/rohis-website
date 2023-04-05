@@ -13,28 +13,13 @@ class Profil extends BaseController
         $model = new UserModel();
 
         $id = $session->get('id');
-        $info = $model->where('id', $id)->first();
+        // $info = $model->where('id', $id)->first();
 
         $data = [
             'judul' => 'SiROHIS | Profil',
             'subjudul' => 'Profil',
             'active' => 'profil',
-            'profil' => [
-                'id' => $info['id'],
-                'nama' => $info['nama'],
-                'email' => $info['email'],
-                'no_hp' => $info['no_hp'],
-                'domisili' => $info['domisili'],
-                'nim' => $info['nim'],
-                'kelas' => $info['kelas'],
-                'angkatan' => $info['angkatan'],
-                'prodi' => $info['prodi'],
-                'tanggal_lahir' => $info['tanggal_lahir'],
-                'password' => $info['password'],
-                'role' => $info['role'],
-                'alamat_kost' => $info['alamat_kost'],
-                'jenis_kelamin' => $info['jenis_kelamin'],
-            ],
+            'profil' => $model->where('id', $id)->first(),
         ];
 
         return view('page/Profil', $data);
@@ -45,26 +30,9 @@ class Profil extends BaseController
         $session = session();
         $model = new UserModel();
 
+        // biar querinya jadi update, maka ID juga harus diikutsertakan dalam $data (update -> id yang di update sudah ada di database)
         $info = $this->request->getVar();
-
-        $data = [
-            'id' => $info['id'],
-            'nama' => $info['nama'],
-            'email' => strtolower($info['email']),
-            'no_hp' => $info['no_hp'],
-            'domisili' => $info['domisili'],
-            'nim' => $info['nim'],
-            'kelas' => $info['kelas'],
-            'angkatan' => $info['angkatan'],
-            'prodi' => $info['prodi'],
-            'tanggal_lahir' => $info['tanggal_lahir'],
-            'password' => $info['password'],
-            'role' => $info['role'],
-            'alamat_kost' => $info['alamat_kost'],
-            'jenis_kelamin' => $info['jenis_kelamin'],
-        ];
-
-        $proses = $model->save($data);
+        $proses = $model->save($info);
 
         if ($proses) {
             $session->setFlashdata('success', 'Update berhasil');

@@ -26,6 +26,7 @@ class AddUsers extends Migration
             'no_hp' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
+                'null'      => true,
             ],
             'domisili' => [
                 'type'       => 'TEXT',
@@ -38,17 +39,21 @@ class AddUsers extends Migration
             'kelas' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
+                'null'      => true,
             ],
             'angkatan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
+                'null'      => true,
             ],
             'prodi' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
+                'null'      => true,
             ],
             'tanggal_lahir' => [
                 'type'       => 'DATE',
+                'null'      => true,
             ],
             'password' => [
                 'type'       => 'VARCHAR',
@@ -61,10 +66,12 @@ class AddUsers extends Migration
             'alamat_kost' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
+                'null'      => true,
             ],
             'jenis_kelamin' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
+                'null'      => true,
             ],
         ]);
         $this->forge->addKey('id', true);

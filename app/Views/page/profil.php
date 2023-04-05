@@ -1,5 +1,4 @@
 <?php echo $this->extend('layout/template'); ?>
-
 <?php echo $this->section('content'); ?>
 
 <!-- ISI KONTEN -->
@@ -177,17 +176,6 @@
                         </div>
 
                         <input type="hidden" class="form-control" name="password" password="password" value="<?php echo $profil['password']; ?>">
-
-                        <div class="form-group">
-                            <label for="role">Jabatan</label>
-                            <select name="role" id="role" class="form-control" required>
-                                <option value="Ketua" <?php echo ($profil['role'] == 'Ketua') ? 'selected="selected"' : '' ?>>Ketua</option>
-                                <option value="Wakil Ketua" <?php echo ($profil['role'] == 'Wakil Ketua') ? 'selected="selected"' : '' ?>>Wakil Ketua</option>
-                                <option value="Sekretaris" <?php echo ($profil['role'] == 'Sekretaris') ? 'selected="selected"' : '' ?>>Sekretaris</option>
-                                <option value="Bendahara" <?php echo ($profil['role'] == 'Bendahara') ? 'selected="selected"' : '' ?>>Bendahara</option>
-                                <option value="Anggota" <?php echo ($profil['role'] == 'Anggota') ? 'selected="selected"' : '' ?>>Anggota</option>
-                            </select>
-                        </div>
 
                         <div class="form-group">
                             <label for="alamat_kost">Alamat Kost</label>

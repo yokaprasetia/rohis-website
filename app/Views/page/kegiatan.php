@@ -12,6 +12,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Kegiatan</th>
                                     <th>Tempat</th>
                                     <th>Tanggal</th>
@@ -20,14 +21,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i = 1; ?>
                                 <?php foreach ($pengumuman as $p) : ?>
                                     <tr>
+                                        <td><?php echo $i; ?></td>
                                         <td><?php echo $p['nama']; ?></td>
                                         <td><?php echo $p['tempat']; ?></td>
                                         <td><?php echo $p['tanggal']; ?></td>
                                         <td><?php echo $p['waktu_mulai']; ?> - <?php echo $p['waktu_selesai']; ?> WIB</td>
                                         <td><?php echo $p['peserta']; ?></td>
                                     </tr>
+                                    <?php $i++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
