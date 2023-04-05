@@ -16,6 +16,10 @@
             <i class="fas fa-plus mr-2"></i>
             Tambah Pengumuman
         </button>
+        <button type="button" class="btn btn-warning mb-4 ml-2" data-toggle="modal" data-target="#editPengumuman">
+            <i class="fas fa-edit mr-2"></i>
+            Edit Pengumuman
+        </button>
         <div class="row">
             <div class="col-12">
                 <?php foreach ($pengumuman as $p) : ?>
@@ -37,7 +41,7 @@
                         </div>
 
                         <div class="card-body">
-                            <small class="text-muted">Upload at : <?php echo $p['upload_at'] ?></small>
+                            <small class="text-muted">Upload at : <?php echo $p['upload_at'] ?> WIB</small>
                             <p><?php echo $p['isi']; ?></p>
                         </div>
                         <!-- /.card-body -->
@@ -54,9 +58,11 @@
     </div>
 </div>
 
+<!-- TAMBAH FORM -->
 <div class="modal fade" id="tambahPengumuman">
     <div class="modal-dialog tambahPengumuman">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h4 class="modal-title">Tambah Pengumuman</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -89,8 +95,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="waktu">Waktu</label>
-                            <input type="text" class="form-control" name="waktu" id="waktu" placeholder="Masukkan Waktu Kegiatan" required>
+                            <label for="waktu_mulai">Waktu Mulai</label>
+                            <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai" placeholder="Masukkan Waktu Mulai Kegiatan" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="waktu_selesai">Waktu Selesai</label>
+                            <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai" placeholder="Masukkan Waktu Selesai Kegiatan" required>
                         </div>
 
                         <div class="form-group">
@@ -109,6 +120,47 @@
                         <button type="submit" class="btn btn-primary">Tambah Pengumuman</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT FORM -->
+<div class="modal fade" id="editPengumuman">
+    <div class="modal-dialog editPengumuman">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">No.</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th style="width: 100px">Label</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1;  ?>
+                                    <?php foreach ($pengumuman as $p) : ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $p['nama'] ?></td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <a href="<?php echo base_url('updatePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus kegiatan <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php $i++ ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@
                             <dd class="col-sm-10"><?php echo $detail['tanggal']; ?></dd>
 
                             <dt class="col-sm-2">Waktu</dt>
-                            <dd class="col-sm-10"><?php echo $detail['waktu']; ?></dd>
+                            <dd class="col-sm-10"><?php echo $detail['waktu_mulai']; ?> - <?php echo $detail['waktu_selesai']; ?> WIB</dd>
 
                             <dt class="col-sm-2">Peserta</dt>
                             <dd class="col-sm-10"><?php echo $detail['peserta']; ?></dd>

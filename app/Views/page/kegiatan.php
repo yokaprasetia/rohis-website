@@ -25,7 +25,7 @@
                                         <td><?php echo $p['nama']; ?></td>
                                         <td><?php echo $p['tempat']; ?></td>
                                         <td><?php echo $p['tanggal']; ?></td>
-                                        <td><?php echo $p['waktu']; ?></td>
+                                        <td><?php echo $p['waktu_mulai']; ?> - <?php echo $p['waktu_selesai']; ?> WIB</td>
                                         <td><?php echo $p['peserta']; ?></td>
                                     </tr>
                                 <?php endforeach; ?>

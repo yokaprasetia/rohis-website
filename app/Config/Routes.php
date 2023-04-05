@@ -57,6 +57,9 @@ $routes->get('/akun', 'Akun::index');
 $routes->get('/pengumuman', 'Pengumuman::index');
 $routes->get('/pengumumanDetail/(:segment)', 'Pengumuman::detail/$1');
 $routes->post('/tambahPengumuman', 'Pengumuman::tambah');
+$routes->get('/updatePengumuman/(:segment)', 'Pengumuman::update/$1');
+$routes->post('/prosesUpdate', 'Pengumuman::prosesUpdate');
+$routes->get('/deletePengumuman/(:segment)', 'Pengumuman::delete/$1');
 
 //KEUANGAN
 $routes->get('/keuangan', 'Keuangan::index');

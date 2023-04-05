@@ -30,9 +30,11 @@ class AddPengumuman extends Migration
             'tanggal' => [
                 'type'          => 'DATE',
             ],
-            'waktu' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => '126',
+            'waktu_mulai' => [
+                'type'          => 'TIME',
+            ],
+            'waktu_selesai' => [
+                'type'          => 'TIME',
             ],
             'peserta' => [
                 'type'          => 'VARCHAR',

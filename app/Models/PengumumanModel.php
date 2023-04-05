@@ -7,5 +7,5 @@ use CodeIgniter\Model;
 class PengumumanModel extends Model
 {
     protected $table = 'pengumuman';
-    protected $allowedFields = ['id', 'nama', 'isi', 'tempat', 'tanggal', 'waktu', 'peserta', 'link', 'upload_at'];
+    protected $allowedFields = ['id', 'nama', 'isi', 'tempat', 'tanggal', 'waktu_mulai', 'waktu_selesai', 'peserta', 'link', 'upload_at'];
 }
