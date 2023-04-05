@@ -2,25 +2,53 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\PengumumanModel;
+use CodeIgniter\I18n\Time;
 
 class Pengumuman extends BaseController
 {
     public function index()
     {
-        $session = session();
-        $model = new UserModel();
-
-        $id = $session->get('id');
-        $data = $model->where('id', $id)->first();
+        $model = new PengumumanModel();
 
         $data = [
             'judul' => 'SiROHIS | Pengumuman',
             'subjudul' => 'Pengumuman',
             'active' => 'pengumuman',
-            'sidebarProfil' => $data['foto'],
+            'pengumuman' => $model->orderBy('upload_at', 'DESC')->findAll(),
+        ];
+        // dd($data['pengumuman']);
+        return view('page/pengumuman', $data);
+    }
+
+    public function detail($id)
+    {
+        $model = new PengumumanModel();
+        $data = [
+            'judul' => 'SiROHIS | Detail Pengumuman',
+            'subjudul' => 'Detail Pengumuman',
+            'active' => 'pengumuman',
+            'detail' => $model->where('id', $id)->first(),
         ];
 
-        return view('page/pengumuman', $data);
+        return view('page/detailPengumuman', $data);
+    }
+
+    public function tambah()
+    {
+        $session = session();
+        $model = new PengumumanModel();
+        $data = $this->request->getVar();
+        // upload_at
+        $data['upload_at'] = Time::now();
+
+        $proses = $model->save($data);
+        if ($proses) {
+            $session->setFlashdata('success', 'Berhasil Menambah Pengumuman!');
+            return redirect()->to('/pengumuman');
+        } else {
+            $session->setFlashdata('danger', 'Gagal Menambah Pengumumnan!');
+            return redirect()->to('/pengumuman');
+        }
     }
 }

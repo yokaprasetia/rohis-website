@@ -6,6 +6,7 @@
     <div class="card card-outline card-danger">
         <div class="card-header">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahAkun">
+                <i class="fas fa-plus mr-2"></i>
                 Tambah Akun
             </button>
         </div>

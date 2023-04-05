@@ -55,12 +55,8 @@ class AddUsers extends Migration
                 'constraint' => '126',
             ],
             'role' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-            ],
-            'is_active' => [
-                'type'       => 'INT',
-                'constraint' => 11,
+                'type'       => 'VARCHAR',
+                'constraint' => '126',
             ],
             'alamat_kost' => [
                 'type'       => 'VARCHAR',
@@ -70,12 +66,6 @@ class AddUsers extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
             ],
-            'foto' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-
-
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('users');

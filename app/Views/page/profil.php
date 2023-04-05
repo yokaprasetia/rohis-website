@@ -5,6 +5,15 @@
 <!-- ISI KONTEN -->
 <div class="content">
     <div class="col-md-10">
+
+        <!-- ALERT -->
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('danger')) : ?>
+            <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
+        <?php endif; ?>
+
         <div class="card card-widget widget-user">
 
             <div class="widget-user-header bg-success">
@@ -12,7 +21,7 @@
             </div>
 
             <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="<?php echo base_url(); ?>/foto-profil/<?php echo $profil['foto']; ?>" alt="Avatar">
+                <img class="img-circle elevation-2" src="<?php echo base_url(); ?>/assets/dist/img/foto-profil.png" alt="Avatar">
             </div>
 
             <div class="card-footer">
@@ -113,62 +122,89 @@
 
             <div class="modal-body">
                 <!-- Mulai dari sini -->
-                <form method="post" src="<?php echo base_url('profil'); ?>">
+                <form method="post" action="<?php echo base_url('updateProfil'); ?>">
                     <div class="card-body">
+
+                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $profil['id']; ?>">
 
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama" value="<?php echo $profil['nama']; ?>" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email" value="<?php echo $profil['email']; ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="no_hp">No HP</label>
+                            <input type="text" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan noHp" value="<?php echo $profil['no_hp']; ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="domisili">Domisili</label>
+                            <input type="text" class="form-control" name="domisili" id="domisili" placeholder="Masukkan domisili" value="<?php echo $profil['domisili']; ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="nim">NIM</label>
-                            <input type="text" class="form-control" name="nim" id="nim" placeholder="Masukkan NIM">
+                            <input type="text" class="form-control" name="nim" id="nim" placeholder="Masukkan NIM" value="<?php echo $profil['nim']; ?>" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="kelas">kelas</label>
-                            <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Masukkan kelas">
+                            <label for="kelas">Kelas</label>
+                            <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Masukkan kelas" value="<?php echo $profil['kelas']; ?>" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="angkatan">angkatan</label>
-                            <input type="text" class="form-control" name="angkatan" id="angkatan" placeholder="Masukkan angkatan">
+                            <label for="angkatan">Angkatan</label>
+                            <input type="text" class="form-control" name="angkatan" id="angkatan" placeholder="Masukkan angkatan" value="<?php echo $profil['angkatan']; ?>" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="noHp">noHp</label>
-                            <input type="text" class="form-control" name="noHp" id="noHp" placeholder="Masukkan noHp">
+                            <label for="prodi">Prodi</label>
+                            <select name="prodi" id="prodi" class="form-control" required>
+                                <option value="D-III ST" <?php echo ($profil['prodi'] == 'D-III ST') ? 'selected="selected"' : '' ?>>D-III ST</option>
+                                <option value="D-IV ST" <?php echo ($profil['prodi'] == 'D-IV ST') ? 'selected="selected"' : '' ?>>D-IV ST</option>
+                                <option value="D-IV KS" <?php echo ($profil['prodi'] == 'D-IV KS') ? 'selected="selected"' : '' ?>>D-IV KS</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="alamat">alamat</label>
-                            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Masukkan alamat">
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="Masukkan tanggal lahir" value="<?php echo $profil['tanggal_lahir']; ?>" required>
+                        </div>
+
+                        <input type="hidden" class="form-control" name="password" password="password" value="<?php echo $profil['password']; ?>">
+
+                        <div class="form-group">
+                            <label for="role">Jabatan</label>
+                            <select name="role" id="role" class="form-control" required>
+                                <option value="Ketua" <?php echo ($profil['role'] == 'Ketua') ? 'selected="selected"' : '' ?>>Ketua</option>
+                                <option value="Wakil Ketua" <?php echo ($profil['role'] == 'Wakil Ketua') ? 'selected="selected"' : '' ?>>Wakil Ketua</option>
+                                <option value="Sekretaris" <?php echo ($profil['role'] == 'Sekretaris') ? 'selected="selected"' : '' ?>>Sekretaris</option>
+                                <option value="Bendahara" <?php echo ($profil['role'] == 'Bendahara') ? 'selected="selected"' : '' ?>>Bendahara</option>
+                                <option value="Anggota" <?php echo ($profil['role'] == 'Anggota') ? 'selected="selected"' : '' ?>>Anggota</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email">
+                            <label for="alamat_kost">Alamat Kost</label>
+                            <input type="text" class="form-control" name="alamat_kost" id="alamat_kost" placeholder="Masukkan alamat kost" value="<?php echo $profil['alamat_kost']; ?>" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="jabatan">jabatan</label>
-                            <input type="text" class="form-control" name="jabatan" id="jabatan" placeholder="Masukkan jabatan">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="foto">Pilih Foto Profil</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="foto">
-                                    <label class="custom-file-label" for="foto">Choose file</label>
-                                </div>
-                            </div>
+                            <label for="jenis_kelamin">Jenis Kelamin</label>
+                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+                                <option value="Laki-Laki" <?php echo ($profil['jenis_kelamin'] == 'Laki-Laki') ? 'selected="selected"' : '' ?>>Laki Laki</option>
+                                <option value="Perempuan" <?php echo ($profil['jenis_kelamin'] == 'Perempuan') ? 'selected="selected"' : '' ?>>Perempuan</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" nama="upload" class="btn btn-primary">Upload</button>
+                        <button type="submit" class="btn btn-primary">Update Data</button>
                     </div>
                 </form>
             </div>
@@ -180,7 +216,7 @@
     <div class="modal-dialog ubahPassword">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Update Profil</h4>
+                <h4 class="modal-title">Ubah Password</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -188,33 +224,32 @@
 
             <div class="modal-body">
                 <!-- Mulai dari sini -->
-                <form method="post" src="<?php echo base_url('profil'); ?>">
+                <form method="post" action="<?php echo base_url('updatePassword'); ?>">
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="nama">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username">
+                            <label for="passwordLama">Password Lama</label>
+                            <input type="password" class="form-control" name="passwordLama" id="passwordLama" placeholder="Masukkan Password yang Lama" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="kelas">Password Lama</label>
-                            <input type="password" class="form-control" name="passwordLama" id="passwordLama" placeholder="Masukkan Password yang Lama">
+                            <label for="passwordBaru">Password Baru</label>
+                            <input type="password" class="form-control" name="passwordBaru" id="passwordBaru" placeholder="Masukkan Password yang Baru" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="kelas">Password Baru</label>
-                            <input type="password" class="form-control" name="passwordBaru" id="passwordBaru" placeholder="Masukkan Password yang Baru">
+                            <label for="konfirmasiPassword">Konfirmasi Password</label>
+                            <input type="password" class="form-control" name="konfirmasiPassword" id="konfirmasiPassword" placeholder="Konfirmasi Password" required>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" nama="upload" class="btn btn-primary">Ubah Password</button>
+                        <button type="submit" class="btn btn-primary">Ubah Password</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 
 <?php echo $this->endSection(); ?>

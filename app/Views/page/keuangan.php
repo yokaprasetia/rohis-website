@@ -3,14 +3,10 @@
 
 <!-- Main content -->
 <div class="content">
-    <div class="card card-outline card-primary">
-        <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahTransaksi">
-                Tambah Transaksi
-            </button>
-        </div>
-
-    </div>
+    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahTransaksi">
+        <i class="fas fa-plus mr-2"></i>
+        Tambah Transaksi
+    </button>
 
     <div class="card card-outline card-danger">
         <div class="card-header">

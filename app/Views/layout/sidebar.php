@@ -1,5 +1,5 @@
 <!-- SIDEBAR -->
-<aside class="main-sidebar sidebar-dark-success elevation-4">
+<aside class="main-sidebar sidebar-dark-success elevation-4 position-fixed">
 
     <!-- LOGO ROHIS -->
     <a href="<?php echo base_url('beranda'); ?>" class="brand-link">
@@ -8,16 +8,6 @@
     </a>
 
     <div class="sidebar">
-
-        <!-- USER PROFIL -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?php echo base_url(); ?>/foto-profil/<?php echo $sidebarProfil; ?>" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="<?php echo base_url('profil'); ?>" class="d-block">Yoka Prasetia</a>
-            </div>
-        </div>
 
         <!-- SIDEBAR FITUR -->
         <nav class="mt-2">

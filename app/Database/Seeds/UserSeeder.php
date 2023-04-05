@@ -21,11 +21,9 @@ class UserSeeder extends Seeder
                 'prodi'         => 'D-IV KS',
                 'tanggal_lahir' => '2002-01-20',
                 'password'      => password_hash('yokaprasetia', PASSWORD_DEFAULT),
-                'role'          => '1',
-                'is_active'     => '1',
+                'role'          => 'anggota',
                 'alamat_kost'   => 'Jl. Solihun',
                 'jenis_kelamin' => 'laki-laki',
-                'foto'          => 'yoka.png',
             ],
             [
                 'nama'          => 'Giman Jumadi',
@@ -38,19 +36,16 @@ class UserSeeder extends Seeder
                 'prodi'         => 'D-IV ST',
                 'tanggal_lahir' => '2002-01-01',
                 'password'      => password_hash('gimanjumadi', PASSWORD_DEFAULT),
-                'role'          => '2',
-                'is_active'     => '1',
+                'role'          => 'ketua',
                 'alamat_kost'   => 'Jl. Ayub',
                 'jenis_kelamin' => 'laki-laki',
-                'foto'          => 'giman.png',
             ],
         ];
 
-        // Simple Queries
-        // $this->db->query('INSERT INTO users (nama, email, no_hp, alamat, nim, kelas, angkatan, prodi, tanggal_lahir, password, role, is_active, alamat_kost, jenis_kelamin) VALUES(:nama:, :email:, :no_hp:, :alamat:, :nim:, :kelas:, :angkatan:, :prodi:, :tanggal_lahir:, :password:, :role:, :is_active:, :alamat_kost:, :jenis_kelamin:)', $data);
+        // 1 Data
+        // $this->db->table('users')->insert($data);
 
-        // Using Query Builder
-        // $this->db->table('users')->insert($data); //hanya untuk 1 data
-        $this->db->table('users')->insertBatch($data); // bisa banyak data (batch)
+        // Banyak data
+        $this->db->table('users')->insertBatch($data);
     }
 }

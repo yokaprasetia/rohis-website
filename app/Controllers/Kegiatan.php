@@ -2,23 +2,19 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\PengumumanModel;
 
 class Kegiatan extends BaseController
 {
     public function index()
     {
-        $session = session();
-        $model = new UserModel();
-
-        $id = $session->get('id');
-        $data = $model->where('id', $id)->first();
+        $model = new PengumumanModel();
 
         $data = [
             'judul' => 'SiROHIS | Kegiatan',
             'subjudul' => 'Riwayat Kegiatan',
             'active' => 'kegiatan',
-            'sidebarProfil' => $data['foto'],
+            'pengumuman' => $model->orderBy('upload_at', 'DESC')->findAll(),
         ];
 
         return view('page/Kegiatan', $data);

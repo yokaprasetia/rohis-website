@@ -42,20 +42,24 @@ if ($session->get('logged_in')) {
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
                 <!-- NAVBAR KIRI - COLLAPSE -->
-                <ul class="navbar-nav">
+                <!-- <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
-                </ul>
+                </ul> -->
 
-                <!-- NAVBAR KANAN - ZOOM IN -->
+                <!-- NAVBAR KANAN - PROFIL -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                            <i class="fas fa-expand-arrows-alt"></i>
+                        <a class="nav-link" href="<?php echo base_url('profil'); ?>" role="button">
+                            <i class="fas fa-user"></i>
+                            <span class="ml-2"><?php echo  $session->get('nama'); ?></span>
                         </a>
+
                     </li>
                 </ul>
+
+
 
             </nav>
             <!-- SIDEBAR -->

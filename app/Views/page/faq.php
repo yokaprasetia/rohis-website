@@ -17,7 +17,7 @@
                 </a>
                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
-                        Bisa, terdapat fitur update akun untuk memudahkan pengguna dalam melakukan mengganti password atau update informasi.
+                        Bisa, terdapat fitur update data untuk memudahkan pengguna dalam memperbarui profil atau password.
                     </div>
                 </div>
             </div>

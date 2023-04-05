@@ -7,7 +7,7 @@
     <div class="container-fluid">
 
         <?php if (session()->getFlashdata('msg')) : ?>
-            <div class="alert alert-success toastsDefaultSuccess"><?= session()->getFlashdata('msg') ?></div>
+            <div class="alert alert-success"><?= session()->getFlashdata('msg') ?></div>
         <?php endif; ?>
 
         <div class="row">

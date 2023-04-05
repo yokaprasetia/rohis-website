@@ -7,9 +7,5 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table = 'users';
-    // protected $allowedFields = ['email', 'no_hp', 'nim', 'user_created_at'];
-
-    public function getProfil()
-    {
-    }
+    protected $allowedFields = ['id', 'nama', 'email', 'no_hp', 'domisili', 'nim', 'kelas', 'angkatan', 'prodi', 'tanggal_lahir', 'password', 'role', 'alamat_kost', 'jenis_kelamin'];
 }

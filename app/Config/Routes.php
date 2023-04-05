@@ -42,11 +42,10 @@ $routes->get('/login', 'Login::index');
 $routes->post('/prosesLogin', 'Login::proses');
 $routes->get('/logout', 'Login::logout');
 
-
-
-
 // PROFIL
 $routes->get('/profil', 'Profil::index');
+$routes->post('/updateProfil', 'Profil::updateProfil');
+$routes->post('/updatePassword', 'Profil::updatePassword');
 
 // BERANDA
 $routes->get('/beranda', 'Beranda::index');
@@ -56,6 +55,8 @@ $routes->get('/akun', 'Akun::index');
 
 //PENGUMUMAN
 $routes->get('/pengumuman', 'Pengumuman::index');
+$routes->get('/pengumumanDetail/(:segment)', 'Pengumuman::detail/$1');
+$routes->post('/tambahPengumuman', 'Pengumuman::tambah');
 
 //KEUANGAN
 $routes->get('/keuangan', 'Keuangan::index');
