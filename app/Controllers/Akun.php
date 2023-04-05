@@ -92,10 +92,10 @@ class Akun extends BaseController
         $proses = $model->save($info);
 
         if ($proses) {
-            $session->setFlashdata('success', 'Update Akun Berhasil');
+            $session->setFlashdata('success', 'Akun Berhasil Diupdate!');
             return redirect()->to('/akun');
         } else {
-            $session->setFlashdata('danger', 'Update Akun Gagal');
+            $session->setFlashdata('danger', 'Akun Gagal Diupdate!');
             return redirect()->to('/akun');
         }
     }

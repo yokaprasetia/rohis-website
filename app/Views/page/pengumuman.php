@@ -150,7 +150,7 @@
                                             <td>
                                                 <div class="btn-group btn-group-sm">
                                                     <a href="<?php echo base_url('updatePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                                    <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus kegiatan <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
+                                                    <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus pengumuman <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -15,7 +15,7 @@
                 <?php endif; ?>
 
                 <div class="card card-primary card-outline">
-                    <form method="post" action="<?php echo base_url('prosesUpdate') ?>">
+                    <form method="post" action="<?php echo base_url('prosesUpdatePengumuman') ?>">
                         <div class="card-body">
 
                             <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id Kegiatan" value="<?php echo $info['id']; ?>" required>

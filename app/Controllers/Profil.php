@@ -35,10 +35,10 @@ class Profil extends BaseController
         $proses = $model->save($info);
 
         if ($proses) {
-            $session->setFlashdata('success', 'Update berhasil');
+            $session->setFlashdata('success', 'Profil Berhasil Diupdate!');
             return redirect()->to('/profil');
         } else {
-            $session->setFlashdata('danger', 'Update gagal');
+            $session->setFlashdata('danger', 'Profil Gagal Diupdate!');
             return redirect()->to('/profil');
         }
     }
@@ -62,14 +62,14 @@ class Profil extends BaseController
                 ];
                 $proses = $model->save($ubah);
                 if ($proses) {
-                    $session->setFlashdata('success', 'Berhasil Ubah Password');
+                    $session->setFlashdata('success', 'Password Berhasil Diubah!');
                     return redirect()->to('/profil');
                 } else {
-                    $session->setFlashdata('danger', 'Gagal Ubah Password');
+                    $session->setFlashdata('danger', 'Password Gagal Diubah!');
                     return redirect()->to('/profil');
                 }
             } else {
-                $session->setFlashdata('danger', 'Konfirmasi Password Gagal');
+                $session->setFlashdata('danger', 'Konfirmasi Password Salah!');
                 return redirect()->to('/profil');
             }
         } else {

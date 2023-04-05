@@ -44,10 +44,10 @@ class Pengumuman extends BaseController
 
         $proses = $model->save($data);
         if ($proses) {
-            $session->setFlashdata('success', 'Berhasil Menambah Pengumuman!');
+            $session->setFlashdata('success', 'Pengumuman Berhasil Ditambah!');
             return redirect()->to('/pengumuman');
         } else {
-            $session->setFlashdata('danger', 'Gagal Menambah Pengumumnan!');
+            $session->setFlashdata('danger', 'Pengumuman Gagal Ditambah!');
             return redirect()->to('/pengumuman');
         }
     }
@@ -74,10 +74,10 @@ class Pengumuman extends BaseController
 
         $proses = $model->save($info);
         if ($proses) {
-            $session->setFlashdata('success', 'Update berhasil');
+            $session->setFlashdata('success', 'Pengumuman Berhasil Diupdate!');
             return redirect()->to('/pengumuman');
         } else {
-            $session->setFlashdata('danger', 'Update gagal');
+            $session->setFlashdata('danger', 'Pengumuman Gagal Diupdate!');
             return redirect()->to('/pengumuman');
         }
     }
@@ -89,10 +89,10 @@ class Pengumuman extends BaseController
 
         $delete = $model->delete(['id' => $id]);
         if ($delete) {
-            $session->setFlashdata('success', 'Kegiatan Berhasil Dihapus!');
+            $session->setFlashdata('success', 'Pengumuman Berhasil Dihapus!');
             return redirect()->to('/pengumuman');
         } else {
-            $session->setFlashdata('danger', 'Kegiatan Gagal Dihapus!');
+            $session->setFlashdata('danger', 'Pengumuman Gagal Dihapus!');
             return redirect()->to('/pengumuman');
         }
     }

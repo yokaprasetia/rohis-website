@@ -28,10 +28,10 @@
                         <th>Email</th>
                         <th>NIM</th>
                         <th>Jabatan</th>
-                        <th>No. HP</th>
-                        <th>Domisili</th>
                         <th>Kelas</th>
                         <th>Angkatan</th>
+                        <th>No. HP</th>
+                        <th>Domisili</th>
                         <th>Prodi</th>
                         <th>Tanggal Lahir</th>
                         <th>Alamat Kost</th>
@@ -48,10 +48,10 @@
                             <td><?php echo $db['email']; ?></td>
                             <td><?php echo $db['nim']; ?></td>
                             <td><?php echo $db['role']; ?></td>
-                            <td><?php echo $db['no_hp']; ?></td>
-                            <td><?php echo $db['domisili']; ?></td>
                             <td><?php echo $db['kelas']; ?></td>
                             <td><?php echo $db['angkatan']; ?></td>
+                            <td><?php echo $db['no_hp']; ?></td>
+                            <td><?php echo $db['domisili']; ?></td>
                             <td><?php echo $db['prodi']; ?></td>
                             <td><?php echo $db['tanggal_lahir']; ?></td>
                             <td><?php echo $db['alamat_kost']; ?></td>

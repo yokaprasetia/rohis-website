@@ -33,14 +33,14 @@ class Login extends BaseController
                     'logged_in'  => TRUE
                 ];
                 $session->set($informasi);
-                $session->setFlashdata('msg', 'Login berhasil');
+                $session->setFlashdata('msg', 'Login Berhasil!');
                 return redirect()->to('/beranda');
             } else {
-                $session->setFlashdata('msg', 'Password Salah');
+                $session->setFlashdata('msg', 'Password Salah!');
                 return redirect()->to('/login');
             }
         } else {
-            $session->setFlashdata('msg', 'Email Tidak Ditemukan');
+            $session->setFlashdata('msg', 'Email Tidak Ditemukan!');
             return redirect()->to('/login');
         }
     }
