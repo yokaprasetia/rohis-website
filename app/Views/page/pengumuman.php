@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="card-body">
-                            <small class="text-muted">Upload at : <?php echo $p['upload_at'] ?> WIB</small>
+                            <small class="text-muted">Updated at : <?php echo $p['updated_at'] ?> WIB</small>
                             <p><?php echo $p['isi']; ?></p>
                         </div>
                         <!-- /.card-body -->

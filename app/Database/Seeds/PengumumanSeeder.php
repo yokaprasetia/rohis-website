@@ -21,7 +21,7 @@ class PengumumanSeeder extends Seeder
                 'waktu_selesai' => '11:00:00',
                 'peserta'   => 'Wajib bagi Mahasiswa Tingkat III, dan terbuka untuk Umum',
                 'link'      => '',
-                'upload_at' => Time::now('Asia/Jakarta'),
+                'updated_at' => Time::now('Asia/Jakarta'),
             ],
             [
                 'nama'      => 'Kajian Islam Spesial 2023',
@@ -32,7 +32,7 @@ class PengumumanSeeder extends Seeder
                 'waktu_selesai' => '10:00:00',
                 'peserta'   => 'Seluruh Mahasiswa Tingkat IV',
                 'link'      => 'https://zoom.us/',
-                'upload_at' => Time::now('Asia/Jakarta'),
+                'updated_at' => Time::now('Asia/Jakarta'),
             ],
             [
                 'nama'      => "Peringatan Nuzulul Qur'an",
@@ -43,7 +43,7 @@ class PengumumanSeeder extends Seeder
                 'waktu_selesai' => '21:00:00',
                 'peserta'   => 'Wajib bagi Mahasiswa Tingkat I dan II',
                 'link'      => 'https://s.stis.ac.id/VBGOCPoisson2022',
-                'upload_at' => Time::now('Asia/Jakarta'),
+                'updated_at' => Time::now('Asia/Jakarta'),
             ],
             [
                 'nama'      => 'Peringatan Maulid Nabi',
@@ -54,7 +54,7 @@ class PengumumanSeeder extends Seeder
                 'waktu_selesai' => '11:30:00',
                 'peserta'   => 'Seluruh Mahasiswa STIS',
                 'link'      => '',
-                'upload_at' => Time::now('Asia/Jakarta'),
+                'updated_at' => Time::now('Asia/Jakarta'),
             ],
         ];
 

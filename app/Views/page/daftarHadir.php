@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h3 class="card-title col-12 text-center">Kegiatan Aktif : Kajian Rutin</h3>
+                        <h3 class="card-title col-12 text-center">Kegiatan Hari Ini : Kajian Rutin</h3>
                     </div>
                     <button class="btn btn-primary">Presensi Sekarang</button>
                 </div>

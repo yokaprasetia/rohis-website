@@ -3,9 +3,8 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
-use CodeIgniter\I18n\Time;
 
-class AddPengumuman extends Migration
+class AddKeuangan extends Migration
 {
     public function up()
     {
@@ -16,45 +15,35 @@ class AddPengumuman extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => '250',
-            ],
-            'isi' => [
-                'type'          => 'TEXT',
-            ],
-            'tempat' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => '126',
+            'nominal' => [
+                'type'          => 'INT',
+                'constraint'    => 11,
             ],
             'tanggal' => [
                 'type'          => 'DATE',
             ],
-            'waktu_mulai' => [
-                'type'          => 'TIME',
+            'jenis' => [
+                'type'          => 'VARCHAR',
+                'constraint'    => '126',
             ],
-            'waktu_selesai' => [
-                'type'          => 'TIME',
-            ],
-            'peserta' => [
+            'file' => [
                 'type'          => 'VARCHAR',
                 'constraint'    => '250',
             ],
-            'link' => [
+            'keterangan' => [
                 'type'          => 'VARCHAR',
                 'constraint'    => '250',
-                'null'          => true,
             ],
             'updated_at' => [
                 'type'          => 'DATETIME',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('pengumuman');
+        $this->forge->createTable('keuangan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pengumuman');
+        $this->forge->dropTable('keuangan');
     }
 }

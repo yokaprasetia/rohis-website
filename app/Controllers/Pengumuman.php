@@ -15,7 +15,7 @@ class Pengumuman extends BaseController
             'judul' => 'SiROHIS | Pengumuman',
             'subjudul' => 'Pengumuman',
             'active' => 'pengumuman',
-            'pengumuman' => $model->orderBy('upload_at', 'DESC')->findAll(),
+            'pengumuman' => $model->orderBy('updated_at', 'DESC')->findAll(),
         ];
         // dd($data['pengumuman']);
         return view('page/pengumuman', $data);
@@ -39,15 +39,21 @@ class Pengumuman extends BaseController
         $session = session();
         $model = new PengumumanModel();
         $data = $this->request->getVar();
-        // upload_at
-        $data['upload_at'] = Time::now('Asia/Jakarta');
+        $data['updated_at'] = Time::now('Asia/Jakarta');
 
         $proses = $model->save($data);
+
+        // cek apakah insert atau update
+        if (isset($data['id'])) {
+            $kegiatan = 'Diupdate';
+        } else {
+            $kegiatan = 'Ditambah';
+        }
         if ($proses) {
-            $session->setFlashdata('success', 'Pengumuman Berhasil Ditambah!');
+            $session->setFlashdata('success', "Pengumuman Berhasil $kegiatan!");
             return redirect()->to('/pengumuman');
         } else {
-            $session->setFlashdata('danger', 'Pengumuman Gagal Ditambah!');
+            $session->setFlashdata('danger', "Pengumuman Gagal $kegiatan!");
             return redirect()->to('/pengumuman');
         }
     }
@@ -63,23 +69,6 @@ class Pengumuman extends BaseController
         ];
 
         return view('page/updatePengumuman', $data);
-    }
-
-    public function prosesUpdate()
-    {
-        $session = session();
-        $model = new PengumumanModel();
-        $info = $this->request->getVar();
-        $info['upload_at'] = Time::now('Asia/Jakarta');
-
-        $proses = $model->save($info);
-        if ($proses) {
-            $session->setFlashdata('success', 'Pengumuman Berhasil Diupdate!');
-            return redirect()->to('/pengumuman');
-        } else {
-            $session->setFlashdata('danger', 'Pengumuman Gagal Diupdate!');
-            return redirect()->to('/pengumuman');
-        }
     }
 
     public function delete($id)

@@ -14,7 +14,7 @@ class Kegiatan extends BaseController
             'judul' => 'SiROHIS | Kegiatan',
             'subjudul' => 'Riwayat Kegiatan',
             'active' => 'kegiatan',
-            'pengumuman' => $model->orderBy('upload_at', 'DESC')->findAll(),
+            'pengumuman' => $model->orderBy('updated_at', 'DESC')->findAll(),
         ];
 
         return view('page/Kegiatan', $data);
