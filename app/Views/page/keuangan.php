@@ -64,12 +64,12 @@
                                         <td><?php echo $k['keterangan']; ?></td>
                                         <td><?php echo $k['updated_at']; ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal<?php echo $k['id']; ?>">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bukti<?php echo $k['id']; ?>">
                                                 <i class="fas fa-file-image fa-lg"></i>
                                             </button>
                                         </td>
                                         <td>
-                                            <a href="<?php echo base_url('updateTransaksi'); ?>/<?php echo $k['id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#update<?php echo $k['id']; ?>"><i class="fas fa-edit"></i></button>
                                             <a href="<?php echo base_url('deleteTransaksi'); ?>/<?php echo $k['id']; ?>" class="btn btn-danger btn-sm" onClick="return confirm('Apakah Anda yakin ingin menghapus transaksi pada tanggal <?php echo $k['tanggal']; ?> ?')"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -85,30 +85,11 @@
     </div>
 </div>
 
-<?php foreach ($keuangan as $k) : ?>
-    <div class="modal fade" id="modal<?php echo $k['id']; ?>">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Bukti Transaksi - <?php echo $k['keterangan']; ?></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img class="" style="width:100%" src="<?php echo base_url('bukti-transaksi'); ?>/<?php echo $k['file']; ?>">
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-    </div>
-<?php endforeach; ?>
-
 <div class="modal fade" id="tambahTransaksi">
-    <div class="modal-dialog tambahTransaksi">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Akun</h4>
+                <h4 class="modal-title">Tambah Transaksi</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -152,10 +133,88 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Tambah Transaksi</button>
                 </div>
-                <?php form_close(); ?>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<?php foreach ($keuangan as $k) : ?>
+
+    <div class="modal fade" id="bukti<?php echo $k['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bukti Transaksi - <?php echo $k['keterangan']; ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="" style="width:100%" src="<?php echo base_url('bukti-transaksi'); ?>/<?php echo $k['file']; ?>">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="update<?php echo $k['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Transaksi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Mulai dari sini -->
+                    <?php echo form_open_multipart('tambahTransaksi'); ?>
+                    <div class="card-body">
+                        <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id transaksi" value="<?php echo $k['id']; ?>" required>
+
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal</label>
+                            <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal transaksi" value="<?php echo $k['tanggal']; ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nominal">Nominal</label>
+                            <input type="number" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal Transaksi" value="<?php echo $k['nominal']; ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jenis">Jenis</label>
+                            <select name="jenis" id="jenis" class="form-control" required>
+                                <option value="Masuk" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Masuk</option>
+                                <option value="Keluar" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Keluar</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan Transaksi" value="<?php echo $k['keterangan']; ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file">Bukti</label>
+                            <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Transaksi" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Update Transaksi</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+
+<?php endforeach; ?>
+
+
 
 <?php $this->endSection(); ?>

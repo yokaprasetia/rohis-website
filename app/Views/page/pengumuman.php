@@ -60,7 +60,7 @@
 
 <!-- TAMBAH FORM -->
 <div class="modal fade" id="tambahPengumuman">
-    <div class="modal-dialog tambahPengumuman">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -127,8 +127,16 @@
 
 <!-- EDIT FORM -->
 <div class="modal fade" id="editPengumuman">
-    <div class="modal-dialog editPengumuman">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Riwayat Pengumuman</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
             <div class="modal-body">
                 <div class="col-12">
                     <div class="card">
@@ -149,7 +157,7 @@
                                             <td><?php echo $p['nama'] ?></td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
-                                                    <a href="<?php echo base_url('updatePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?php echo $p['id']; ?>"><i class="fas fa-edit"></i></button>
                                                     <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus pengumuman <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </td>
@@ -165,5 +173,78 @@
         </div>
     </div>
 </div>
+
+
+<!-- LOOPING MODAL -->
+<?php foreach ($pengumuman as $p) : ?>
+    <!-- EDIT FORM -->
+    <div class="modal fade" id="modal<?php echo $p['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Riwayat Pengumuman</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form method="post" action="<?php echo base_url('tambahPengumuman') ?>">
+                        <div class="card-body">
+
+                            <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id Kegiatan" value="<?php echo $p['id']; ?>" required>
+
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama Kegiatan" value="<?php echo $p['nama']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="isi">Deskripsi</label>
+                                <input type="text" class="form-control" name="isi" id="isi" placeholder="Masukkan Deskripsi Kegiatan" value="<?php echo $p['isi']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tempat">Tempat</label>
+                                <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Masukkan Tempat Kegiatan" value="<?php echo $p['tempat']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="waktu_mulai">Waktu Mulai</label>
+                                <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai" placeholder="Masukkan Waktu Mulai Kegiatan" value="<?php echo $p['waktu_mulai']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="waktu_selesai">Waktu Selesai</label>
+                                <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai" placeholder="Masukkan Waktu Selesai Kegiatan" value="<?php echo $p['waktu_selesai']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="peserta">Peserta</label>
+                                <input type="text" class="form-control" name="peserta" id="peserta" placeholder="Masukkan Peserta Kegiatan" value="<?php echo $p['peserta']; ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="link">Link</label>
+                                <input type="text" class="form-control" name="link" id="link" placeholder="Masukkan Link (opsional)" value="<?php echo $p['link']; ?>">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="<?php echo base_url('pengumuman'); ?>" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Update Data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php endforeach; ?>
 
 <?php echo $this->endSection(); ?>

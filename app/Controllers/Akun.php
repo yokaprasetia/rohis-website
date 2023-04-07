@@ -54,19 +54,6 @@ class Akun extends BaseController
         }
     }
 
-    public function update($id)
-    {
-        $model = new UserModel();
-        $data = [
-            'judul' => 'SiROHIS | Update Akun',
-            'subjudul' => 'Update Akun',
-            'active' => 'akun',
-            'info' => $model->where('id', $id)->first(),
-        ];
-
-        return view('page/updateAkun', $data);
-    }
-
     public function delete($id)
     {
         $session = session();

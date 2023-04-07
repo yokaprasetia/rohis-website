@@ -52,7 +52,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                         <a href="<?php echo base_url('keuangan'); ?>" class="btn btn-secondary">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Update Transaksi</button>
+                        <button type="submit" class="btn btn-primary">Tambah Transaksi</button>
                     </div>
                     <?php form_close(); ?>
                 </div>

@@ -110,7 +110,7 @@
 </div>
 
 <div class="modal fade" id="updateProfil">
-    <div class="modal-dialog updateProfil">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Update Profil</h4>
@@ -201,7 +201,7 @@
 </div>
 
 <div class="modal fade" id="ubahPassword">
-    <div class="modal-dialog ubahPassword">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Ubah Password</h4>

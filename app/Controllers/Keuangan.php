@@ -91,24 +91,15 @@ class Keuangan extends BaseController
         }
     }
 
-    public function update($id)
-    {
-        $model = new KeuanganModel();
-
-        $data = [
-            'judul' => 'SiROHIS | Update Keuangan',
-            'subjudul' => 'Update Keuangan',
-            'active' => 'keuangan',
-            'data' => $model->where('id', $id)->first(),
-        ];
-
-        return view('page/updateKeuangan', $data);
-    }
-
     public function delete($id)
     {
         $session = session();
         $model = new KeuanganModel();
+
+        //menghapus file yang sudah diupload
+        $file_uploaded = $model->where('id', $id)->first();
+        $path = './bukti-transaksi/' . $file_uploaded['file'];
+        unlink($path);
 
         $delete = $model->delete(['id' => $id]);
         if ($delete) {

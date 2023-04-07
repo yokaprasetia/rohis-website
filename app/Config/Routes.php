@@ -53,7 +53,6 @@ $routes->get('/beranda', 'Beranda::index');
 //AKUN
 $routes->get('/akun', 'Akun::index');
 $routes->post('/tambahAkun', 'Akun::tambah');
-$routes->get('/updateAkun/(:segment)', 'Akun::update/$1');
 $routes->get('/deleteAkun/(:segment)', 'Akun::delete/$1');
 $routes->post('/prosesUpdateAkun', 'Akun::prosesUpdate');
 
@@ -61,13 +60,11 @@ $routes->post('/prosesUpdateAkun', 'Akun::prosesUpdate');
 $routes->get('/pengumuman', 'Pengumuman::index');
 $routes->get('/pengumumanDetail/(:segment)', 'Pengumuman::detail/$1');
 $routes->post('/tambahPengumuman', 'Pengumuman::tambah');
-$routes->get('/updatePengumuman/(:segment)', 'Pengumuman::update/$1');
 $routes->get('/deletePengumuman/(:segment)', 'Pengumuman::delete/$1');
 
 //KEUANGAN
 $routes->get('/keuangan', 'Keuangan::index');
 $routes->post('/tambahTransaksi', 'Keuangan::tambah');
-$routes->get('/updateTransaksi/(:segment)', 'Keuangan::update/$1');
 $routes->get('/deleteTransaksi/(:segment)', 'Keuangan::delete/$1');
 
 //DAFTAR HADIR
