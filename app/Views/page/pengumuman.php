@@ -1,5 +1,8 @@
 <?php echo $this->extend('layout/template'); ?>
 <?php echo $this->section('content'); ?>
+<?php
+
+use CodeIgniter\I18n\Time; ?>
 
 <div class="content">
     <div class="container-fluid">
@@ -157,13 +160,20 @@
                                 <tbody>
                                     <?php $i = 1;  ?>
                                     <?php foreach ($pengumuman as $p) : ?>
+
                                         <tr>
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $p['nama'] ?></td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?php echo $p['id']; ?>"><i class="fas fa-edit"></i></button>
-                                                    <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus pengumuman <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
+                                                    <?php
+                                                    $waktu_sekarang = Time::now('Asia/Jakarta');
+                                                    $time = Time::parse($p['tanggal']);
+                                                    if (!$time->isBefore($waktu_sekarang)) :
+                                                    ?>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?php echo $p['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                        <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus pengumuman <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -188,7 +198,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Riwayat Pengumuman</h4>
+                    <h4 class="modal-title">Update Pengumuman</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -217,7 +227,7 @@
 
                             <div class="form-group">
                                 <label for="tanggal">Tanggal</label>
-                                <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" required>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" required readonly>
                             </div>
 
                             <div class="form-group">

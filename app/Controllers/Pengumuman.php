@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PengumumanModel;
+use App\Models\DaftarHadirModel;
 use CodeIgniter\I18n\Time;
 
 class Pengumuman extends BaseController
@@ -74,10 +75,12 @@ class Pengumuman extends BaseController
     public function delete($id)
     {
         $session = session();
-        $model = new PengumumanModel();
+        $modelPengumuman = new PengumumanModel();
+        $modelDaftarHadir = new DaftarHadirModel();
 
-        $delete = $model->delete(['id' => $id]);
-        if ($delete) {
+        $delete = $modelPengumuman->delete(['id' => $id]);
+        $deleteDaftarHadir = $modelDaftarHadir->delete(['id_kegiatan' => $id]);
+        if ($delete && $deleteDaftarHadir) {
             $session->setFlashdata('success', 'Pengumuman Berhasil Dihapus!');
             return redirect()->to('/pengumuman');
         } else {
