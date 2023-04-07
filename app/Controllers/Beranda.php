@@ -32,6 +32,9 @@ class Beranda extends BaseController
         $kas_keluar = $modelKeuangan->where('jenis', 'Keluar')->findAll();
         $total_kas = $modelKeuangan->hitung($kas_masuk, $kas_keluar);
 
+        // Pengumuman Terbaru
+        $pengumuman = $modelPengumuman->orderBy('updated_at', 'DESC')->first();
+
         $data = [
             'judul' => 'SiROHIS | Beranda',
             'subjudul' => 'Beranda',
@@ -40,6 +43,7 @@ class Beranda extends BaseController
             'total_kas' => $total_kas,
             'quotes' => $quotes_random['quotes'],
             'warna_quotes' => $warnaQuotes,
+            'pengumuman_terbaru' => $pengumuman,
         ];
         return view('page/beranda', $data);
     }

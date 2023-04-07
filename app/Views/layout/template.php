@@ -125,10 +125,19 @@ if ($session->get('logged_in')) {
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="<?php echo base_url('assets'); ?>/dist/js/pages/dashboard3.js"></script>
 
+        <!-- jQuery Knob -->
+        <script src="<?php echo base_url('assets'); ?>/plugins/jquery-knob/jquery.knob.min.js"></script>
+
+        <!-- Sparkline -->
+        <script src="<?php echo base_url('assets'); ?>/plugins/sparklines/sparkline.js"></script>
+
 
         <!-- JS MANUAL -->
         <script src="<?php echo base_url(); ?>/js/jsGrid.js"></script>
         <script src="<?php echo base_url(); ?>/js/dataTable.js"></script>
+        <script src="<?php echo base_url(); ?>/js/presensi.js"></script>
+
+
     </body>
 
     </html>
