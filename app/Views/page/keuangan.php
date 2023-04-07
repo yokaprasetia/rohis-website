@@ -18,6 +18,17 @@
             Tambah Transaksi
         </button>
 
+        <div class="col-12 text-center">
+            <div class="info-box box-outline bg-warning">
+                <div class="info-box-content">
+                    <span class="info-box-text"><strong>TOTAL KEUANGAN (KAS)</strong></span>
+                    <span class="info-box-number">Rp<?php echo $total_kas; ?>,00</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
         <?php if (isset($errors)) : ?>
             <?php foreach ($errors as $error) : ?>
                 <li><?= esc($error) ?></li>

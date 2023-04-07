@@ -13,12 +13,18 @@ class Keuangan extends BaseController
     public function index()
     {
         $model = new KeuanganModel();
+        // $baris = $model->countAllResults();
+        $kas_masuk = $model->where('jenis', 'Masuk')->findAll();
+        $kas_keluar = $model->where('jenis', 'Keluar')->findAll();
+
+        $total_kas = $model->hitung($kas_masuk, $kas_keluar);
 
         $data = [
             'judul' => 'SiROHIS | Keuangan',
             'subjudul' => 'Keuangan',
             'active' => 'keuangan',
             'keuangan' => $model->orderBy('updated_at', 'DESC')->findAll(),
+            'total_kas' => $total_kas,
             'errors' => [],
         ];
 
