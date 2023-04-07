@@ -11,12 +11,11 @@
         <?php endif; ?>
 
 
-        <div class="alert alert-<?php echo $warna_quotes;  ?> alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-info"></i> Quotes Today</h5>
-            <span></i><?php echo $quotes; ?></span>
-        </div>
+        <div class="callout callout-<?php echo $warna_quotes;  ?>">
+            <h5><i class="icon fas fa-info mr-3"></i> Quotes Today</h5>
 
+            <p></i><?php echo $quotes; ?></p>
+        </div>
 
         <div class="row">
 

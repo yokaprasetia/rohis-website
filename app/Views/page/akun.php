@@ -12,7 +12,10 @@
         <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
     <?php endif; ?>
 
-    <div class="card card-outline card-danger">
+    <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
+    $warnaQuotes = $warna[array_rand($warna)]; ?>
+
+    <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
         <div class="card-header">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahAkun">
                 <i class="fas fa-plus mr-2"></i>

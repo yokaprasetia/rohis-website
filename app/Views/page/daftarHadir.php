@@ -12,7 +12,11 @@
                     </div>
                     <button class="btn btn-primary">Presensi Sekarang</button>
                 </div>
-                <div class="card card-outline card-danger">
+
+                <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
+                $warnaQuotes = $warna[array_rand($warna)]; ?>
+
+                <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
                     <div class="card-header">
                         <h3 class="card-title">Riwayat Daftar Hadir</h3>
                     </div>

@@ -7,7 +7,7 @@
 <div class="content">
     <div class="row">
         <div class="col-12" id="accordion">
-            <div class="card card-primary card-outline">
+            <div class="card card-<?php echo $warna[0]; ?> card-outline">
                 <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
                     <div class="card-header">
                         <h4 class="card-title w-100">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-warning card-outline">
+            <div class="card card-<?php echo $warna[1]; ?> card-outline">
                 <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
                     <div class="card-header">
                         <h4 class="card-title w-100">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-danger card-outline">
+            <div class="card card-<?php echo $warna[2]; ?> card-outline">
                 <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
                     <div class="card-header">
                         <h4 class="card-title w-100">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-success card-outline">
+            <div class="card card-<?php echo $warna[3]; ?> card-outline">
                 <a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
                     <div class="card-header">
                         <h4 class="card-title w-100">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-secondary card-outline">
+            <div class="card card-<?php echo $warna[4]; ?> card-outline">
                 <a class="d-block w-100" data-toggle="collapse" href="#collapseFive">
                     <div class="card-header">
                         <h4 class="card-title w-100">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-dark card-outline">
+            <div class="card card-<?php echo $warna[5]; ?> card-outline">
                 <a class="d-block w-100" data-toggle="collapse" href="#collapseSix">
                     <div class="card-header">
                         <h4 class="card-title w-100">

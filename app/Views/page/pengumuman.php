@@ -20,10 +20,15 @@
             <i class="fas fa-edit mr-2"></i>
             Edit Pengumuman
         </button>
+
         <div class="row">
             <div class="col-12">
                 <?php foreach ($pengumuman as $p) : ?>
-                    <div class="card card-success card-outline">
+
+                    <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
+                    $warnaQuotes = $warna[array_rand($warna)]; ?>
+
+                    <div class="card card-<?php echo $warnaQuotes; ?> card-outline">
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-calendar-check mr-2"></i>

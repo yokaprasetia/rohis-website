@@ -6,7 +6,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card card-outline card-danger">
+
+                <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
+                $warnaQuotes = $warna[array_rand($warna)]; ?>
+
+                <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
