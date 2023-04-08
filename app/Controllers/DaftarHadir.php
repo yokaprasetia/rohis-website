@@ -77,6 +77,8 @@ class DaftarHadir extends BaseController
             } else {
                 $status_presensi = 'Belum';
             }
+        } else {
+            $status_presensi = '';
         }
 
         $data = [
