@@ -46,9 +46,6 @@ class KeuanganSeeder extends Seeder
             ],
         ];
 
-        // 1 Data
-        // $this->db->table('keuangan')->insert($data);
-
         // Banyak data
         $this->db->table('keuangan')->insertBatch($data);
     }
