@@ -108,8 +108,7 @@
                             <label for="role">Jabatan</label>
                             <select name="role" id="role" class="form-control" required>
                                 <option value="Ketua">Ketua</option>
-                                <option value="Wakil Ketua">Wakil Ketua</option>
-                                <option value="Sekretaris">Sekretaris</option>
+                                <option value="Humas">Humas</option>
                                 <option value="Bendahara">Bendahara</option>
                                 <option value="Anggota" selected="selected">Anggota</option>
                             </select>
@@ -210,8 +209,7 @@
                                 <label for="role">Jabatan</label>
                                 <select name="role" id="role" class="form-control" required>
                                     <option value="Ketua" <?php echo ($db['role'] == 'Ketua') ? 'selected="selected"' : '' ?>>Ketua</option>
-                                    <option value="Wakil Ketua" <?php echo ($db['role'] == 'Wakil Ketua') ? 'selected="selected"' : '' ?>>Wakil Ketua</option>
-                                    <option value="Sekretaris" <?php echo ($db['role'] == 'Sekretaris') ? 'selected="selected"' : '' ?>>Sekretaris</option>
+                                    <option value="Humas" <?php echo ($db['role'] == 'Humas') ? 'selected="selected"' : '' ?>>Humas</option>
                                     <option value="Bendahara" <?php echo ($db['role'] == 'Bendahara') ? 'selected="selected"' : '' ?>>Bendahara</option>
                                     <option value="Anggota" <?php echo ($db['role'] == 'Anggota') ? 'selected="selected"' : '' ?>>Anggota</option>
                                 </select>

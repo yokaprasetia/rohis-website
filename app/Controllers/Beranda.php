@@ -15,6 +15,7 @@ class Beranda extends BaseController
     public function index()
     {
         $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
         $modelUsers = new UserModel();
         $modelKeuangan = new KeuanganModel();
@@ -65,6 +66,7 @@ class Beranda extends BaseController
             'judul' => 'SiROHIS | Beranda',
             'subjudul' => 'Beranda',
             'active' => 'beranda',
+            'role' => $role,
             'jumlah_pengguna' => $jumlah_pengguna,
             'total_kas' => $total_kas,
             'quotes' => $quotes_random['quotes'],

@@ -12,6 +12,9 @@ class Keuangan extends BaseController
 
     public function index()
     {
+        $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         $model = new KeuanganModel();
         // $baris = $model->countAllResults();
         $kas_masuk = $model->where('jenis', 'Masuk')->findAll();
@@ -23,6 +26,7 @@ class Keuangan extends BaseController
             'judul' => 'SiROHIS | Keuangan',
             'subjudul' => 'Keuangan',
             'active' => 'keuangan',
+            'role'  => $role,
             'keuangan' => $model->orderBy('updated_at', 'DESC')->findAll(),
             'total_kas' => $total_kas,
             'errors' => [],
@@ -34,11 +38,14 @@ class Keuangan extends BaseController
     public function tambah()
     {
         $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         $model = new KeuanganModel();
         $data = [
             'judul' => 'SiROHIS | Keuangan',
             'subjudul' => 'Keuangan',
             'active' => 'keuangan',
+            'role'  => $role,
             'keuangan' => $model->orderBy('updated_at', 'DESC')->findAll(),
         ];
 

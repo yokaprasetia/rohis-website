@@ -10,6 +10,8 @@ class Profil extends BaseController
     public function index()
     {
         $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         $model = new UserModel();
 
         $id = $session->get('id');
@@ -19,6 +21,7 @@ class Profil extends BaseController
             'judul' => 'SiROHIS | Profil',
             'subjudul' => 'Profil',
             'active' => 'profil',
+            'role'  => $role,
             'profil' => $model->where('id', $id)->first(),
         ];
 

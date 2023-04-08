@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                // ============================================================== KETUA
+                // ============================================================== ADMIN
                 'nama'          => 'Yoka Prasetia',
                 'email'         => '221910846@stis.ac.id',
                 'no_hp'         => '0895379261962',
@@ -22,27 +22,27 @@ class UserSeeder extends Seeder
                 'prodi'         => 'D-IV KS',
                 'tanggal_lahir' => '2002-01-20',
                 'password'      => password_hash('221910846', PASSWORD_DEFAULT),
+                'role'          => 'Admin',
+                'alamat_kost'   => 'Jl. Solihun',
+                'jenis_kelamin' => 'laki-laki',
+            ],
+            [
+                // ============================================================== KETUA
+                'nama'          => 'Ridwan Syech Nawawi',
+                'email'         => '221112213@stis.ac.id',
+                'no_hp'         => '0895379261943',
+                'domisili'      => 'Jakarta',
+                'nim'           => '221112213',
+                'kelas'         => '4SI1',
+                'angkatan'      => '61',
+                'prodi'         => 'D-IV KS',
+                'tanggal_lahir' => '2002-04-20',
+                'password'      => password_hash('221112213', PASSWORD_DEFAULT),
                 'role'          => 'Ketua',
                 'alamat_kost'   => 'Jl. Solihun',
                 'jenis_kelamin' => 'laki-laki',
             ],
-            // ============================================================== WAKIL KETUA
-            [
-                'nama'          => 'Rohmah Fathonah',
-                'email'         => '222010001@stis.ac.id',
-                'no_hp'         => '0895123456787',
-                'domisili'      => 'Jawa Tengah',
-                'nim'           => '222010001',
-                'kelas'         => '3SE4',
-                'angkatan'      => '62',
-                'prodi'         => 'D-IV ST',
-                'tanggal_lahir' => '2002-07-11',
-                'password'      => password_hash('222010001', PASSWORD_DEFAULT),
-                'role'          => 'Wakil Ketua',
-                'alamat_kost'   => 'Jl. H. Hasbi',
-                'jenis_kelamin' => 'Perempuan',
-            ],
-            // ============================================================== SEKRETARIS
+            // ============================================================== Humas
             [
                 'nama'          => 'Muhammad Sasmito',
                 'email'         => '212110880@stis.ac.id',
@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
                 'prodi'         => 'D-IV KS',
                 'tanggal_lahir' => '2003-08-24',
                 'password'      => password_hash('212110880', PASSWORD_DEFAULT),
-                'role'          => 'Sekretaris',
+                'role'          => 'Humas',
                 'alamat_kost'   => 'Jl. Sensus II',
                 'jenis_kelamin' => 'laki-laki',
             ],

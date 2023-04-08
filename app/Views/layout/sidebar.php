@@ -24,12 +24,14 @@
 
                 <li class="nav-header">AKTIVITAS</li>
 
-                <li class="nav-item">
-                    <a href="<?php echo base_url('akun'); ?>" class="nav-link <?php echo ($active == 'akun') ? 'active' : '' ?>">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>Akun</p>
-                    </a>
-                </li>
+                <?php if ($role == 'Admin' || $role == 'Ketua') : ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('akun'); ?>" class="nav-link <?php echo ($active == 'akun') ? 'active' : '' ?>">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>Akun</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <a href="<?php echo base_url('pengumuman'); ?>" class="nav-link <?php echo ($active == 'pengumuman') ? 'active' : '' ?>">

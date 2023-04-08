@@ -279,19 +279,6 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="<?php echo base_url('assets-landing'); ?>/img/team/team-2.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Wakil Ketua</span>
-                                <p>Bertanggung jawab dan dapat dipercaya adalah hal yang harus dimiliki oleh seorang pemimpin.</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <div class="member">
                             <div class="member-img">
@@ -299,7 +286,7 @@
                             </div>
                             <div class="member-info">
                                 <h4>William Anderson</h4>
-                                <span>Sekretaris</span>
+                                <span>Humas</span>
                                 <p>Soft skill juga diperlukan dalam suatu organisasi, sehingga hadapi semua rintangan yang menghadang.</p>
                             </div>
                         </div>
@@ -314,6 +301,19 @@
                                 <h4>Amanda Jepson</h4>
                                 <span>Bendahara</span>
                                 <p>Manajemen waktu sangat dibutuhkan dalam suatu kehidupan. Jalanilah kehidupan dengan optimis dan penuh semangat.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="<?php echo base_url('assets-landing'); ?>/img/team/team-2.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>Sarah Jhonson</h4>
+                                <span>Anggota</span>
+                                <p>Bertanggung jawab dan dapat dipercaya adalah hal yang harus dimiliki oleh seorang pemimpin.</p>
                             </div>
                         </div>
                     </div>

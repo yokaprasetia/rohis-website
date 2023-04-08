@@ -45,7 +45,7 @@
                                     <th>Tempat</th>
                                     <th>Tanggal</th>
                                     <th>Kehadiran</th>
-                                    <th>Aksi</th>
+                                    <th>Lihat Kehadiran</th>
                                 </tr>
                             </thead>
                             <tbody>

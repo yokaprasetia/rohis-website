@@ -15,6 +15,8 @@ class DaftarHadir extends BaseController
         $modelPengumuman = new PengumumanModel();
         $modelDaftarHadir = new DaftarHadirModel();
 
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         // Daftar kegiatan yang sudah terjadi - isBefore()
         $waktu_sekarang = Time::now('Asia/Jakarta');
 
@@ -85,6 +87,7 @@ class DaftarHadir extends BaseController
             'judul' => 'SiROHIS | Daftar Hadir',
             'subjudul' => 'Daftar Hadir',
             'active' => 'daftarHadir',
+            'role' => $role,
             'daftar_kegiatan' => $daftar_kegiatan,
             'berlangsung' => $berlangsung,
             'kegiatan_berlangsung' => $kegiatan_berlangsung,
@@ -97,6 +100,10 @@ class DaftarHadir extends BaseController
 
     public function detail($id_kegiatan)
     {
+        $session = session();
+
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         // Ambil Nama Kegiatan
         $modelPengumuman = new PengumumanModel();
         $pengumuman = $modelPengumuman->where('id', $id_kegiatan)->first();
@@ -109,6 +116,7 @@ class DaftarHadir extends BaseController
             'judul' => 'SiROHIS | Detail Kehadiran',
             'subjudul' => 'Detail Kehadiran',
             'active' => 'daftarHadir',
+            'role'  => $role,
             'kehadiran' => [
                 'nama_kegiatan' => $pengumuman['nama'],
                 'peserta' => $peserta,
@@ -124,10 +132,13 @@ class DaftarHadir extends BaseController
         $modelPengumuman = new PengumumanModel();
         $modelDaftarHadir = new DaftarHadirModel();
 
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         $data = [
             'judul' => 'SiROHIS | Daftar Hadir',
             'subjudul' => 'Daftar Hadir',
             'active' => 'daftarHadir',
+            'role' => $role,
         ];
 
         $validationRule = [

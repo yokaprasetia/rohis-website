@@ -24,7 +24,9 @@
                                     <th>NIM</th>
                                     <th>Tanggal</th>
                                     <th>Waktu Presensi</th>
-                                    <th>Bukti</th>
+                                    <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
+                                        <th>Bukti</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,11 +38,13 @@
                                         <td><?php echo $peserta['nim']; ?></td>
                                         <td><?php echo $peserta['tanggal']; ?></td>
                                         <td><?php echo $peserta['updated_at']; ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bukti<?php echo $peserta['id']; ?>">
-                                                <i class="fas fa-file-image fa-lg"></i>
-                                            </button>
-                                        </td>
+                                        <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bukti<?php echo $peserta['id']; ?>">
+                                                    <i class="fas fa-file-image fa-lg"></i>
+                                                </button>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>

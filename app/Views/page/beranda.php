@@ -22,7 +22,7 @@
             <div class="col-12 col-lg-6">
                 <div class="small-box bg-success">
                     <div class="inner ml-3">
-                        <p>Total Pengguna</p>
+                        <p>Jumlah Saudara User Rohis</p>
                         <h3><?php echo $jumlah_pengguna; ?></h3>
                     </div>
                     <div class="icon">

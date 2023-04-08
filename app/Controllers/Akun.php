@@ -8,13 +8,15 @@ class Akun extends BaseController
 {
     public function index()
     {
+        $session = session();
         $model = new UserModel();
-
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
         $data = [
             'judul' => 'SiROHIS | Akun',
             'subjudul' => 'Akun',
             'active' => 'akun',
+            'role' => $role,
             'database' => $model->findAll(),
         ];
 

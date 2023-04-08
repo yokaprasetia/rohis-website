@@ -10,12 +10,16 @@ class Pengumuman extends BaseController
 {
     public function index()
     {
+        $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         $model = new PengumumanModel();
 
         $data = [
             'judul' => 'SiROHIS | Pengumuman',
             'subjudul' => 'Pengumuman',
             'active' => 'pengumuman',
+            'role'  => $role,
             'pengumuman' => $model->orderBy('updated_at', 'DESC')->findAll(),
         ];
         // dd($data['pengumuman']);
@@ -24,11 +28,15 @@ class Pengumuman extends BaseController
 
     public function detail($id)
     {
+        $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
         $model = new PengumumanModel();
         $data = [
             'judul' => 'SiROHIS | Detail Pengumuman',
             'subjudul' => 'Detail Pengumuman',
             'active' => 'pengumuman',
+            'role'  => $role,
             'detail' => $model->where('id', $id)->first(),
         ];
 
@@ -57,19 +65,6 @@ class Pengumuman extends BaseController
             $session->setFlashdata('danger', "Pengumuman Gagal $kegiatan!");
             return redirect()->to('/pengumuman');
         }
-    }
-
-    public function update($id)
-    {
-        $model = new PengumumanModel();
-        $data = [
-            'judul' => 'SiROHIS | Update Pengumuman',
-            'subjudul' => 'Update Pengumuman',
-            'active' => 'pengumuman',
-            'info' => $model->where('id', $id)->first(),
-        ];
-
-        return view('page/updatePengumuman', $data);
     }
 
     public function delete($id)

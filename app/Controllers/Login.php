@@ -31,6 +31,7 @@ class Login extends BaseController
                     'nama'       => $data['nama'],
                     'email'      => $data['email'],
                     'nim'        => $data['nim'],
+                    'role'       => $data['role'],
                     'logged_in'  => TRUE
                 ];
                 $session->set($informasi);

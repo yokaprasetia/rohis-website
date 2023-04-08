@@ -15,14 +15,16 @@ use CodeIgniter\I18n\Time; ?>
             <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
         <?php endif; ?>
 
-        <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahPengumuman">
-            <i class="fas fa-plus mr-2"></i>
-            Tambah Pengumuman
-        </button>
-        <button type="button" class="btn btn-warning mb-4 ml-2" data-toggle="modal" data-target="#editPengumuman">
-            <i class="fas fa-edit mr-2"></i>
-            Edit Pengumuman
-        </button>
+        <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
+            <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahPengumuman">
+                <i class="fas fa-plus mr-2"></i>
+                Tambah Pengumuman
+            </button>
+            <button type="button" class="btn btn-warning mb-4 ml-2" data-toggle="modal" data-target="#editPengumuman">
+                <i class="fas fa-edit mr-2"></i>
+                Edit Pengumuman
+            </button>
+        <?php endif; ?>
 
         <div class="row">
             <div class="col-12">

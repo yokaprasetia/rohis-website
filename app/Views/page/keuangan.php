@@ -13,10 +13,12 @@
             <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
         <?php endif; ?>
 
-        <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahTransaksi">
-            <i class="fas fa-plus mr-2"></i>
-            Tambah Transaksi
-        </button>
+        <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Bendahara') : ?>
+            <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahTransaksi">
+                <i class="fas fa-plus mr-2"></i>
+                Tambah Transaksi
+            </button>
+        <?php endif; ?>
 
         <?php if (isset($errors)) : ?>
             <?php foreach ($errors as $error) : ?>
@@ -50,8 +52,10 @@
                                     <th>Jenis</th>
                                     <th>Keterangan</th>
                                     <th>Update At</th>
-                                    <th>Bukti</th>
-                                    <th>Aksi</th>
+                                    <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Bendahara') : ?>
+                                        <th>Bukti</th>
+                                        <th>Aksi</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,15 +76,17 @@
                                         </td>
                                         <td><?php echo $k['keterangan']; ?></td>
                                         <td><?php echo $k['updated_at']; ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bukti<?php echo $k['id']; ?>">
-                                                <i class="fas fa-file-image fa-lg"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#update<?php echo $k['id']; ?>"><i class="fas fa-edit"></i></button>
-                                            <a href="<?php echo base_url('deleteTransaksi'); ?>/<?php echo $k['id']; ?>" class="btn btn-danger btn-sm" onClick="return confirm('Apakah Anda yakin ingin menghapus transaksi pada tanggal <?php echo $k['tanggal']; ?> ?')"><i class="fas fa-trash"></i></a>
-                                        </td>
+                                        <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Bendahara') : ?>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bukti<?php echo $k['id']; ?>">
+                                                    <i class="fas fa-file-image fa-lg"></i>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#update<?php echo $k['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                <a href="<?php echo base_url('deleteTransaksi'); ?>/<?php echo $k['id']; ?>" class="btn btn-danger btn-sm" onClick="return confirm('Apakah Anda yakin ingin menghapus transaksi pada tanggal <?php echo $k['tanggal']; ?> ?')"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>
