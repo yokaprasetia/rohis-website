@@ -12,7 +12,13 @@
                         <div class="card-header">
                             <h3 class="card-title col-12 text-center">Kegiatan Hari Ini : <?php echo $kegiatan_berlangsung['nama']; ?></h3>
                         </div>
-                        <button class="btn btn-primary">Presensi Sekarang</button>
+
+                        <?php if ($status_presensi === 'Belum') : ?>
+                            <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#presensi">Presensi Sekarang</button>
+                        <?php elseif ($status_presensi === 'Sudah') : ?>
+                            <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#SudahPresensi">Anda Telah Melakukan Presensi</button>
+                        <?php endif; ?>
+
                     </div>
                 <?php elseif ($berlangsung == false) : ?>
                     <div class="card card-outline card-primary">
@@ -43,11 +49,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (sizeof($kehadiran) == 0) : ?>
-                                    <?php for ($i = 0; $i < sizeof($daftar_kegiatan); $i++) : ?>
-                                        <?php $kehadiran[$i] = 'Tidak Hadir'; ?>
-                                    <?php endfor; ?>
-                                <?php endif; ?>
 
                                 <?php $i = 1; ?>
                                 <?php foreach ($daftar_kegiatan as $kegiatan) : ?>
@@ -74,6 +75,37 @@
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
+</div>
+
+<div class="modal fade" id="presensi">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Presensi Kehadiran</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Mulai dari sini -->
+                <?php echo form_open_multipart('tambahKehadiran'); ?>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="file">Bukti Kehadiran</label>
+                        <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Kehadiran" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Presensi Sekarang</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php echo $this->endSection(); ?>

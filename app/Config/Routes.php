@@ -70,6 +70,7 @@ $routes->get('/deleteTransaksi/(:segment)', 'Keuangan::delete/$1');
 //DAFTAR HADIR
 $routes->get('/daftarHadir', 'DaftarHadir::index');
 $routes->get('/detailKehadiran/(:segment)', 'DaftarHadir::detail/$1');
+$routes->post('/tambahKehadiran', 'DaftarHadir::tambah');
 
 //KEGIATAN
 $routes->get('/kegiatan', 'Kegiatan::index');
