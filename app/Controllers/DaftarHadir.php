@@ -36,9 +36,10 @@ class DaftarHadir extends BaseController
         foreach ($daftar_kegiatan as $kegiatan) :
             $id_kegiatan = $kegiatan['id'];
             $proses = $modelDaftarHadir->where('id_kegiatan', $id_kegiatan)->findAll();
+
             if ($proses) {
+                $ada = false;
                 foreach ($proses as $p) :
-                    $ada = false;
                     if ($p['nim'] == $nim_user) {
                         $ada = true;
                     }
