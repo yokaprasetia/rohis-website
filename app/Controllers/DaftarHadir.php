@@ -60,10 +60,10 @@ class DaftarHadir extends BaseController
         $now = Time::now('Asia/Jakarta');
         $tanggal_sekarang = $now->toDateString();
 
-        $cek_kegiatan_sekarang = $modelPengumuman->where('tanggal', $tanggal_sekarang)->first();
+        $cek_kegiatan_sekarang = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
         if ($cek_kegiatan_sekarang) {
             $berlangsung = true;
-            $kegiatan_berlangsung = $modelPengumuman->where('tanggal', $tanggal_sekarang)->first();
+            $kegiatan_berlangsung = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
         } else {
             $berlangsung = false;
             $kegiatan_berlangsung = ''; // gak dipake
@@ -72,8 +72,7 @@ class DaftarHadir extends BaseController
         // cek kehadiran akun pada kegiatan yang sedang berlangsung
         if ($berlangsung === true) {
             $nim = $session->get('nim');
-            $proses = $modelDaftarHadir->where('nim', $nim)->first();
-
+            $proses = $modelDaftarHadir->where(['id_kegiatan' => $kegiatan_berlangsung['id'], 'nim' => $nim])->first();
             if ($proses) {
                 $status_presensi = 'Sudah';
             } else {
@@ -170,7 +169,7 @@ class DaftarHadir extends BaseController
             $now = Time::now('Asia/Jakarta');
             $tanggal_sekarang = $now->toDateString();
 
-            $kegiatan_berlangsung = $modelPengumuman->where('tanggal', $tanggal_sekarang)->first();
+            $kegiatan_berlangsung = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
 
             $data = [
                 'id_kegiatan' => $kegiatan_berlangsung['id'],

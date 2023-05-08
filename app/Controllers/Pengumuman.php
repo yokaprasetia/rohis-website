@@ -49,8 +49,43 @@ class Pengumuman extends BaseController
         $model = new PengumumanModel();
         $data = $this->request->getVar();
         $data['updated_at'] = Time::now('Asia/Jakarta');
+        list($tahun_up, $bulan_up, $tanggal_up) = explode('-', $data['tanggal']);
+        list($jam_up, $menit_up) = explode(':', $data['waktu_mulai']);
 
-        $proses = $model->save($data);
+
+        // validasi tanggal pembuatan -> after now
+        $tanggal = Time::now('Asia/Jakarta');
+        $tahun_now = $tanggal->format('Y');
+        $bulan_now = $tanggal->format('m');
+        $tanggal_now = $tanggal->format('d');
+        $jam_now = $tanggal->Format('H');
+        $menit_now = $tanggal->Format('i');
+
+
+        if ($tahun_up > $tahun_now) {
+            // proses
+            $proses = $model->save($data);
+        } elseif ($tahun_up == $tahun_now) {
+            if ($bulan_up > $bulan_now) {
+                // proses
+                $proses = $model->save($data);
+            } elseif ($bulan_up == $bulan_now) {
+                if ($tanggal_up > $tanggal_now) {
+                    // proses
+                    $proses = $model->save($data);
+                } elseif ($tanggal_up == $tanggal_now) {
+                    if ($jam_up > $jam_now) {
+                        // proses
+                        $proses = $model->save($data);
+                    } elseif ($jam_up == $jam_now) {
+                        if ($menit_up > $menit_now) {
+                            // proses
+                            $proses = $model->save($data);
+                        }
+                    }
+                }
+            }
+        }
 
         // cek apakah insert atau update
         if (isset($data['id'])) {
@@ -58,7 +93,7 @@ class Pengumuman extends BaseController
         } else {
             $kegiatan = 'Ditambah';
         }
-        if ($proses) {
+        if (isset($proses)) {
             $session->setFlashdata('success', "Pengumuman Berhasil $kegiatan!");
             return redirect()->to('/pengumuman');
         } else {

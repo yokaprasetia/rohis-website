@@ -20,11 +20,64 @@
             </button>
         <?php endif; ?>
 
+        <a href="<?php echo base_url('coba'); ?>" class="btn btn-warning mb-4">Coba Javascript</a>
+
         <?php if (isset($errors)) : ?>
             <?php foreach ($errors as $error) : ?>
                 <li><?= esc($error) ?></li>
             <?php endforeach ?>
         <?php endif; ?>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Result Type:</label>
+                                    <select id="peserta" name="peserta" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;">
+                                        <option value="tingkat-1">Tingkat I</option>
+                                        <option value="tingkat-2">Tingkat II</option>
+                                        <option value="tingkat-3">Tingkat III</option>
+                                        <option value="tingkat-4">Tingkat IV</option>
+                                        <option value="umum">Umum</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Jenis:</label>
+                                    <select id="jenis" name="jenis" class="select2" style="width: 100%;">
+                                        <option value="Masuk" selected>Transaksi Masuk</option>
+                                        <option value="Keluar">Transaksi Keluar</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Bulan:</label>
+                                    <select id="bulan" name="bulan" class="select2" style="width: 100%;">
+                                        <option value="januari" selected>Januari</option>
+                                        <option value="februari">Februari</option>
+                                        <option value="maret">Maret</option>
+                                        <option value="april">April</option>
+                                        <option value="mei">Mei</option>
+                                        <option value="juni">Juni</option>
+                                        <option value="juli">Juli</option>
+                                        <option value="agustus">Agustus</option>
+                                        <option value="september">September</option>
+                                        <option value="oktober">Oktober</option>
+                                        <option value="november">November</option>
+                                        <option value="desember">Desember</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
         $warnaQuotes = $warna[array_rand($warna)]; ?>
@@ -42,8 +95,7 @@
                         <h3 class="card-title">Riwayat Transaksi</h3>
                     </div>
                     <div class="card-body">
-
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example1" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -229,7 +281,5 @@
     </div>
 
 <?php endforeach; ?>
-
-
 
 <?php $this->endSection(); ?>

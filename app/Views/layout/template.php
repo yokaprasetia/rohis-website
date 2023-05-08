@@ -21,12 +21,17 @@ if ($session->get('logged_in')) {
         <!-- IonIcons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+        <!-- Select Multiple -->
+        <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/select2/css/select2.min.css">
+
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo base_url('assets') ?>/dist/css/adminlte.min.css">
 
         <!-- jsGrid -->
         <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/jsgrid/jsgrid.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/jsgrid/jsgrid-theme.min.css">
+
+
 
         <!-- DataTables -->
         <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -131,12 +136,15 @@ if ($session->get('logged_in')) {
         <!-- Sparkline -->
         <script src="<?php echo base_url('assets'); ?>/plugins/sparklines/sparkline.js"></script>
 
+        <!-- Select Multiple -->
+        <script src="<?php echo base_url('assets'); ?>/plugins/select2/js/select2.full.min.js"></script>
+
 
         <!-- JS MANUAL -->
         <script src="<?php echo base_url(); ?>/js/jsGrid.js"></script>
         <script src="<?php echo base_url(); ?>/js/dataTable.js"></script>
         <script src="<?php echo base_url(); ?>/js/presensi.js"></script>
-
+        <script src="<?php echo base_url(); ?>/js/multipleSelect.js"></script>
 
     </body>
 

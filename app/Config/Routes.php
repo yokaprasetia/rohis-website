@@ -66,6 +66,7 @@ $routes->get('/deletePengumuman/(:segment)', 'Pengumuman::delete/$1');
 $routes->get('/keuangan', 'Keuangan::index');
 $routes->post('/tambahTransaksi', 'Keuangan::tambah');
 $routes->get('/deleteTransaksi/(:segment)', 'Keuangan::delete/$1');
+$routes->get('/coba', 'Keuangan::coba');
 
 //DAFTAR HADIR
 $routes->get('/daftarHadir', 'DaftarHadir::index');
@@ -77,9 +78,6 @@ $routes->get('/kegiatan', 'Kegiatan::index');
 
 //FAQ
 $routes->get('/faq', 'Faq::index');
-
-
-
 
 /*
  * --------------------------------------------------------------------

@@ -28,41 +28,40 @@ use CodeIgniter\I18n\Time; ?>
 
         <div class="row">
             <div class="col-12">
-                <?php foreach ($pengumuman as $p) : ?>
 
-                    <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
-                    $warnaQuotes = $warna[array_rand($warna)]; ?>
+                <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
+                $warnaQuotes = $warna[array_rand($warna)]; ?>
 
-                    <div class="card card-<?php echo $warnaQuotes; ?> card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-calendar-check mr-2"></i>
-                                <?php echo $p['nama']; ?>
-                            </h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <small class="text-muted">Updated at : <?php echo $p['updated_at'] ?> WIB</small>
-                            <p><?php echo $p['isi']; ?></p>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <a href="<?php echo base_url('pengumumanDetail'); ?>/<?php echo $p['id']; ?>" class="btn btn-secondary">Selengkapnya</a>
-                        </div>
-                        <!-- /.card-footer-->
+                <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kegiatan</th>
+                                    <th>Isi</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($pengumuman as $p) : ?>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td><?php echo $p['nama']; ?></td>
+                                        <td><?php echo $p['isi']; ?></td>
+                                        <td>
+                                            <a href="<?php echo base_url('pengumumanDetail'); ?>/<?php echo $p['id']; ?>" class="btn btn-secondary">Selengkapnya</a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
-
-                <?php endforeach; ?>
-
+                    <!-- /.card-body -->
+                </div>
             </div>
         </div>
     </div>
@@ -141,7 +140,7 @@ use CodeIgniter\I18n\Time; ?>
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Riwayat Pengumuman</h4>
+                <h4 class="modal-title">Edit Pengumuman</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -123,4 +123,20 @@ class Keuangan extends BaseController
             return redirect()->to('/keuangan');
         }
     }
+
+    public function coba()
+    {
+
+        $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
+        $data = [
+            'judul' => 'SiROHIS | Keuangan',
+            'subjudul' => 'Keuangan',
+            'active' => 'keuangan',
+            'role'  => $role
+        ];
+
+        return view('page/coba', $data);
+    }
 }
