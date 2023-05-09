@@ -9,7 +9,6 @@
             <div class="flash-data" data-judul="<?php echo session()->get('nama'); ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
         <?php endif; ?>
 
-
         <div class="col-12 callout callout-<?php echo $warna_quotes;  ?>">
             <h5><i class="icon fas fa-info mr-3"></i> Quotes Today</h5>
 

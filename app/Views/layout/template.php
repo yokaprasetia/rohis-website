@@ -49,6 +49,12 @@ if ($session->get('logged_in')) {
             <!-- NAVBAR -->
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+
                 <!-- NAVBAR KANAN - PROFIL -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -58,6 +64,7 @@ if ($session->get('logged_in')) {
                         </a>
                     </li>
                 </ul>
+
             </nav>
 
             <!-- SIDEBAR -->
@@ -120,9 +127,6 @@ if ($session->get('logged_in')) {
         <script src="<?php echo base_url('assets'); ?>/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="<?php echo base_url('assets'); ?>/plugins/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="<?php echo base_url('assets'); ?>/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
-        <!-- AdminLTE App -->
-        <script src="<?php echo base_url('assets'); ?>/dist/js/adminlte.min.js"></script>
 
         <!-- AdminLTE -->
         <script src="<?php echo base_url('assets'); ?>/dist/js/adminlte.js"></script>
