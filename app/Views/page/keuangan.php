@@ -13,6 +13,12 @@
             <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
         <?php endif; ?>
 
+        <!-- untuk javascript -->
+        <div style="display: none">
+            <p id="tabel-jenis">All</p>
+            <p id="tabel-bulan">All</p>
+        </div>
+
         <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Bendahara') : ?>
             <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahTransaksi">
                 <i class="fas fa-plus mr-2"></i>
@@ -20,15 +26,13 @@
             </button>
         <?php endif; ?>
 
-        <a href="<?php echo base_url('coba'); ?>" class="btn btn-warning mb-4">Coba Javascript</a>
-
         <?php if (isset($errors)) : ?>
             <?php foreach ($errors as $error) : ?>
                 <li><?= esc($error) ?></li>
             <?php endforeach ?>
         <?php endif; ?>
 
-        <section class="content">
+        <!-- <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -45,46 +49,28 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <label>Jenis:</label>
-                                    <select id="jenis" name="jenis" class="select2" style="width: 100%;">
-                                        <option value="Masuk" selected>Transaksi Masuk</option>
-                                        <option value="Keluar">Transaksi Keluar</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <label>Bulan:</label>
-                                    <select id="bulan" name="bulan" class="select2" style="width: 100%;">
-                                        <option value="januari" selected>Januari</option>
-                                        <option value="februari">Februari</option>
-                                        <option value="maret">Maret</option>
-                                        <option value="april">April</option>
-                                        <option value="mei">Mei</option>
-                                        <option value="juni">Juni</option>
-                                        <option value="juli">Juli</option>
-                                        <option value="agustus">Agustus</option>
-                                        <option value="september">September</option>
-                                        <option value="oktober">Oktober</option>
-                                        <option value="november">November</option>
-                                        <option value="desember">Desember</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
         $warnaQuotes = $warna[array_rand($warna)]; ?>
 
-        <div class="callout callout-<?php echo $warnaQuotes; ?>">
-            <p>TOTAL KEUANGAN (KAS)</p>
-            <h5><strong>Rp<?php echo $total_kas; ?>,00</strong></h5>
+        <div class="d-flex flex-wrap justify-content-between">
+            <div class="callout callout-<?php echo $warnaQuotes; ?> col-3">
+                <p class="text-center"><i class="fas fa-arrow-circle-down mr-2" style='color: green'></i>TRANSAKSI MASUK</p>
+                <h5 class="text-center uang-masuk"><strong>Rp<?php echo $kas['masuk']; ?>,00</strong></h5>
+            </div>
+            <div class="callout callout-<?php echo $warnaQuotes; ?> col-5">
+                <p class="text-center">TOTAL KEUANGAN (KAS)</p>
+                <h5 class="text-center uang-total"><strong>Rp<?php echo $kas['total']; ?>,00</strong></h5>
+            </div>
+            <div class="callout callout-<?php echo $warnaQuotes; ?> col-3">
+                <p class="text-center"><i class="fas fa-arrow-circle-up mr-2" style='color: red'></i>TRANSAKSI KELUAR</p>
+                <h5 class="text-center uang-keluar"><strong>Rp<?php echo $kas['keluar']; ?>,00</strong></h5>
+            </div>
         </div>
 
         <div class="row">
@@ -92,10 +78,44 @@
                 <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
                     <!-- /.card-header -->
                     <div class="card-header">
-                        <h3 class="card-title">Riwayat Transaksi</h3>
+                        <div class="card-body d-flex flex-row pb-0">
+                            <div class="form-group mr-2 d-flex flex-row align-items-center">
+                                <h3 class="card-title">Filter Tabel :</h3>
+                            </div>
+                            <div class=" form-group mr-2">
+                                <select class="btn btn-secondary" name="jenis" id="jenis" onClick="GetSelectedItem('jenis');" required>
+                                    <option value="All">Semua Transaksi</option>
+                                    <option value="Masuk">Transaksi Masuk</option>
+                                    <option value="Keluar">Transaksi Keluar</option>
+                                </select>
+                            </div>
+                            <div class="form-group mr-2">
+                                <select class="btn btn-secondary" name="bulan" id="bulan" onClick="GetSelectedItem('bulan');" required>
+                                    <option value="All">Semua Bulan</option>
+                                    <option value="-01-">Januari</option>
+                                    <option value="-02-">Februari</option>
+                                    <option value="-03-">Maret</option>
+                                    <option value="-04-">April</option>
+                                    <option value="-05-">Mei</option>
+                                    <option value="-06-">Juni</option>
+                                    <option value="-07-">Juli</option>
+                                    <option value="-08-">Agustus</option>
+                                    <option value="-09-">September</option>
+                                    <option value="-10-">Oktober</option>
+                                    <option value="-11-">November</option>
+                                    <option value="-12-">Desember</option>
+                                </select>
+                            </div>
+                            <!-- <div class=" form-group mr-2">
+                                <select class="btn btn-secondary" name="fitur" id="fitur" onClick="GetFitur('fitur')" required>
+                                    <option value="example1">Fitur Tabel : On</option>
+                                    <option value="example2" selected="selected">Fitur Tabel : Off</option>
+                                </select>
+                            </div> -->
+                        </div>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped table-hover">
+                        <table id="example1" class="tabel-tujuan table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -117,15 +137,7 @@
                                         <td><?php echo $i; ?></td>
                                         <td><?php echo $k['tanggal']; ?></td>
                                         <td><?php echo $k['nominal']; ?></td>
-                                        <td>
-                                            <?php if ($k['jenis'] === 'Masuk') : ?>
-                                                <i class="fas fa-arrow-circle-down mr-2" style='color: green'></i>
-                                            <?php elseif ($k['jenis'] === 'Keluar') : ?>
-                                                <i class="fas fa-arrow-circle-up mr-2" style='color: red'></i>
-                                            <?php endif; ?>
-
-                                            <?php echo $k['jenis']; ?>
-                                        </td>
+                                        <td><?php echo $k['jenis']; ?></td>
                                         <td><?php echo $k['keterangan']; ?></td>
                                         <td><?php echo $k['updated_at']; ?></td>
                                         <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Bendahara') : ?>

@@ -9,6 +9,17 @@ class KeuanganModel extends Model
     protected $table = 'keuangan';
     protected $allowedFields = ['id', 'nominal', 'tanggal', 'jenis', 'file', 'keterangan', 'updated_at'];
 
+    public function jumlah($angka)
+    {
+        // Jumlah masuk
+        $proses = 0;
+        foreach ($angka as $m) :
+            $proses = $proses + $m['nominal'];
+        endforeach;
+
+        return $proses;
+    }
+
     public function hitung($masuk, $keluar)
     {
         // Jumlah masuk

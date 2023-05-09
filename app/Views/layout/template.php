@@ -152,6 +152,7 @@ if ($session->get('logged_in')) {
         <script src="<?php echo base_url(); ?>/js/presensi.js"></script>
         <script src="<?php echo base_url(); ?>/js/multipleSelect.js"></script>
         <script src="<?php echo base_url(); ?>/js/sweetAlert.js"></script>
+        <script src="<?php echo base_url(); ?>/js/keuangan.js"></script>
     </body>
 
     </html>

@@ -20,6 +20,8 @@ class Keuangan extends BaseController
         $kas_masuk = $model->where('jenis', 'Masuk')->findAll();
         $kas_keluar = $model->where('jenis', 'Keluar')->findAll();
 
+        $masuk = $model->jumlah($kas_masuk, 0);
+        $keluar = $model->jumlah($kas_keluar, 0);
         $total_kas = $model->hitung($kas_masuk, $kas_keluar);
 
         $data = [
@@ -28,7 +30,11 @@ class Keuangan extends BaseController
             'active' => 'keuangan',
             'role'  => $role,
             'keuangan' => $model->orderBy('tanggal', 'DESC')->findAll(),
-            'total_kas' => $total_kas,
+            'kas' => [
+                'total' => $total_kas,
+                'masuk' => $masuk,
+                'keluar' => $keluar,
+            ],
             'errors' => [],
         ];
 
@@ -129,21 +135,5 @@ class Keuangan extends BaseController
             $session->setFlashdata('error', 'Gagal Dihapus!');
             return redirect()->to('/keuangan');
         }
-    }
-
-    public function coba()
-    {
-
-        $session = session();
-        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
-
-        $data = [
-            'judul' => 'SiROHIS | Keuangan',
-            'subjudul' => 'Transaksi',
-            'active' => 'keuangan',
-            'role'  => $role
-        ];
-
-        return view('page/coba', $data);
     }
 }
