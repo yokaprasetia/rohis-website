@@ -1,13 +1,12 @@
 <?php echo $this->extend('layout/template'); ?>
-
 <?php echo $this->section('content'); ?>
 
 <!-- ISI KONTEN -->
 <div class="content">
     <div class="container-fluid">
 
-        <?php if (session()->getFlashdata('msg')) : ?>
-            <div class="alert alert-success"><?= session()->getFlashdata('msg') ?></div>
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="flash-data" data-judul="<?php echo session()->get('nama'); ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
         <?php endif; ?>
 
 

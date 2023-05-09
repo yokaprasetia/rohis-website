@@ -1,83 +1,63 @@
-<?php $this->extend('layout/template'); ?>
-<?php $this->section('content'); ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- Main content -->
-<div class="content">
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-12">
-
-                <div class="card card-outline card-danger">
-                    <div class="card-header">
-                        <h3 class="card-title">Table Filter</h3>
-                    </div>
-                    <div class="card-body d-flex flex-row">
-
-                        <div class=" form-group mr-2">
-                            <select class="btn btn-secondary" name="jenis" id="jenis" class="form-control" onClick="GetSelectedItem('jenis');" required>
-                                <option value="Masuk" selected="selected">Transaksi Masuk</option>
-                                <option value="Keluar">Transaksi Keluar</option>
-                            </select>
-                        </div>
-                        <div class="form-group mr-2">
-                            <select class="btn btn-secondary" name="bulan" id="bulan" class="form-control" onClick="GetSelectedItem('bulan');" required>
-                                <option value="Januari" selected="selected">Januari</option>
-                                <option value="Februari">Februari</option>
-                                <option value="Maret">Maret</option>
-                                <option value="April">April</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-6 mr-2">
-                            <select id="peserta" name="peserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" onClick="GetSelectedItem('peserta');" required>
-                                <option value="tingkat-1">Tingkat I</option>
-                                <option value="tingkat-2">Tingkat II</option>
-                                <option value="tingkat-3">Tingkat III</option>
-                                <option value="tingkat-4">Tingkat IV</option>
-                                <option value="umum">Umum</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-outline card-danger">
-                    <div class="card-header">
-                        <h3 id="keuangan-transaksi" class="card-title">Riwayat Transaksi</h3>
-                    </div>
-
-                    <div id="tabel-jenis" class="card-body">
-                        <div class="content">Coba</div>
-                    </div>
-                    <div id="tabel-bulan" class="card-body">
-                        <div class="content">Coba</div>
-                    </div>
-                    <div id="tabel-peserta" class="card-body">
-                        <div class="content">Coba</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function GetSelectedItem(el) {
-        var e = document.getElementById(el);
-        var value = e.options[e.selectedIndex].value;
-        var text = e.options[e.selectedIndex].text;
-
-        if (el == 'jenis') {
-            document.getElementById('tabel-jenis').innerHTML = text;
-        }
-        if (el == 'bulan') {
-            document.getElementById('tabel-bulan').innerHTML = text;
-        }
-        if (el == 'peserta') {
-            document.getElementById('tabel-peserta').innerHTML = text;
-        }
-    }
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
 
-<?php $this->endSection(); ?>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/fontawesome-free/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/toastr/toastr.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/dist/css/adminlte.min.css">
+</head>
+
+<body>
+    <button type="button" class="btn btn-success swalDefaultSuccess">
+        Klik Saya
+    </button>
+
+    <script src="<?php echo base_url('assets'); ?>/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<?php echo base_url('assets'); ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?php echo base_url('assets'); ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="<?php echo base_url('assets'); ?>/plugins/toastr/toastr.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?php echo base_url('assets'); ?>/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?php echo base_url('assets'); ?>/dist/js/demo.js"></script>
+    <script>
+        $(function() {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            $('.swalDefaultSuccess').click(function() {
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                })
+            });
+            $('.swalDefaultError').click(function() {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                })
+            });
+        });
+    </script>
+</body>
+
+</html>

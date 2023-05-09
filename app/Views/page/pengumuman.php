@@ -7,12 +7,12 @@ use CodeIgniter\I18n\Time; ?>
 <div class="content">
     <div class="container-fluid">
 
-        <!-- ALERT -->
+        <!-- SWEET ALERT -->
         <?php if (session()->getFlashdata('success')) : ?>
-            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
         <?php endif; ?>
-        <?php if (session()->getFlashdata('danger')) : ?>
-            <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
         <?php endif; ?>
 
         <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
@@ -35,7 +35,7 @@ use CodeIgniter\I18n\Time; ?>
                 <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-hover">
+                        <table id="example1" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -173,7 +173,7 @@ use CodeIgniter\I18n\Time; ?>
                                                     if (!$time->isBefore($waktu_sekarang)) :
                                                     ?>
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?php echo $p['id']; ?>"><i class="fas fa-edit"></i></button>
-                                                        <a href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>" class="btn btn-danger" onClick="return confirm('Apakah Anda yakin ingin menghapus pengumuman <?php echo $p['nama']; ?>?')"><i class="fas fa-trash"></i></a>
+                                                        <a class="btn btn-danger pengumuman-hapus" href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>"><i class="fas fa-trash"></i></a>
                                                     <?php endif; ?>
                                                 </div>
                                             </td>

@@ -94,10 +94,10 @@ class Pengumuman extends BaseController
             $kegiatan = 'Ditambah';
         }
         if (isset($proses)) {
-            $session->setFlashdata('success', "Pengumuman Berhasil $kegiatan!");
+            $session->setFlashdata('success', "Berhasil $kegiatan!");
             return redirect()->to('/pengumuman');
         } else {
-            $session->setFlashdata('danger', "Pengumuman Gagal $kegiatan!");
+            $session->setFlashdata('error', "Gagal $kegiatan!");
             return redirect()->to('/pengumuman');
         }
     }
@@ -111,10 +111,10 @@ class Pengumuman extends BaseController
         $delete = $modelPengumuman->delete(['id' => $id]);
         $deleteDaftarHadir = $modelDaftarHadir->delete(['id_kegiatan' => $id]);
         if ($delete && $deleteDaftarHadir) {
-            $session->setFlashdata('success', 'Pengumuman Berhasil Dihapus!');
+            $session->setFlashdata('success', 'Berhasil Dihapus!');
             return redirect()->to('/pengumuman');
         } else {
-            $session->setFlashdata('danger', 'Pengumuman Gagal Dihapus!');
+            $session->setFlashdata('error', 'Gagal Dihapus!');
             return redirect()->to('/pengumuman');
         }
     }

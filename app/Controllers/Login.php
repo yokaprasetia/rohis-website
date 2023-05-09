@@ -35,25 +35,23 @@ class Login extends BaseController
                     'logged_in'  => TRUE
                 ];
                 $session->set($informasi);
-                $session->setFlashdata('msg', 'Login Berhasil!');
+                $session->setFlashdata('success', 'Berhasil Login!');
                 return redirect()->to('/beranda');
             } else {
-                $session->setFlashdata('msg', 'Password Salah!');
+                $session->setFlashdata('error', 'Password Salah!');
                 return redirect()->to('/login');
             }
         } else {
-            $session->setFlashdata('msg', 'Email Tidak Ditemukan!');
+            $session->setFlashdata('error', 'Email Tidak Ditemukan!');
             return redirect()->to('/login');
         }
     }
 
     public function logout()
     {
-        // $session = session();
-        // $session->destroy();  -----> Sudah dilakukan pada halaman Login
-
         $session = session();
-        $session->setFlashdata('logout', 'Logout berhasil');
+        $nama = session()->get('nama');
+        $session->setFlashdata('success', $nama);
         return redirect()->to('/login');
     }
 }

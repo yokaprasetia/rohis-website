@@ -18,6 +18,9 @@ if ($session->get('logged_in')) {
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="<?php echo base_url('assets') ?>/plugins/fontawesome-free/css/all.min.css">
 
+        <!-- SweetAlert2 -->
+        <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
         <!-- IonIcons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -94,8 +97,11 @@ if ($session->get('logged_in')) {
         <!-- jQuery -->
         <script src="<?php echo base_url('assets'); ?>/plugins/jquery/jquery.min.js"></script>
 
-        <!-- Bootstrap -->
+        <!-- Bootstrap 4 -->
         <script src="<?php echo base_url('assets'); ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- SweetAlert2 -->
+        <script src="<?php echo base_url('assets'); ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
 
         <!-- jsGrid -->
         <script src="<?php echo base_url('assets'); ?>/plugins/jsgrid/demos/db.js"></script>
@@ -145,7 +151,7 @@ if ($session->get('logged_in')) {
         <script src="<?php echo base_url(); ?>/js/dataTable.js"></script>
         <script src="<?php echo base_url(); ?>/js/presensi.js"></script>
         <script src="<?php echo base_url(); ?>/js/multipleSelect.js"></script>
-
+        <script src="<?php echo base_url(); ?>/js/sweetAlert.js"></script>
     </body>
 
     </html>

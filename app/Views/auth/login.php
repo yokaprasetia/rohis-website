@@ -1,11 +1,4 @@
 <?php
-if (session()->getFlashdata('logout')) :
-    echo "
-    <script>
-        alert('Logout Berhasil!');
-    </script>
-    ";
-endif;
 
 $session = session();
 $session->destroy();
@@ -23,6 +16,8 @@ $session->destroy();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/fontawesome-free/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
@@ -33,6 +28,15 @@ $session->destroy();
 </head>
 
 <body class="hold-transition login-page">
+
+    <!-- SWEET ALERT -->
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div class="flash-data" data-judul="<?php echo session()->getFlashdata('success'); ?>" data-flashdata="Berhasil Log Out!" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
+    <?php endif; ?>
+    <?php if (session()->getFlashdata('error')) : ?>
+        <div class="flash-data" data-judul="Login Gagal" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
+    <?php endif; ?>
+
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-success">
@@ -40,10 +44,7 @@ $session->destroy();
                 <a href="<?php echo base_url('login'); ?>" class="h1"><b>Si</b>ROHIS</a>
             </div>
 
-            <!-- ALERT -->
-            <?php if (session()->getFlashdata('msg')) : ?>
-                <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
-            <?php endif; ?>
+
 
             <div class="card-body">
                 <p class="login-box-msg">Log in untuk memulai aktivitas Anda</p>
@@ -97,8 +98,13 @@ $session->destroy();
     <script src="<?php echo base_url('assets'); ?>/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?php echo base_url('assets'); ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?php echo base_url('assets'); ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('assets'); ?>/dist/js/adminlte.min.js"></script>
+
+    <!-- script manual -->
+    <script src="<?php echo base_url(); ?>/js/sweetAlert.js"></script>
 </body>
 
 </html>

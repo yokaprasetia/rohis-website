@@ -19,7 +19,7 @@ class Profil extends BaseController
 
         $data = [
             'judul' => 'SiROHIS | Profil',
-            'subjudul' => 'Profil',
+            'subjudul' => 'Informasi Pribadi',
             'active' => 'profil',
             'role'  => $role,
             'profil' => $model->where('id', $id)->first(),
@@ -38,10 +38,10 @@ class Profil extends BaseController
         $proses = $model->save($info);
 
         if ($proses) {
-            $session->setFlashdata('success', 'Profil Berhasil Diupdate!');
+            $session->setFlashdata('success', 'Berhasil Diupdate!');
             return redirect()->to('/profil');
         } else {
-            $session->setFlashdata('danger', 'Profil Gagal Diupdate!');
+            $session->setFlashdata('error', 'Gagal Diupdate!');
             return redirect()->to('/profil');
         }
     }
@@ -65,18 +65,18 @@ class Profil extends BaseController
                 ];
                 $proses = $model->save($ubah);
                 if ($proses) {
-                    $session->setFlashdata('success', 'Password Berhasil Diubah!');
+                    $session->setFlashdata('success', 'Berhasil Diubah!');
                     return redirect()->to('/profil');
                 } else {
-                    $session->setFlashdata('danger', 'Password Gagal Diubah!');
+                    $session->setFlashdata('error', 'Gagal Diubah!');
                     return redirect()->to('/profil');
                 }
             } else {
-                $session->setFlashdata('danger', 'Konfirmasi Password Salah!');
+                $session->setFlashdata('error', 'Gagal, Konfirmasi Password Salah!');
                 return redirect()->to('/profil');
             }
         } else {
-            $session->setFlashdata('danger', 'Password Tidak Cocok!');
+            $session->setFlashdata('error', 'Gagal, Password Tidak Cocok!');
             return redirect()->to('/profil');
         }
     }

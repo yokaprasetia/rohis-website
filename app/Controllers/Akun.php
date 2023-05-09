@@ -33,7 +33,7 @@ class Akun extends BaseController
         // cek apakah nim sudah ada di db
         $cek_nim = $model->where('nim', $data['nim'])->first();
         if ($cek_nim) {
-            $session->setFlashdata('danger', 'NIM Sudah Terdaftar!');
+            $session->setFlashdata('error', 'Sudah Terdaftar!');
             return redirect()->to('/akun');
         } else {
             // cek konfirmasi password
@@ -43,14 +43,14 @@ class Akun extends BaseController
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 $proses = $model->save($data);
                 if ($proses) {
-                    $session->setFlashdata('success', 'Akun Berhasil Ditambahkan!');
+                    $session->setFlashdata('success', 'Berhasil Ditambahkan!');
                     return redirect()->to('/akun');
                 } else {
-                    $session->setFlashdata('danger', 'Akun Gagal Ditambahkan!');
+                    $session->setFlashdata('error', 'Gagal Ditambahkan!');
                     return redirect()->to('/akun');
                 }
             } else {
-                $session->setFlashdata('danger', 'Konfirmasi Password Tidak Cocok!');
+                $session->setFlashdata('error', 'Konfirmasi Tidak Sesuai!');
                 return redirect()->to('/akun');
             }
         }
@@ -63,10 +63,10 @@ class Akun extends BaseController
 
         $delete = $model->delete(['id' => $id]);
         if ($delete) {
-            $session->setFlashdata('success', 'Akun Berhasil Dihapus!');
+            $session->setFlashdata('success', 'Berhasil Dihapus!');
             return redirect()->to('/akun');
         } else {
-            $session->setFlashdata('danger', 'Akun Gagal Dihapus!');
+            $session->setFlashdata('error', 'Gagal Dihapus!');
             return redirect()->to('/akun');
         }
     }
@@ -81,10 +81,10 @@ class Akun extends BaseController
         $proses = $model->save($info);
 
         if ($proses) {
-            $session->setFlashdata('success', 'Akun Berhasil Diupdate!');
+            $session->setFlashdata('success', 'Berhasil Diupdate!');
             return redirect()->to('/akun');
         } else {
-            $session->setFlashdata('danger', 'Akun Gagal Diupdate!');
+            $session->setFlashdata('error', 'Gagal Diupdate!');
             return redirect()->to('/akun');
         }
     }

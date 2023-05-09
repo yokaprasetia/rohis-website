@@ -5,12 +5,12 @@
 <div class="content">
     <div class="container-fluid">
 
-        <!-- ALERT -->
+        <!-- SWEET ALERT -->
         <?php if (session()->getFlashdata('success')) : ?>
-            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
         <?php endif; ?>
-        <?php if (session()->getFlashdata('danger')) : ?>
-            <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
         <?php endif; ?>
 
         <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Bendahara') : ?>
@@ -136,7 +136,7 @@
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#update<?php echo $k['id']; ?>"><i class="fas fa-edit"></i></button>
-                                                <a href="<?php echo base_url('deleteTransaksi'); ?>/<?php echo $k['id']; ?>" class="btn btn-danger btn-sm" onClick="return confirm('Apakah Anda yakin ingin menghapus transaksi pada tanggal <?php echo $k['tanggal']; ?> ?')"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-danger btn-sm keuangan-hapus" href="<?php echo base_url('deleteTransaksi'); ?>/<?php echo $k['id']; ?>"><i class="fas fa-trash"></i></a>
                                             </td>
                                         <?php endif; ?>
                                     </tr>
@@ -254,7 +254,7 @@
                             <label for="jenis">Jenis</label>
                             <select name="jenis" id="jenis" class="form-control" required>
                                 <option value="Masuk" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Masuk</option>
-                                <option value="Keluar" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Keluar</option>
+                                <option value="Keluar" <?php echo ($k['jenis'] == 'Keluar') ? 'selected="selected"' : '' ?>>Keluar</option>
                             </select>
                         </div>
 

@@ -5,12 +5,12 @@
 <div class="content">
     <div class="col-md-10">
 
-        <!-- ALERT -->
+        <!-- SWEET ALERT -->
         <?php if (session()->getFlashdata('success')) : ?>
-            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
         <?php endif; ?>
-        <?php if (session()->getFlashdata('danger')) : ?>
-            <div class="alert alert-danger"><?= session()->getFlashdata('danger') ?></div>
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
         <?php endif; ?>
 
         <div class="card card-widget widget-user">
@@ -97,12 +97,12 @@
 
         <div class="card card-widget widget-user">
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateProfil">
-                Update Profil Pengguna
+                Update Profil
             </button>
         </div>
         <div class="card card-widget widget-user">
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ubahPassword">
-                Ubah Password Pengguna
+                Ubah Password
             </button>
         </div>
     </div>
@@ -133,7 +133,7 @@
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email" value="<?php echo $profil['email']; ?>" required>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email" value="<?php echo $profil['email']; ?>" readonly>
                         </div>
 
                         <div class="form-group">

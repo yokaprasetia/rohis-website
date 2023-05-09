@@ -24,10 +24,10 @@ class Keuangan extends BaseController
 
         $data = [
             'judul' => 'SiROHIS | Keuangan',
-            'subjudul' => 'Keuangan',
+            'subjudul' => 'Transaksi',
             'active' => 'keuangan',
             'role'  => $role,
-            'keuangan' => $model->orderBy('updated_at', 'DESC')->findAll(),
+            'keuangan' => $model->orderBy('tanggal', 'DESC')->findAll(),
             'total_kas' => $total_kas,
             'errors' => [],
         ];
@@ -43,7 +43,7 @@ class Keuangan extends BaseController
         $model = new KeuanganModel();
         $data = [
             'judul' => 'SiROHIS | Keuangan',
-            'subjudul' => 'Keuangan',
+            'subjudul' => 'Transaksi',
             'active' => 'keuangan',
             'role'  => $role,
             'keuangan' => $model->orderBy('updated_at', 'DESC')->findAll(),
@@ -63,9 +63,16 @@ class Keuangan extends BaseController
 
         // Cek validasi
         if (!$this->validate($validationRule)) {
-            $data['errors'] = $this->validator->getErrors();
 
-            return view('page/keuangan', $data);
+            $cek = $this->request->getVar();
+            if (isset($cek['id'])) {
+                $kegiatan = 'Diupdate';
+            } else {
+                $kegiatan = 'Ditambahkan';
+            }
+
+            $session->setFlashdata('error', "Gagal $kegiatan!");
+            return redirect()->to('/keuangan');
         }
 
         // tentukan insert atau update (jika update maka unlink)
@@ -95,10 +102,10 @@ class Keuangan extends BaseController
             $proses = $model->save($data);
 
             if ($proses) {
-                $session->setFlashdata('success', "Transaksi Berhasil $kegiatan!");
+                $session->setFlashdata('success', "Berhasil $kegiatan!");
                 return redirect()->to('/keuangan');
             } else {
-                $session->setFlashdata('danger', "Transaksi Gagal $kegiatan!");
+                $session->setFlashdata('error', "Gagal $kegiatan!");
                 return redirect()->to('/keuangan');
             }
         }
@@ -116,10 +123,10 @@ class Keuangan extends BaseController
 
         $delete = $model->delete(['id' => $id]);
         if ($delete) {
-            $session->setFlashdata('success', 'Transaksi Berhasil Dihapus!');
+            $session->setFlashdata('success', 'Berhasil Dihapus!');
             return redirect()->to('/keuangan');
         } else {
-            $session->setFlashdata('danger', 'Transaksi Gagal Dihapus!');
+            $session->setFlashdata('error', 'Gagal Dihapus!');
             return redirect()->to('/keuangan');
         }
     }
@@ -132,7 +139,7 @@ class Keuangan extends BaseController
 
         $data = [
             'judul' => 'SiROHIS | Keuangan',
-            'subjudul' => 'Keuangan',
+            'subjudul' => 'Transaksi',
             'active' => 'keuangan',
             'role'  => $role
         ];
