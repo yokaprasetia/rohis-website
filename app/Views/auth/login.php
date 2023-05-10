@@ -67,18 +67,6 @@ $session->destroy();
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-6">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div> -->
-                    <!-- <p class="mb-1 col-6">
-                            <a href="forgot-password.html">I forgot my password</a>
-                        </p> -->
                     <div class="col-12">
                         <button type="submit" name="prosesLogin" class="btn btn-primary btn-block">Log In</button>
                     </div>

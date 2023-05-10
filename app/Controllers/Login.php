@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\LogAktivitasModel;
+use CodeIgniter\I18n\Time;
 
 class Login extends BaseController
 {
@@ -18,10 +20,13 @@ class Login extends BaseController
     public function proses()
     {
         $session = session();
-        $model = new UserModel();
+        $modelUser = new UserModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+
         $email =  $this->request->getVar('email');
         $password = $this->request->getVar('password');
-        $data = $model->where('email', $email)->first();
+        $data = $modelUser->where('email', $email)->first();
         if ($data) {
             $pass = $data['password'];
             $verify_password = password_verify($password, $pass);
@@ -36,6 +41,19 @@ class Login extends BaseController
                 ];
                 $session->set($informasi);
                 $session->setFlashdata('success', 'Berhasil Login!');
+
+                // Buat Log Aktivitas
+                $data_log = [
+                    'nama_user'         => session()->get('nama'),
+                    'nim'               => session()->get('nim'),
+                    'jabatan'           => session()->get('role'),
+                    'waktu'             => Time::now('Asia/Jakarta'),
+                    'jenis_aktivitas'   => 'Login',
+                    'id_aktivitas'      => '<i>(tidak ada)</i>',
+                    'aksi'              => 'Login'
+                ];
+                $modelLogAktivitas->save($data_log);
+
                 return redirect()->to('/beranda');
             } else {
                 $session->setFlashdata('error', 'Password Salah!');
@@ -50,8 +68,22 @@ class Login extends BaseController
     public function logout()
     {
         $session = session();
-        $nama = session()->get('nama');
-        $session->setFlashdata('success', $nama);
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        $session->setFlashdata('success', session()->get('nama'));
+
+        // Buat Log Aktivitas
+        $data_log = [
+            'nama_user'         => session()->get('nama'),
+            'nim'               => session()->get('nim'),
+            'jabatan'           => session()->get('role'),
+            'waktu'             => Time::now('Asia/Jakarta'),
+            'jenis_aktivitas'   => 'Logout',
+            'id_aktivitas'      => '<i>(tidak ada)</i>',
+            'aksi'              => 'Logout'
+        ];
+        $modelLogAktivitas->save($data_log);
+
         return redirect()->to('/login');
     }
 }

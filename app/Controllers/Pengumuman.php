@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PengumumanModel;
 use App\Models\DaftarHadirModel;
+use App\Models\LogAktivitasModel;
 use CodeIgniter\I18n\Time;
 
 class Pengumuman extends BaseController
@@ -46,8 +47,11 @@ class Pengumuman extends BaseController
     public function tambah()
     {
         $session = session();
-        $model = new PengumumanModel();
+        $modelPengumuman = new PengumumanModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
         $data = $this->request->getVar();
+        $tanggal_data = $this->request->getVar('tanggal'); // untuk log aktivitas
         $data['updated_at'] = Time::now('Asia/Jakarta');
         list($tahun_up, $bulan_up, $tanggal_up) = explode('-', $data['tanggal']);
         list($jam_up, $menit_up) = explode(':', $data['waktu_mulai']);
@@ -64,23 +68,23 @@ class Pengumuman extends BaseController
 
         if ($tahun_up > $tahun_now) {
             // proses
-            $proses = $model->save($data);
+            $proses = $modelPengumuman->save($data);
         } elseif ($tahun_up == $tahun_now) {
             if ($bulan_up > $bulan_now) {
                 // proses
-                $proses = $model->save($data);
+                $proses = $modelPengumuman->save($data);
             } elseif ($bulan_up == $bulan_now) {
                 if ($tanggal_up > $tanggal_now) {
                     // proses
-                    $proses = $model->save($data);
+                    $proses = $modelPengumuman->save($data);
                 } elseif ($tanggal_up == $tanggal_now) {
                     if ($jam_up > $jam_now) {
                         // proses
-                        $proses = $model->save($data);
+                        $proses = $modelPengumuman->save($data);
                     } elseif ($jam_up == $jam_now) {
                         if ($menit_up > $menit_now) {
                             // proses
-                            $proses = $model->save($data);
+                            $proses = $modelPengumuman->save($data);
                         }
                     }
                 }
@@ -89,12 +93,25 @@ class Pengumuman extends BaseController
 
         // cek apakah insert atau update
         if (isset($data['id'])) {
-            $kegiatan = 'Diupdate';
+            $kegiatan = 'Update';
         } else {
-            $kegiatan = 'Ditambah';
+            $kegiatan = 'Tambah';
         }
         if (isset($proses)) {
-            $session->setFlashdata('success', "Berhasil $kegiatan!");
+            $session->setFlashdata('success', "Berhasil Di $kegiatan!");
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Pengumuman',
+                'id_aktivitas'      => (isset($data['id'])) ? $data['id'] : '<i>(tanggal)</i> ' . $tanggal_data,
+                'aksi'              => $kegiatan . ' Pengumuman'
+            ];
+            $modelLogAktivitas->save($data_log);
+
             return redirect()->to('/pengumuman');
         } else {
             $session->setFlashdata('error', "Gagal $kegiatan!");
@@ -107,11 +124,25 @@ class Pengumuman extends BaseController
         $session = session();
         $modelPengumuman = new PengumumanModel();
         $modelDaftarHadir = new DaftarHadirModel();
+        $modelLogAktivitas = new LogAktivitasModel();
 
         $delete = $modelPengumuman->delete(['id' => $id]);
         $deleteDaftarHadir = $modelDaftarHadir->delete(['id_kegiatan' => $id]);
         if ($delete && $deleteDaftarHadir) {
             $session->setFlashdata('success', 'Berhasil Dihapus!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Pengumuman',
+                'id_aktivitas'      => $id,
+                'aksi'              => 'Hapus Pengumuman'
+            ];
+            $modelLogAktivitas->save($data_log);
+
             return redirect()->to('/pengumuman');
         } else {
             $session->setFlashdata('error', 'Gagal Dihapus!');

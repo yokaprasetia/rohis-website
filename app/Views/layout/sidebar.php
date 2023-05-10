@@ -61,6 +61,14 @@
                 </li>
 
                 <li class="nav-header">TINDAKAN</li>
+                <?php if ($role == 'Admin') : ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('logAktivitas'); ?>" class="nav-link <?php echo ($active == 'logAktivitas') ? 'active' : '' ?>">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <p>Log Aktivitas</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a href="<?php echo base_url('faq'); ?>" class="nav-link <?php echo ($active == 'faq') ? 'active' : '' ?>">
                         <i class="nav-icon fa fa-info-circle"></i>

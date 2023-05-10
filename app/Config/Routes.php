@@ -78,6 +78,9 @@ $routes->get('/kegiatan', 'Kegiatan::index');
 //FAQ
 $routes->get('/faq', 'Faq::index');
 
+// LOG AKTIVITAS
+$routes->get('logAktivitas', 'LogAktivitas::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

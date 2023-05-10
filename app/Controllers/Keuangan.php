@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\KeuanganModel;
+use App\Models\LogAktivitasModel;
 use CodeIgniter\Files\File;
 use CodeIgniter\I18n\Time;
 
@@ -46,13 +47,15 @@ class Keuangan extends BaseController
         $session = session();
         $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
-        $model = new KeuanganModel();
+        $modelKeuangan = new KeuanganModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
         $data = [
             'judul' => 'SiROHIS | Keuangan',
             'subjudul' => 'Transaksi',
             'active' => 'keuangan',
             'role'  => $role,
-            'keuangan' => $model->orderBy('updated_at', 'DESC')->findAll(),
+            'keuangan' => $modelKeuangan->orderBy('updated_at', 'DESC')->findAll(),
         ];
 
         $validationRule = [
@@ -72,26 +75,28 @@ class Keuangan extends BaseController
 
             $cek = $this->request->getVar();
             if (isset($cek['id'])) {
-                $kegiatan = 'Diupdate';
+                $kegiatan = 'Update';
             } else {
-                $kegiatan = 'Ditambahkan';
+                $kegiatan = 'Tambah';
             }
 
-            $session->setFlashdata('error', "Gagal $kegiatan!");
+            $session->setFlashdata('error', "Gagal Di $kegiatan!");
             return redirect()->to('/keuangan');
         }
+
+        $keterangan = $this->request->getVar('keterangan'); // untuk Log Aktivitas
 
         // tentukan insert atau update (jika update maka unlink)
         $cek = $this->request->getVar();
         if (isset($cek['id'])) {
-            $kegiatan = 'Diupdate';
+            $kegiatan = 'Update';
 
             //menghapus file yang sudah diupload
-            $file_uploaded = $model->where('id', $cek['id'])->first();
+            $file_uploaded = $modelKeuangan->where('id', $cek['id'])->first();
             $path = './bukti-transaksi/' . $file_uploaded['file'];
             unlink($path);
         } else {
-            $kegiatan = 'Ditambahkan';
+            $kegiatan = 'Tambah';
         }
 
         // proses upload file ke folder public/bukti-transaksi
@@ -105,13 +110,26 @@ class Keuangan extends BaseController
             $data['updated_at'] = Time::now('Asia/Jakarta');
 
             // simpan ke data base seluruh isi form
-            $proses = $model->save($data);
+            $proses = $modelKeuangan->save($data);
 
             if ($proses) {
-                $session->setFlashdata('success', "Berhasil $kegiatan!");
+                $session->setFlashdata('success', "Berhasil Di $kegiatan!");
+
+                // Buat Log Aktivitas
+                $data_log = [
+                    'nama_user'         => session()->get('nama'),
+                    'nim'               => session()->get('nim'),
+                    'jabatan'           => session()->get('role'),
+                    'waktu'             => Time::now('Asia/Jakarta'),
+                    'jenis_aktivitas'   => 'Menu Keuangan',
+                    'id_aktivitas'      => (isset($cek['id'])) ? $cek['id'] : '<i>(keterangan)</i> ' . $keterangan,
+                    'aksi'              => $kegiatan . ' Transaksi Keuangan'
+                ];
+                $modelLogAktivitas->save($data_log);
+
                 return redirect()->to('/keuangan');
             } else {
-                $session->setFlashdata('error', "Gagal $kegiatan!");
+                $session->setFlashdata('error', "Gagal Di $kegiatan!");
                 return redirect()->to('/keuangan');
             }
         }
@@ -120,16 +138,30 @@ class Keuangan extends BaseController
     public function delete($id)
     {
         $session = session();
-        $model = new KeuanganModel();
+        $modelKeuangan = new KeuanganModel();
+        $modelLogAktivitas = new LogAktivitasModel();
 
         //menghapus file yang sudah diupload
-        $file_uploaded = $model->where('id', $id)->first();
+        $file_uploaded = $modelKeuangan->where('id', $id)->first();
         $path = './bukti-transaksi/' . $file_uploaded['file'];
         unlink($path);
 
-        $delete = $model->delete(['id' => $id]);
+        $delete = $modelKeuangan->delete(['id' => $id]);
         if ($delete) {
             $session->setFlashdata('success', 'Berhasil Dihapus!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Pengumuman',
+                'id_aktivitas'      => $id,
+                'aksi'              => 'Hapus Pengumuman'
+            ];
+            $modelLogAktivitas->save($data_log);
+
             return redirect()->to('/keuangan');
         } else {
             $session->setFlashdata('error', 'Gagal Dihapus!');
