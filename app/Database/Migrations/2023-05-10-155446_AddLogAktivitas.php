@@ -37,7 +37,7 @@ class AddLogAktivitas extends Migration
             ],
             'id_aktivitas' => [
                 'type'          => 'VARCHAR',
-                'constraint'    => '126',
+                'constraint'    => '255',
             ],
             'aksi' => [
                 'type'          => 'VARCHAR',
