@@ -47,20 +47,52 @@ class Beranda extends BaseController
 
         // Daftar kegiatan yang sudah terjadi - isBefore()
         $waktu_sekarang = Time::now('Asia/Jakarta');
-
         $semua_kegiatan = $modelPengumuman->orderBy('updated_at', 'DESC')->findAll();
         $daftar_kegiatan = [];
         foreach ($semua_kegiatan as $kegiatan) :
-            $time = Time::parse($kegiatan['tanggal']);
-            $proses = $time->isBefore($waktu_sekarang);
-            if ($proses) {
-                $daftar_kegiatan[] = $kegiatan;
+
+            // FILTER KEGIATAN WAJIB USER
+            $listTingkat = explode(', ', $kegiatan['peserta']);
+            $wajib = false;
+            for ($i = 0; $i < count($listTingkat); $i++) {
+                if ($listTingkat[$i] == session()->get('tingkat')) {
+                    $wajib = true;
+                }
+            }
+
+            // FILTER KEGIATAN WAJIB YANG SUDAH TERJADI - isBefore()
+            if ($wajib == true) {
+                $time = Time::parse($kegiatan['tanggal']);
+                $proses = $time->isBefore($waktu_sekarang);
+                if ($proses) {
+                    $daftar_kegiatan[] = $kegiatan;
+                }
             }
         endforeach;
-        $jumlah_kegiatan_before_now = count($daftar_kegiatan);
+
+        // JUMLAH KEHADIRAN USER
         $nim_pengguna = $session->get('nim');
-        $jumlah_kehadiran_pengguna = count($modelDaftarHadir->where('nim', $nim_pengguna)->findAll());
-        $presensi = $jumlah_kehadiran_pengguna / $jumlah_kegiatan_before_now * 100;
+        $kehadiran = [];
+        foreach ($daftar_kegiatan as $kegiatan) :
+            $id_kegiatan = $kegiatan['id'];
+            $proses = $modelDaftarHadir->where('id_kegiatan', $id_kegiatan)->findAll();
+
+            if ($proses) {
+                $ada = false;
+                foreach ($proses as $p) :
+                    if ($p['nim'] == $nim_pengguna) {
+                        $ada = true;
+                    }
+                endforeach;
+                if ($ada) {
+                    $kehadiran[] = 'Hadir';
+                }
+            }
+        endforeach;
+
+        $jumlah_kehadiran = count($kehadiran);
+        $jumlah_kegiatan_wajib_before_now = count($daftar_kegiatan);
+        $presensi = $jumlah_kehadiran / $jumlah_kegiatan_wajib_before_now * 100;
 
         $data = [
             'judul' => 'SiROHIS | Beranda',

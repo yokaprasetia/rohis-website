@@ -47,10 +47,28 @@ use CodeIgniter\I18n\Time; ?>
                             <tbody>
                                 <?php $i = 1; ?>
                                 <?php foreach ($pengumuman as $p) : ?>
+
+                                    <!-- Bintang untuk kegiatan wajib -->
+                                    <?php
+                                    $listTingkat = explode(', ', $p['peserta']);
+                                    $wajib = false;
+                                    for ($j = 0; $j < count($listTingkat); $j++) {
+                                        if ($listTingkat[$j] == session()->get('tingkat')) {
+                                            $wajib = true;
+                                        }
+                                    }
+                                    ?>
+
                                     <tr>
                                         <td><?php echo $i; ?></td>
-                                        <td><?php echo $p['nama']; ?></td>
-                                        <td><?php echo $p['isi']; ?></td>
+                                        <td>
+                                            <?php echo $p['nama']; ?>
+                                            <?php if ($wajib == true) : ?>
+                                                <strong> (*)</strong>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?php echo $p['peserta']; ?></td>
+                                        <!-- <td><?php echo $p['isi']; ?></td> -->
                                         <td>
                                             <a href="<?php echo base_url('pengumumanDetail'); ?>/<?php echo $p['id']; ?>" class="btn btn-secondary">Selengkapnya</a>
                                         </td>

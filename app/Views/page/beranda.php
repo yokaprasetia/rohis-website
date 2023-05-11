@@ -48,7 +48,6 @@
                         <i class="fas fa-calendar-check mr-2"></i>
                         Pengumuman Terbaru
                     </h3>
-
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -59,9 +58,18 @@
                     </div>
                 </div>
 
-                <div class="card-body">
+                <?php
+                $list_peserta = explode(', ', $pengumuman_terbaru['peserta']);
+                $wajib = false;
+                for ($i = 0; $i < count($list_peserta); $i++) {
+                    if ($list_peserta[$i] == session()->get('tingkat')) {
+                        $wajib = true;
+                    }
+                }
+                ?>
 
-                    <p class="card-title col-12 pl-0"><strong><?php echo $pengumuman_terbaru['nama']; ?></strong></p>
+                <div class="card-body">
+                    <p class="card-title col-12 pl-0"><strong><?php echo $pengumuman_terbaru['nama']; ?><?php echo ($wajib == true) ? ' (*)' : '' ?></strong></p>
                     <small class="text-muted">Updated at : <?php echo $pengumuman_terbaru['updated_at']; ?> WIB</small>
                     <p><?php echo $pengumuman_terbaru['isi']; ?></p>
                 </div>

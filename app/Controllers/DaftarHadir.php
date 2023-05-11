@@ -14,24 +14,36 @@ class DaftarHadir extends BaseController
         $session = session();
         $modelPengumuman = new PengumumanModel();
         $modelDaftarHadir = new DaftarHadirModel();
-
         $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
-        // Daftar kegiatan yang sudah terjadi - isBefore()
+
         $waktu_sekarang = Time::now('Asia/Jakarta');
 
         $semua_kegiatan = $modelPengumuman->orderBy('updated_at', 'DESC')->findAll();
         $daftar_kegiatan = [];
         foreach ($semua_kegiatan as $kegiatan) :
-            $time = Time::parse($kegiatan['tanggal']);
-            $proses = $time->isBefore($waktu_sekarang);
-            if ($proses) {
-                $daftar_kegiatan[] = $kegiatan;
+
+            // FILTER KEGIATAN WAJIB USER
+            $listTingkat = explode(', ', $kegiatan['peserta']);
+            $wajib = false;
+            for ($i = 0; $i < count($listTingkat); $i++) {
+                if ($listTingkat[$i] == session()->get('tingkat')) {
+                    $wajib = true;
+                }
+            }
+
+            // FILTER KEGIATAN YANG SUDAH TERJADI - isBefore()
+            if ($wajib == true) {
+                $time = Time::parse($kegiatan['tanggal']);
+                $proses = $time->isBefore($waktu_sekarang);
+                if ($proses) {
+                    $daftar_kegiatan[] = $kegiatan;
+                }
             }
         endforeach;
 
         // Cek kehadiran setiap kegiatan yang !AfterNow
-        // Menggunakan variabel $daftar_kegiatan;
+        // MENGGUNAKAN VARIABEL $daftar_kegiatan;
         $nim_user = $session->get('nim');
 
         $kehadiran = [];
