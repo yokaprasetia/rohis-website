@@ -115,7 +115,13 @@ use CodeIgniter\I18n\Time; ?>
 
                         <div class="form-group">
                             <label for="peserta">Peserta</label>
-                            <input type="text" class="form-control" name="peserta" id="peserta" placeholder="Masukkan Peserta Kegiatan" required>
+                            <select id="peserta" name="listPeserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                                <option value="Tingkat I">Tingkat I</option>
+                                <option value="Tingkat II">Tingkat II</option>
+                                <option value="Tingkat III">Tingkat III</option>
+                                <option value="Tingkat IV">Tingkat IV</option>
+                                <option value="Umum">Umum</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -212,43 +218,76 @@ use CodeIgniter\I18n\Time; ?>
                             <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id Kegiatan" value="<?php echo $p['id']; ?>" required>
 
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama Kegiatan" value="<?php echo $p['nama']; ?>" required>
+                                <label for="nama<?php echo $p['id']; ?>">Nama</label>
+                                <input type="text" class="form-control" name="nama" id="nama<?php echo $p['id']; ?>" placeholder="Masukkan Nama Kegiatan" value="<?php echo $p['nama']; ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="isi">Deskripsi</label>
-                                <input type="text" class="form-control" name="isi" id="isi" placeholder="Masukkan Deskripsi Kegiatan" value="<?php echo $p['isi']; ?>" required>
+                                <label for="isi<?php echo $p['id']; ?>">Deskripsi</label>
+                                <input type="text" class="form-control" name="isi" id="isi<?php echo $p['id']; ?>" placeholder="Masukkan Deskripsi Kegiatan" value="<?php echo $p['isi']; ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="tempat">Tempat</label>
-                                <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Masukkan Tempat Kegiatan" value="<?php echo $p['tempat']; ?>" required>
+                                <label for="tempat<?php echo $p['id']; ?>">Tempat</label>
+                                <input type="text" class="form-control" name="tempat" id="tempat<?php echo $p['id']; ?>" placeholder="Masukkan Tempat Kegiatan" value="<?php echo $p['tempat']; ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="tanggal">Tanggal</label>
-                                <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" required readonly>
+                                <label for="tanggal<?php echo $p['id']; ?>">Tanggal</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal<?php echo $p['id']; ?>" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" required readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="waktu_mulai">Waktu Mulai</label>
-                                <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai" placeholder="Masukkan Waktu Mulai Kegiatan" value="<?php echo $p['waktu_mulai']; ?>" required>
+                                <label for="waktu_mulai<?php echo $p['id']; ?>">Waktu Mulai</label>
+                                <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai<?php echo $p['id']; ?>" placeholder="Masukkan Waktu Mulai Kegiatan" value="<?php echo $p['waktu_mulai']; ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="waktu_selesai">Waktu Selesai</label>
-                                <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai" placeholder="Masukkan Waktu Selesai Kegiatan" value="<?php echo $p['waktu_selesai']; ?>" required>
+                                <label for="waktu_selesai<?php echo $p['id']; ?>">Waktu Selesai</label>
+                                <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai<?php echo $p['id']; ?>" placeholder="Masukkan Waktu Selesai Kegiatan" value="<?php echo $p['waktu_selesai']; ?>" required>
+                            </div>
+
+                            <?php
+                            $tingkat1 = false;
+                            $tingkat2 = false;
+                            $tingkat3 = false;
+                            $tingkat4 = false;
+                            $umum = false;
+
+                            $list_tingkat = explode(', ', $p['peserta']);
+                            for ($i = 0; $i < count($list_tingkat); $i++) {
+                                if ($list_tingkat[$i] == 'Tingkat I') {
+                                    $tingkat1 = true;
+                                }
+                                if ($list_tingkat[$i] == 'Tingkat II') {
+                                    $tingkat2 = true;
+                                }
+                                if ($list_tingkat[$i] == 'Tingkat III') {
+                                    $tingkat3 = true;
+                                }
+                                if ($list_tingkat[$i] == 'Tingkat IV') {
+                                    $tingkat4 = true;
+                                }
+                                if ($list_tingkat[$i] == 'Umum') {
+                                    $umum = true;
+                                }
+                            }
+                            ?>
+
+                            <div class="form-group">
+                                <label for="updatePeserta<?php echo $p['id']; ?>">Peserta</label>
+                                <select id="updatePeserta<?php echo $p['id']; ?>" name="listPeserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                                    <option value="Tingkat I" <?php echo ($tingkat1 == true) ? 'selected="selected"' : '' ?>>Tingkat I</option>
+                                    <option value="Tingkat II" <?php echo ($tingkat2 == true) ? 'selected="selected"' : '' ?>>Tingkat II</option>
+                                    <option value="Tingkat III" <?php echo ($tingkat3 == true) ? 'selected="selected"' : '' ?>>Tingkat III</option>
+                                    <option value="Tingkat IV" <?php echo ($tingkat4 == true) ? 'selected="selected"' : '' ?>>Tingkat IV</option>
+                                    <option value="Umum" <?php echo ($umum == true) ? 'selected="selected"' : '' ?>>Umum</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="peserta">Peserta</label>
-                                <input type="text" class="form-control" name="peserta" id="peserta" placeholder="Masukkan Peserta Kegiatan" value="<?php echo $p['peserta']; ?>" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="link">Link</label>
-                                <input type="text" class="form-control" name="link" id="link" placeholder="Masukkan Link (opsional)" value="<?php echo $p['link']; ?>">
+                                <label for="link<?php echo $p['id']; ?>">Link</label>
+                                <input type="text" class="form-control" name="link" id="link<?php echo $p['id']; ?>" placeholder="Masukkan Link (opsional)" value="<?php echo $p['link']; ?>">
                             </div>
                         </div>
                         <div class="card-footer">

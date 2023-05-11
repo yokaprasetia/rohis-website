@@ -32,29 +32,6 @@
             <?php endforeach ?>
         <?php endif; ?>
 
-        <!-- <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Result Type:</label>
-                                    <select id="peserta" name="peserta" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;">
-                                        <option value="tingkat-1">Tingkat I</option>
-                                        <option value="tingkat-2">Tingkat II</option>
-                                        <option value="tingkat-3">Tingkat III</option>
-                                        <option value="tingkat-4">Tingkat IV</option>
-                                        <option value="umum">Umum</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
         <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
         $warnaQuotes = $warna[array_rand($warna)]; ?>
 
@@ -106,12 +83,6 @@
                                     <option value="-12-">Desember</option>
                                 </select>
                             </div>
-                            <!-- <div class=" form-group mr-2">
-                                <select class="btn btn-secondary" name="fitur" id="fitur" onClick="GetFitur('fitur')" required>
-                                    <option value="example1">Fitur Tabel : On</option>
-                                    <option value="example2" selected="selected">Fitur Tabel : Off</option>
-                                </select>
-                            </div> -->
                         </div>
                     </div>
                     <div class="card-body">

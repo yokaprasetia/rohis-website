@@ -23,7 +23,6 @@ class Pengumuman extends BaseController
             'role'  => $role,
             'pengumuman' => $model->orderBy('updated_at', 'DESC')->findAll(),
         ];
-        // dd($data['pengumuman']);
         return view('page/pengumuman', $data);
     }
 
@@ -51,6 +50,7 @@ class Pengumuman extends BaseController
         $modelLogAktivitas = new LogAktivitasModel();
 
         $data = $this->request->getVar();
+        $data['peserta'] = implode(', ', $data['listPeserta']);
         $tanggal_data = $this->request->getVar('tanggal'); // untuk log aktivitas
         $data['updated_at'] = Time::now('Asia/Jakarta');
         list($tahun_up, $bulan_up, $tanggal_up) = explode('-', $data['tanggal']);
