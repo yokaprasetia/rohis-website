@@ -44,7 +44,7 @@
                                 <?php
                                 echo $profil['angkatan'];
                                 echo " / ";
-                                echo $profil['prodi'];
+                                echo $profil['tingkat'];
                                 ?>
                             </span>
                         </div>
@@ -162,11 +162,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="prodi">Prodi</label>
-                            <select name="prodi" id="prodi" class="form-control" required>
-                                <option value="D-III ST" <?php echo ($profil['prodi'] == 'D-III ST') ? 'selected="selected"' : '' ?>>D-III ST</option>
-                                <option value="D-IV ST" <?php echo ($profil['prodi'] == 'D-IV ST') ? 'selected="selected"' : '' ?>>D-IV ST</option>
-                                <option value="D-IV KS" <?php echo ($profil['prodi'] == 'D-IV KS') ? 'selected="selected"' : '' ?>>D-IV KS</option>
+                            <label for="tingkat">Tingkat</label>
+                            <select name="tingkat" id="tingkat" class="form-control" required>
+                                <option value="Tingkat I" <?php echo ($profil['tingkat'] == 'Tingkat I') ? 'selected="selected"' : '' ?>>Tingkat I</option>
+                                <option value="Tingkat II" <?php echo ($profil['tingkat'] == 'Tingkat II') ? 'selected="selected"' : '' ?>>Tingkat II</option>
+                                <option value="Tingkat III" <?php echo ($profil['tingkat'] == 'Tingkat III') ? 'selected="selected"' : '' ?>>Tingkat III</option>
+                                <option value="Tingkat IV" <?php echo ($profil['tingkat'] == 'Tingkat IV') ? 'selected="selected"' : '' ?>>Tingkat IV</option>
                             </select>
                         </div>
 

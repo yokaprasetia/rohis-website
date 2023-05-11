@@ -183,6 +183,7 @@ class Akun extends BaseController
                 'no_hp'     => $row[4],
                 'kelas'     => $row[5],
                 'angkatan'  => $row[6],
+                'tingkat'   => $row[7],
                 'role'      => 'Anggota',
                 'password'  => password_hash($row[3], PASSWORD_DEFAULT)
             ];

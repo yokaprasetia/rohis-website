@@ -46,7 +46,7 @@ class AddUsers extends Migration
                 'constraint' => '126',
                 'null'      => true,
             ],
-            'prodi' => [
+            'tingkat' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '126',
                 'null'      => true,

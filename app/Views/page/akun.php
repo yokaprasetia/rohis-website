@@ -44,7 +44,7 @@
                         <th>Angkatan</th>
                         <th>No. HP</th>
                         <th>Domisili</th>
-                        <th>Prodi</th>
+                        <th>Tingkat</th>
                         <th>Tanggal Lahir</th>
                         <th>Alamat Kost</th>
                         <th>Jenis Kelamin</th>
@@ -67,7 +67,7 @@
                             <td><?php echo $db['angkatan']; ?></td>
                             <td><?php echo $db['no_hp']; ?></td>
                             <td><?php echo $db['domisili']; ?></td>
-                            <td><?php echo $db['prodi']; ?></td>
+                            <td><?php echo $db['tingkat']; ?></td>
                             <td><?php echo $db['tanggal_lahir']; ?></td>
                             <td><?php echo $db['alamat_kost']; ?></td>
                             <td><?php echo $db['jenis_kelamin']; ?></td>
@@ -233,11 +233,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="prodi['<?php echo $db['id']; ?>']">Prodi</label>
-                                <select name="prodi" id="prodi['<?php echo $db['id']; ?>']" class="form-control" required>
-                                    <option value="D-III ST" <?php echo ($db['prodi'] == 'D-III ST') ? 'selected="selected"' : '' ?>>D-III ST</option>
-                                    <option value="D-IV ST" <?php echo ($db['prodi'] == 'D-IV ST') ? 'selected="selected"' : '' ?>>D-IV ST</option>
-                                    <option value="D-IV KS" <?php echo ($db['prodi'] == 'D-IV KS') ? 'selected="selected"' : '' ?>>D-IV KS</option>
+                                <label for="tingkat['<?php echo $db['id']; ?>']">Tingkat</label>
+                                <select name="tingkat" id="tingkat['<?php echo $db['id']; ?>']" class="form-control" required>
+                                    <option value="Tingkat I" <?php echo ($db['tingkat'] == 'Tingkat I') ? 'selected="selected"' : '' ?>>Tingkat I</option>
+                                    <option value="Tingkat II" <?php echo ($db['tingkat'] == 'Tingkat II') ? 'selected="selected"' : '' ?>>Tingkat II</option>
+                                    <option value="Tingkat III" <?php echo ($db['tingkat'] == 'Tingkat III') ? 'selected="selected"' : '' ?>>Tingkat III</option>
+                                    <option value="Tingkat IV" <?php echo ($db['tingkat'] == 'Tingkat IV') ? 'selected="selected"' : '' ?>>Tingkat IV</option>
                                 </select>
                             </div>
 
