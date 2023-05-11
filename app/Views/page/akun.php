@@ -16,11 +16,19 @@
     $warnaQuotes = $warna[array_rand($warna)]; ?>
 
     <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
-        <div class="card-header">
-            <button id="akun-hapus" type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahAkun">
-                <i class="fas fa-plus mr-2"></i>
-                Tambah Akun
-            </button>
+        <div class="card-header d-flex flex-row">
+            <div>
+                <button id="akun-hapus" type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#tambahAkun">
+                    <i class="fas fa-plus mr-1"></i>
+                    Tambah Akun
+                </button>
+            </div>
+            <div>
+                <button id="akun-hapus" type="button" class="btn btn-warning p-2 ml-2" data-toggle="modal" data-target="#importData">
+                    <i class="fa fa-download mr-1 ml-1"></i>
+                    Import Data
+                </button>
+            </div>
         </div>
         <div class="card-body">
             <table id="example1" class="table table-bordered table-hover">
@@ -132,6 +140,39 @@
                         <button type="submit" class="btn btn-primary">Tambah Akun</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORT DATA -->
+<div class="modal fade" id="importData">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="<?php echo base_url('importExcel'); ?>" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3 p-1 btn btn-outline-dark">
+                        <div class="custom-file">
+                            <input type="file" class="form-grup" name="fileUpload" id="importExcel">
+                        </div>
+                        <div class="input-group-append">
+                            <button id="uploadExcel" type="submit" name="submit" value="Upload" class="btn btn-outline-dark btn-primary text-white" type="button">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p class="mr-2">Download template file : </p>
+                <a href="<?php echo base_url('downloadFile'); ?>/example_file.xlsx" class="btn btn-success">
+                    <i class='fas fa-file-alt mr-1'></i>example file
+                </a>
             </div>
         </div>
     </div>

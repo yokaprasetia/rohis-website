@@ -55,6 +55,8 @@ $routes->get('/akun', 'Akun::index');
 $routes->post('/tambahAkun', 'Akun::tambah');
 $routes->get('/deleteAkun/(:segment)', 'Akun::delete/$1');
 $routes->post('/prosesUpdateAkun', 'Akun::prosesUpdate');
+$routes->post('/importExcel', 'Akun::import');
+$routes->get('/downloadFile/(:segment)', 'Akun::downloadFile/$1');
 
 //PENGUMUMAN
 $routes->get('/pengumuman', 'Pengumuman::index');
@@ -80,6 +82,7 @@ $routes->get('/faq', 'Faq::index');
 
 // LOG AKTIVITAS
 $routes->get('logAktivitas', 'LogAktivitas::index');
+
 
 /*
  * --------------------------------------------------------------------
