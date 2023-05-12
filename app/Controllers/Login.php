@@ -10,6 +10,7 @@ class Login extends BaseController
 {
     public function index()
     {
+        $session = session();
         $data = [
             'judul' => 'SiROHIS | Login'
         ];
@@ -55,6 +56,12 @@ class Login extends BaseController
                 ];
                 $modelLogAktivitas->save($data_log);
 
+                // SET COOKIE
+                if ($this->request->getVar('cookie')) {
+                    setcookie('email', $data['email'], time() + 60 * 60 * 24); // Email User
+                    setcookie('key', password_hash($data['password'], PASSWORD_DEFAULT), time() + 60 * 60 * 24); // Password User
+                }
+
                 return redirect()->to('/beranda');
             } else {
                 $session->setFlashdata('error', 'Password Salah!');
@@ -71,8 +78,6 @@ class Login extends BaseController
         $session = session();
         $modelLogAktivitas = new LogAktivitasModel();
 
-        $session->setFlashdata('success', session()->get('nama'));
-
         // Buat Log Aktivitas
         $data_log = [
             'nama_user'         => session()->get('nama'),
@@ -84,6 +89,13 @@ class Login extends BaseController
             'aksi'              => 'Logout'
         ];
         $modelLogAktivitas->save($data_log);
+
+        $_SESSION = [];
+        session_unset();
+        session_destroy();
+
+        setcookie('email', '', time() - 3600);
+        setcookie('key', '', time() - 3600);
 
         return redirect()->to('/login');
     }

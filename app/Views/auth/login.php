@@ -1,7 +1,30 @@
 <?php
 
-$session = session();
-$session->destroy();
+use App\Models\UserModel;
+
+if (isset($_COOKIE['email']) && isset($_COOKIE['key'])) {
+    $email = $_COOKIE['email'];
+    $key = $_COOKIE['key'];
+
+    $modelUser = new UserModel();
+    $data = $modelUser->where('email', $email)->first();
+    if ($data) {
+        $password = $data['password'];
+        $verify_password = password_verify($key, $password);
+        if ($verify_password) {
+            $_SESSION['logged_in'] = true;
+        }
+    }
+}
+
+if (isset($_SESSION['logged_in'])) {
+    echo "
+    <script>
+    document.location = 'beranda';
+    </script>
+    ";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +87,16 @@ $session->destroy();
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-0">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="cookie" name="cookie">
+                                <label for="cookie">
+                                    Remember Me
+                                </label>
                             </div>
                         </div>
                     </div>

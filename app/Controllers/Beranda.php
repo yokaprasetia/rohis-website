@@ -92,7 +92,11 @@ class Beranda extends BaseController
 
         $jumlah_kehadiran = count($kehadiran);
         $jumlah_kegiatan_wajib_before_now = count($daftar_kegiatan);
-        $presensi = $jumlah_kehadiran / $jumlah_kegiatan_wajib_before_now * 100;
+        if (!($jumlah_kegiatan_wajib_before_now == 0) && !($jumlah_kehadiran == 0)) {
+            $presensi = $jumlah_kehadiran / $jumlah_kegiatan_wajib_before_now * 100;
+        } else {
+            $presensi = 0;
+        }
 
         $data = [
             'judul' => 'SiROHIS | Beranda',
