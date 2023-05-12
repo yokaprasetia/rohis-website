@@ -64,7 +64,7 @@ use CodeIgniter\I18n\Time; ?>
                                         <td>
                                             <?php echo $p['nama']; ?>
                                             <?php if ($wajib == true) : ?>
-                                                <strong> (*)</strong>
+                                                (<i class='fa fa-star'></i>)
                                             <?php endif; ?>
                                         </td>
                                         <td><?php echo $p['peserta']; ?></td>

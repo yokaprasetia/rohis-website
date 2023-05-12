@@ -9,15 +9,16 @@
                 <?php if ($berlangsung === true) : ?>
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title col-12 text-center">Kegiatan Hari Ini : <?php echo $kegiatan_berlangsung['nama']; ?></h3>
+                            <h3 class="card-title col-12 text-center">Kegiatan Hari Ini :</h3>
+                            <h3 class="card-title col-12 text-center mt-2"><strong><?php echo strtoupper($kegiatan_berlangsung['nama']); ?></strong></h3>
                         </div>
-
-                        <?php if ($status_presensi === 'Belum') : ?>
-                            <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#presensi">Presensi Sekarang</button>
-                        <?php elseif ($status_presensi === 'Sudah') : ?>
-                            <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#SudahPresensi">Anda Telah Melakukan Presensi</button>
-                        <?php endif; ?>
-
+                        <div class=" card-body d-flex flex-row justify-content-center">
+                            <?php if ($status_presensi === 'Belum') : ?>
+                                <button type="button" class="btn btn-primary col-6 justify-content-center" data-toggle="modal" data-target="#presensi">Presensi Sekarang</button>
+                            <?php elseif ($status_presensi === 'Sudah') : ?>
+                                <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#SudahPresensi">Anda Telah Melakukan Presensi</button>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 <?php elseif ($berlangsung == false) : ?>
                     <div class="card card-outline card-primary">

@@ -69,7 +69,7 @@
                 ?>
 
                 <div class="card-body">
-                    <p class="card-title col-12 pl-0"><strong><?php echo $pengumuman_terbaru['nama']; ?><?php echo ($wajib == true) ? ' (*)' : '' ?></strong></p>
+                    <p class="card-title col-12 pl-0"><strong><?php echo $pengumuman_terbaru['nama']; ?><?php echo ($wajib == true) ? " (<i class='fa fa-star'></i>)" : '' ?></strong></p>
                     <small class="text-muted">Updated at : <?php echo $pengumuman_terbaru['updated_at']; ?> WIB</small>
                     <p><?php echo $pengumuman_terbaru['isi']; ?></p>
                 </div>

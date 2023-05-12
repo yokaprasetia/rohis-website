@@ -58,8 +58,8 @@ class Login extends BaseController
 
                 // SET COOKIE
                 if ($this->request->getVar('cookie')) {
-                    setcookie('email', $data['email'], time() + 60 * 60 * 24); // Email User
-                    setcookie('key', password_hash($data['password'], PASSWORD_DEFAULT), time() + 60 * 60 * 24); // Password User
+                    setcookie('email', $data['email'], time() + 60 * 60 * 24 * 7); // Email User
+                    setcookie('key', password_hash($data['password'], PASSWORD_DEFAULT), time() + 60 * 60 * 24 * 7); // Password User
                 }
 
                 return redirect()->to('/beranda');
