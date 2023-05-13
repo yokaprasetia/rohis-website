@@ -56,12 +56,6 @@ class Login extends BaseController
                 ];
                 $modelLogAktivitas->save($data_log);
 
-                // SET COOKIE
-                if ($this->request->getVar('cookie')) {
-                    setcookie('email', $data['email'], time() + 60 * 60 * 24 * 7); // Email User
-                    setcookie('key', password_hash($data['password'], PASSWORD_DEFAULT), time() + 60 * 60 * 24 * 7); // Password User
-                }
-
                 return redirect()->to('/beranda');
             } else {
                 $session->setFlashdata('error', 'Password Salah!');
