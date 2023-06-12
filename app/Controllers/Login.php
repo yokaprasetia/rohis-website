@@ -88,9 +88,6 @@ class Login extends BaseController
         session_unset();
         session_destroy();
 
-        setcookie('email', '', time() - 3600);
-        setcookie('key', '', time() - 3600);
-
         return redirect()->to('/login');
     }
 }

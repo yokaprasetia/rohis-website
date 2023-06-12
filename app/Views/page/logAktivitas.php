@@ -4,8 +4,22 @@
 <!-- ISI KONTEN -->
 <div class="content">
     <div class="container-fluid">
+
+        <!-- SWEET ALERT -->
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
+        <?php endif; ?>
+
         <div class="row">
             <div class="col-12">
+
+                <a class="btn btn-danger mb-4 log-hapus" href="<?php echo base_url('deleteLogAktivitas'); ?>">
+                    <i class="fas fa-trash mr-2"></i>
+                    Hapus Log Aktivitas
+                </a>
 
                 <?php $warna = ['primary', 'secondary', 'danger', 'warning', 'success'];
                 $warnaQuotes = $warna[array_rand($warna)]; ?>

@@ -95,3 +95,22 @@ $('.keuangan-hapus').on('click', function (e) {
     })
 });
 
+$('.log-hapus').on('click', function (e) {
+
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Seluruh Log Aktivitas Akan Terhapus!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus Log Aktivitas'
+    }).then((result) => {
+    if (result.isConfirmed) {
+        document.location.href = href;
+    }
+    })
+});

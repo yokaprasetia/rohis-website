@@ -24,4 +24,28 @@ class LogAktivitas extends BaseController
 
         return view('page/logAktivitas', $data);
     }
+
+    public function delete()
+    {
+        $session = session();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        // cek apakah ada log aktivitas
+        $log = $modelLogAktivitas->findAll();
+        if (count($log) == 0) {
+            $session->setFlashdata('error', 'Tidak Ditemukan!');
+            return redirect()->to('/logAktivitas');
+        }
+
+        // Hapus seluruh data log aktivitas
+        $delete = $modelLogAktivitas->truncate();
+        if ($delete) {
+            $session->setFlashdata('success', 'Berhasil Dihapus!');
+
+            return redirect()->to('/logAktivitas');
+        } else {
+            $session->setFlashdata('error', 'Gagal Dihapus!');
+            return redirect()->to('/logAktivitas');
+        }
+    }
 }
