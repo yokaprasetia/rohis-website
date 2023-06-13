@@ -6,6 +6,6 @@ use CodeIgniter\Model;
 
 class DaftarHadirModel extends Model
 {
-    protected $table = 'daftarHadir';
+    protected $table = 'daftarhadir';
     protected $allowedFields = ['id_kegiatan', 'nama', 'nim', 'tanggal', 'file', 'updated_at'];
 }

@@ -35,6 +35,6 @@ class Kegiatan extends BaseController
             'pengumuman' => $daftar_kegiatan
         ];
 
-        return view('page/Kegiatan', $data);
+        return view('page/kegiatan', $data);
     }
 }

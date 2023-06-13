@@ -27,7 +27,7 @@ class Profil extends BaseController
             'profil' => $modelUser->where('id', $id)->first(),
         ];
 
-        return view('page/Profil', $data);
+        return view('page/profil', $data);
     }
 
     public function updateProfil()
