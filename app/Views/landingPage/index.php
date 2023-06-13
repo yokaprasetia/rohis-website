@@ -94,7 +94,7 @@
                             <p><strong>(Ali ‘Imran : 110)</strong></p>
                             <div class="text-center text-lg-start">
                                 <a href="<?php echo base_url('login'); ?>" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                    <span>Lihat Selengkapnya</span>
+                                    <span>Selengkapnya</span>
                                     <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
