@@ -24,7 +24,7 @@
 
                 <li class="nav-header">AKTIVITAS</li>
 
-                <?php if ($role == 'Admin' || $role == 'Ketua') : ?>
+                <?php if ($role == 'Admin') : ?>
                     <li class="nav-item">
                         <a href="<?php echo base_url('akun'); ?>" class="nav-link <?php echo ($active == 'akun') ? 'active' : '' ?>">
                             <i class="nav-icon fa fa-users"></i>
