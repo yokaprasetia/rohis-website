@@ -23,12 +23,6 @@
                     Tambah Akun
                 </button>
             </div>
-            <div>
-                <button id="akun-hapus" type="button" class="btn btn-warning p-2 ml-2" data-toggle="modal" data-target="#importData">
-                    <i class="fa fa-download mr-1 ml-1"></i>
-                    Import Data
-                </button>
-            </div>
         </div>
         <div class="card-body">
             <table id="example1" class="table table-bordered table-hover">

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\DaftarHadirModel;
 use App\Models\PengumumanModel;
-
+use App\Models\UserModel;
 use CodeIgniter\I18n\Time;
 
 class DaftarHadir extends BaseController
@@ -14,6 +14,7 @@ class DaftarHadir extends BaseController
         $session = session();
         $modelPengumuman = new PengumumanModel();
         $modelDaftarHadir = new DaftarHadirModel();
+        $modelUser = new UserModel();
         $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
 
@@ -94,6 +95,78 @@ class DaftarHadir extends BaseController
             $status_presensi = '';
         }
 
+        /////////// PRESENTASE KEHADIRAN SETIAP ANGGOTA
+
+        // 1. Menentukan jumlah kegiatan wajib setiap tingkat
+        $kegiatan_wajib_1 = 0;
+        $kegiatan_wajib_2 = 0;
+        $kegiatan_wajib_3 = 0;
+        $kegiatan_wajib_4 = 0;
+        foreach ($semua_kegiatan as $kegiatan) :
+
+            // FILTER KEGIATAN WAJIB USER
+            $listTingkat = explode(', ', $kegiatan['peserta']);
+
+            for ($i = 0; $i < count($listTingkat); $i++) {
+                // Tingkat I
+                if ($listTingkat[$i] == 'Tingkat I') {
+                    $time = Time::parse($kegiatan['tanggal']);
+                    $proses = $time->isBefore($waktu_sekarang);
+                    if ($proses) {
+                        $kegiatan_wajib_1 += 1;
+                    }
+                }
+                // Tingkat II
+                if ($listTingkat[$i] == 'Tingkat II') {
+                    $time = Time::parse($kegiatan['tanggal']);
+                    $proses = $time->isBefore($waktu_sekarang);
+                    if ($proses) {
+                        $kegiatan_wajib_2 += 1;
+                    }
+                }
+                // Tingkat III
+                if ($listTingkat[$i] == 'Tingkat III') {
+                    $time = Time::parse($kegiatan['tanggal']);
+                    $proses = $time->isBefore($waktu_sekarang);
+                    if ($proses) {
+                        $kegiatan_wajib_3 += 1;
+                    }
+                }
+                // Tingkat IV
+                if ($listTingkat[$i] == 'Tingkat IV') {
+                    $time = Time::parse($kegiatan['tanggal']);
+                    $proses = $time->isBefore($waktu_sekarang);
+                    if ($proses) {
+                        $kegiatan_wajib_4 += 1;
+                    }
+                }
+            }
+        endforeach;
+
+        // 2. count kehadiran setiap anggota
+        $daftarAnggota = $modelUser->orderBy('nim', 'ASC')->findAll();
+        $daftarKehadiran = $modelDaftarHadir->findAll();
+        $presentaseHadir = [];
+        foreach ($daftarAnggota as $anggota) :
+            $nim_anggota = $anggota['nim'];
+            $tingkat_anggota = $anggota['tingkat'];
+            $daftarKehadiran = $modelDaftarHadir->where('nim', $nim_anggota)->findAll();
+            $jumlah_kehadiran = count($daftarKehadiran);
+            if ($tingkat_anggota == 'Tingkat I') {
+                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_1 * 100;
+            }
+            if ($tingkat_anggota == 'Tingkat II') {
+                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_2 * 100;
+            }
+            if ($tingkat_anggota == 'Tingkat III') {
+                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_3 * 100;
+            }
+            if ($tingkat_anggota == 'Tingkat IV') {
+                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_4 * 100;
+            }
+            $presentaseHadir[] = $presentaseKehadiran;
+        endforeach;
+
         $data = [
             'judul' => 'SiROHIS | Daftar Hadir',
             'subjudul' => 'Daftar Hadir',
@@ -104,6 +177,8 @@ class DaftarHadir extends BaseController
             'kegiatan_berlangsung' => $kegiatan_berlangsung,
             'kehadiran' => $kehadiran,
             'status_presensi' => $status_presensi,
+            'daftarAnggota' => $daftarAnggota,
+            'presentaseHadir' => $presentaseHadir,
         ];
 
         return view('page/daftarHadir', $data);

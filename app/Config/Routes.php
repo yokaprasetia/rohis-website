@@ -55,7 +55,7 @@ $routes->get('/akun', 'Akun::index');
 $routes->post('/tambahAkun', 'Akun::tambah');
 $routes->get('/deleteAkun/(:segment)', 'Akun::delete/$1');
 $routes->post('/prosesUpdateAkun', 'Akun::prosesUpdate');
-$routes->post('/importExcel', 'Akun::import');
+// $routes->post('/importExcel', 'Akun::import');
 $routes->get('/downloadFile/(:segment)', 'Akun::downloadFile/$1');
 
 //PENGUMUMAN

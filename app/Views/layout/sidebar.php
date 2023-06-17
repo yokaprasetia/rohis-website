@@ -28,7 +28,7 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('akun'); ?>" class="nav-link <?php echo ($active == 'akun') ? 'active' : '' ?>">
                             <i class="nav-icon fa fa-users"></i>
-                            <p>Akun</p>
+                            <p>Kelola Akun</p>
                         </a>
                     </li>
                 <?php endif; ?>
@@ -36,20 +36,35 @@
                 <li class="nav-item">
                     <a href="<?php echo base_url('pengumuman'); ?>" class="nav-link <?php echo ($active == 'pengumuman') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-th"></i>
+                        
+                        <?php if ($role == 'Humas') : ?>
+                        <p>Kelola Pengumuman</p>
+                        <?php elseif ($role != 'Humas') : ?>
                         <p>Pengumuman Informasi</p>
+                        <?php endif; ?>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('keuangan'); ?>" class="nav-link <?php echo ($active == 'keuangan') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-money-check-alt"></i>
+                        
+                        <?php if ($role == 'Bendahara') : ?>
+                        <p>Kelola Keuangan</p>
+                        <?php elseif ($role != 'Bendahara') : ?>
                         <p>Keuangan</p>
+                        <?php endif; ?>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="<?php echo base_url('daftarHadir'); ?>" class="nav-link <?php echo ($active == 'daftarHadir') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-chart-pie"></i>
+                        
+                        <?php if ($role == 'Humas') : ?>
+                        <p>Kelola Daftar Hadir</p>
+                        <?php elseif ($role != 'Humas') : ?>
                         <p>Daftar Hadir</p>
+                        <?php endif; ?>
                     </a>
                 </li>
 
@@ -65,7 +80,7 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('logAktivitas'); ?>" class="nav-link <?php echo ($active == 'logAktivitas') ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-user-cog"></i>
-                            <p>Log Aktivitas</p>
+                            <p>Kelola Log Aktivitas</p>
                         </a>
                     </li>
                 <?php endif; ?>

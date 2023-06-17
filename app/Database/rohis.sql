@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2023 pada 00.47
+-- Host: sql302.infinityfree.com
+-- Waktu pembuatan: 17 Jun 2023 pada 10.01
 -- Versi server: 10.4.17-MariaDB
--- Versi PHP: 8.0.1
+-- Versi PHP: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rohis`
+-- Database: `if0_34413829_rohis`
 --
 
 -- --------------------------------------------------------
@@ -42,16 +43,10 @@ CREATE TABLE `daftarhadir` (
 --
 
 INSERT INTO `daftarhadir` (`id`, `id_kegiatan`, `nama`, `nim`, `tanggal`, `file`, `updated_at`) VALUES
-(1, 1, 'Muhammad Barbara', 221910740, '2023-02-20', 'bukti-default1.png', '2023-05-09 16:31:21'),
-(2, 1, 'Muhammad Sariro Niro Kakawin', 211913422, '2023-02-20', 'bukti-default2.png', '2023-05-09 16:31:21'),
-(3, 1, 'Banendra Hayuk Saputri', 212008898, '2023-02-20', 'bukti-default3.png', '2023-05-09 16:31:21'),
-(4, 1, 'Rhuhul Sulfahmi Kun', 221910845, '2023-02-20', 'bukti-default4.png', '2023-05-09 16:31:21'),
-(5, 1, 'Siti Sowan Rumiyin', 222208451, '2023-02-20', 'bukti-default1.png', '2023-05-09 16:31:21'),
-(11, 4, 'Banendra Hayuk Saputri', 212008898, '2023-04-05', 'bukti-default3.png', '2023-05-09 16:31:21'),
-(12, 4, 'Rhuhul Sulfahmi Kun', 221910845, '2023-04-05', 'bukti-default1.png', '2023-05-09 16:31:21'),
 (13, 4, 'Siti Sowan Rumiyin', 222208451, '2023-04-05', 'bukti-default2.png', '2023-05-09 16:31:21'),
 (14, 4, 'Yoka Prasetia', 221910846, '2023-04-05', 'bukti-default2.png', '2023-05-09 16:31:21'),
-(15, 7, 'Yoka Prasetia', 221910846, '2023-05-12', 'bukti-1683827204_e5e5c65886f1e01fa1a7.jpg', '2023-05-12 00:46:44');
+(15, 7, 'Yoka Prasetia', 221910846, '2023-05-12', 'bukti-1683827204_e5e5c65886f1e01fa1a7.jpg', '2023-05-12 00:46:44'),
+(16, 13, 'Yoka Prasetia', 221910846, '2023-06-13', 'bukti-1686664486_633404b19116c28f56d8.png', '2023-06-13 20:54:46');
 
 -- --------------------------------------------------------
 
@@ -120,7 +115,103 @@ INSERT INTO `logaktivitas` (`id`, `nama_user`, `nim`, `jabatan`, `waktu`, `jenis
 (13, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-12 21:37:46', 'Menu Keuangan', '1', 'Update Transaksi Keuangan'),
 (14, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-12 21:37:58', 'Menu Keuangan', '3', 'Update Transaksi Keuangan'),
 (15, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-12 21:38:10', 'Menu Keuangan', '4', 'Update Transaksi Keuangan'),
-(16, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-12 21:38:18', 'Menu Keuangan', '2', 'Update Transaksi Keuangan');
+(16, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-12 21:38:18', 'Menu Keuangan', '2', 'Update Transaksi Keuangan'),
+(17, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 10:42:16', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(18, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 10:55:07', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(19, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 10:56:04', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(20, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 10:56:10', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(21, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 10:57:44', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(22, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 10:58:42', 'Menu Pengumuman', '11', 'Update Pengumuman'),
+(23, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 11:09:34', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(24, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 11:13:57', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(25, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 11:15:53', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(26, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:39:10', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(27, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:40:51', 'Menu Akun', '2', 'Update Akun Pengguna'),
+(28, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:42:16', 'Menu Akun', '2', 'Delete Akun Pengguna'),
+(29, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:42:50', 'Menu Akun', '<i>(nim)</i> 123456789', 'Tambah Akun Pengguna'),
+(30, 'Ketua Rohis 01', '123456789', 'Ketua', '2023-06-13 18:43:05', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(31, 'Ketua Rohis 01', '123456789', 'Ketua', '2023-06-13 18:44:13', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(32, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:44:21', 'Menu Akun', '16', 'Delete Akun Pengguna'),
+(33, 'Muhammad Sasmito', '212110880', 'Humas', '2023-06-13 18:44:32', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(34, 'Muhammad Sasmito', '212110880', 'Humas', '2023-06-13 18:45:21', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(35, 'Muhammad Sasmito', '212110880', 'Humas', '2023-06-13 18:45:30', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(36, 'Muhammad Sasmito', '212110880', 'Humas', '2023-06-13 18:45:34', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(37, 'Muhammad Sasmito', '212110880', 'Humas', '2023-06-13 18:45:39', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(38, 'Muhammad Sasmito', '212110880', 'Humas', '2023-06-13 18:45:49', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(39, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:46:21', 'Menu Akun', '3', 'Update Akun Pengguna'),
+(40, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-13 18:46:33', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(41, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:49:00', 'Menu Akun', '4', 'Update Akun Pengguna'),
+(42, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:49:23', 'Menu Akun', '3', 'Update Akun Pengguna'),
+(43, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-13 18:49:36', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(44, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-13 18:49:40', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(45, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:50:28', 'Menu Akun', '5', 'Update Akun Pengguna'),
+(46, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-13 18:50:40', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(47, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-13 18:50:45', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(48, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 18:51:14', 'Menu Akun', '6', 'Update Akun Pengguna'),
+(49, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-13 18:51:22', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(50, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-13 18:51:28', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(51, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-13 18:53:02', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(52, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:37:36', 'Menu Profile', '1', 'Update User Profile'),
+(53, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:37:57', 'Menu Profile', '1', 'Update User Password'),
+(54, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:38:16', 'Menu Profile', '1', 'Update User Password'),
+(55, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:38:54', 'Menu Akun', '15', 'Delete Akun Pengguna'),
+(56, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:38:58', 'Menu Akun', '<i>(tidak ada)</i> ', 'Download template file excel'),
+(57, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:43:16', 'Menu Pengumuman', '<i>(tanggal)</i> 2023-07-07', 'Tambah Pengumuman'),
+(58, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:43:40', 'Menu Pengumuman', '12', 'Update Pengumuman'),
+(59, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:43:50', 'Menu Pengumuman', '12', 'Hapus Pengumuman'),
+(60, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 20:54:05', 'Menu Pengumuman', '<i>(tanggal)</i> 2023-06-13', 'Tambah Pengumuman'),
+(61, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-13 21:33:17', 'Menu Akun', '<i>(tidak ada)</i> ', 'Download template file excel'),
+(62, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-14 07:18:24', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(63, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 16:24:36', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(64, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 16:31:43', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(65, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 19:49:31', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(66, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 19:50:06', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(67, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-15 19:50:10', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(68, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-15 19:53:57', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(69, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 19:54:22', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(70, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 20:10:01', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(71, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 20:10:15', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(72, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-15 20:10:29', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(73, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-15 20:10:38', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(74, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-15 20:10:50', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(75, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-15 20:10:50', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(76, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-15 20:10:58', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(77, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-15 20:11:28', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(78, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-15 20:11:28', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(79, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-15 20:11:42', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(80, 'Anggota Rohis 121', '211913422', 'Anggota', '2023-06-15 20:11:57', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(81, 'Anggota Rohis 121', '211913422', 'Anggota', '2023-06-15 20:12:58', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(82, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 20:13:07', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(83, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 20:13:08', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(84, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 20:13:21', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(85, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 21:51:40', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(86, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 22:52:50', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(87, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 22:54:06', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(88, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 22:54:25', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(89, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 22:54:47', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(90, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-15 23:09:14', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(91, 'Anggota Rohis 121', '211913422', 'Anggota', '2023-06-16 07:39:54', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(92, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-16 18:40:40', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(93, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-16 18:55:36', 'Menu Akun', '1', 'Update Akun Pengguna'),
+(94, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-16 18:59:28', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(95, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-16 19:00:24', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(96, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-16 19:00:28', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(97, 'Bendahara Rohis 01', '221910740', 'Bendahara', '2023-06-16 19:04:05', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(98, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-16 19:04:09', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(99, 'Humas Rohis 01', '222210886', 'Humas', '2023-06-16 19:04:27', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(100, 'Anggota Rohis 121', '211913422', 'Anggota', '2023-06-16 19:04:33', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(101, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-16 23:13:43', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(102, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-17 08:15:10', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(103, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-17 08:43:49', 'Logout', '<i>(tidak ada)</i>', 'Logout'),
+(104, 'Rhuhul Sulfahmi Kun', '221910845', 'Anggota', '2023-06-17 08:43:54', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(105, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-17 12:15:54', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(106, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-17 12:51:31', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(107, 'Ketua Rohis 01', '212110880', 'Ketua', '2023-06-17 12:54:37', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(108, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-17 20:43:05', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(109, 'Anggota Rohis 121', '211913422', 'Anggota', '2023-06-17 20:46:27', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(110, 'Rhuhul Sulfahmi Kun', '221910845', 'Anggota', '2023-06-17 20:53:42', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(111, 'Siti Sowan Rumiyin', '222208451', 'Anggota', '2023-06-17 20:56:23', 'Login', '<i>(tidak ada)</i>', 'Login'),
+(112, 'Yoka Prasetia', '221910846', 'Admin', '2023-06-17 20:59:45', 'Menu Pengumuman', '11', 'Hapus Pengumuman');
 
 -- --------------------------------------------------------
 
@@ -181,8 +272,7 @@ INSERT INTO `pengumuman` (`id`, `nama`, `isi`, `tempat`, `tanggal`, `waktu_mulai
 (2, 'Kajian Islam Spesial 2023', 'Dalam Rangka memperingati Isra\' Mi\'raj, Polstat STIS mengadakan pengajian spesial unutk menumbuhkan kesaradan mahasiswa terhadap peristiwa spesial yang dirasakan oleh Rasulullah.', 'Live Zoom STIS', '2023-03-01', '08:00:00', '10:00:00', 'Tingkat I, Tingkat II, Tingkat III, Tingkat IV, Umum', 'https://zoom.us/', '2023-05-11 23:23:28'),
 (4, 'Peringatan Maulid Nabi', 'Memperingati datangnya bulan Ramadhan, Rohis Polstat STIS mengadakan kajian islam spesial yang diikuti oleh seluruh mahasiswa', 'Auditorium STIS', '2023-04-05', '09:30:00', '11:30:00', 'Tingkat I, Tingkat II, Tingkat III, Tingkat IV', '', '2023-05-11 23:23:28'),
 (7, 'Kegiatan Rutin Tingkat 4', 'Kegiatan Sharing Session Tingkat IV dalam rangka memperbaiki silaturahmi dan kebersamaan', 'Auditorium STIS', '2023-05-11', '00:51:00', '00:52:00', 'Tingkat IV', '', '2023-05-12 00:50:37'),
-(10, 'Kajian Gabungan Spesial 2023', 'Memperingati semangat mahasiswa dalam menuntut ilmu', 'Online Melalui Zoom', '2023-05-31', '08:00:00', '11:00:00', 'Umum', 'https://s.stis.ac.id/ZoomPengajiangabungan', '2023-05-28 20:59:54'),
-(11, 'Kajian Islam Spesial 2024', 'Pembekalan iman dan takwa', 'Auditorium STIS dan Live Streaming melalui Zoom', '2023-12-12', '10:10:00', '14:20:00', 'Tingkat I, Tingkat II, Tingkat IV', 'https://s.stis.ac.id/VBGOCPoisson2022', '2023-06-12 20:56:06');
+(13, 'Kajian Khusus Juni 2023', 'Mengisi Malam dengan Kajian Islam', 'Auditorium STIS dan Live Streaming melalui Zoom', '2023-06-13', '22:30:00', '23:30:00', 'Tingkat IV', 'https://s.stis.ac.id/GuidelineLombaInfografisStatistika2022', '2023-06-13 20:54:05');
 
 -- --------------------------------------------------------
 
@@ -254,16 +344,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `no_hp`, `domisili`, `nim`, `kelas`, `angkatan`, `tingkat`, `tanggal_lahir`, `password`, `role`, `alamat_kost`, `jenis_kelamin`) VALUES
-(1, 'Yoka Prasetia', '221910846@stis.ac.id', '0895379261962', 'Yogyakarta', '221910846', '4SI2', '61', 'Tingkat IV', '2002-01-20', '$2y$10$lPQj1joi2PjxzxtrviganeEN1y1PQfBJw/jC0UfkJToVBxLUM5xW.', 'Admin', 'Jl. Solihun', 'Laki-Laki'),
-(2, 'Ridwan Syech Nawawi', '221112213@stis.ac.id', '0895379232433', 'DKI Jakarta', '221112213', '4SI1', '61', 'Tingkat IV', '2002-04-20', '$2y$10$HTJNJLQDTPOqrKfuW8JE5OL5U6ThZ4JdQjYnpxH3IA9OpKQ3j10lK', 'Ketua', 'Jl. Solihun', 'Laki-Laki'),
-(3, 'Muhammad Sasmito', '212110880@stis.ac.id', '0895123456786', 'Tangerang', '212110880', '2KS3', '63', 'Tingkat II', '2003-08-24', '$2y$10$lVXtG66NOAUPYAd9SOxCCe91L1UeUTMRPdX3iGRmmM6XbJuWzieDi', 'Humas', 'Jl. Sensus II', 'laki-laki'),
-(4, 'Siti Marfuthoh', '222210886@stis.ac.id', '0895123456785', 'Bengkulu', '222210886', '1ST4', '64', 'Tingkat I', '2004-01-01', '$2y$10$JbL6x5WksqERLaKLjHQlJuIVLf6VuPK915zVZ9vthrRY1wySc46jK', 'Bendahara', 'Gg. Asem', 'Perempuan'),
-(5, 'Muhammad Barbara', '221910740@stis.ac.id', '0895123456784', 'Aceh', '221910740', '4SI2', '61', 'Tingkat IV', '2000-06-01', '$2y$10$BG8SlyX4M1szj6QpWOhIre1GYhLGIqxsCcOwgDnSvozLPW8gNigmK', 'Anggota', 'Gg. Ayub', 'Laki-Laki'),
-(6, 'Muhammad Sariro Niro Kakawin', '211913422@stis.ac.id', '0895123456783', 'Bangka', '211913422', '4SK1', '61', 'Tingkat IV', '2001-01-23', '$2y$10$KVKU/CGBLUw81DRvAOpqduxsvroovd4Aaw7I/id.I6hFIIsBd/Bnm', 'Anggota', 'Gg. Ayub', 'Laki-Laki'),
+(1, 'Yoka Prasetia', '221910846@stis.ac.id', '0895379261962', 'Yogyakarta', '221910846', '4SI2', '61', 'Tingkat IV', '2002-01-20', '$2y$10$LR7belHkjcequzPxqh5Htu6URJZsvpd6m/3KUdwxk8RUaMbb7hHLu', 'Admin', '61', 'Laki-Laki'),
+(3, 'Ketua Rohis 01', '212110880@stis.ac.id', '0895123456786', 'Tangerang', '212110880', '2KS3', '62', 'Tingkat III', '2003-08-24', '$2y$10$lVXtG66NOAUPYAd9SOxCCe91L1UeUTMRPdX3iGRmmM6XbJuWzieDi', 'Ketua', 'Jl. Sensus', 'Laki-Laki'),
+(4, 'Humas Rohis 01', '222210886@stis.ac.id', '0895123456785', 'Bengkulu', '222210886', '3SE4', '62', 'Tingkat III', '2004-01-01', '$2y$10$JbL6x5WksqERLaKLjHQlJuIVLf6VuPK915zVZ9vthrRY1wySc46jK', 'Humas', 'Jl. Hasbi', 'Laki-Laki'),
+(5, 'Bendahara Rohis 01', '221910740@stis.ac.id', '0895123456784', 'Aceh', '221910740', '3SI2', '62', 'Tingkat III', '2000-06-01', '$2y$10$BG8SlyX4M1szj6QpWOhIre1GYhLGIqxsCcOwgDnSvozLPW8gNigmK', 'Bendahara', 'Jl. Masjid', 'Laki-Laki'),
+(6, 'Anggota Rohis 121', '211913422@stis.ac.id', '0895123456783', 'Bangka', '211913422', '4SK1', '61', 'Tingkat IV', '2001-01-23', '$2y$10$KVKU/CGBLUw81DRvAOpqduxsvroovd4Aaw7I/id.I6hFIIsBd/Bnm', 'Anggota', 'Jl. Mawar', 'Perempuan'),
 (7, 'Banendra Hayuk Saputri', '212008898@stis.ac.id', '0895123456782', 'Yogyakarta', '212008898', '3D32', '62', 'Tingkat III', '2002-01-03', '$2y$10$aQm.MIYvGdwkU19RvfgLD.559C18CKcVhO6J06yVlpMMk9XrCCQAm', 'Anggota', 'Gg. Santai', 'Perempuan'),
 (8, 'Rhuhul Sulfahmi Kun', '221910845@stis.ac.id', '0895123456781', 'Yogyakarta', '221910845', '4SK1', '62', 'Tingkat III', '2002-03-14', '$2y$10$5Bu0Mscj5ZtajPk04iqevuyDIhiuC6jgx7P2.z2a5gP2T/JFZJIj6', 'Anggota', 'Gg. Ggu', 'Laki-Laki'),
-(9, 'Siti Sowan Rumiyin', '222208451@stis.ac.id', '0895123456781', 'Jawa Timur', '222208451', '4SK1', '63', 'Tingkat II', '2002-03-14', '$2y$10$77NwwZCQZ9Fu1ku0xt4I5ucSVBdWsl50HOW2fKxcNFEaMfbC6MXzO', 'Anggota', 'Gg. Sempit', 'Perempuan'),
-(15, 'Kajian Islam', '221910000@stis.ac.id', '081234567892', 'Jawa Tengah', '221910000', '4SE3', '61', 'Tingkat IV', '2023-05-20', '$2y$10$NUzUb6y5.xa3dyhh02OBdOGZkn44PXRuN7f306Yc911N7uTTYZ/fC', 'Anggota', 'Gang Solihun', 'Laki-Laki');
+(9, 'Siti Sowan Rumiyin', '222208451@stis.ac.id', '0895123456781', 'Jawa Timur', '222208451', '4SK1', '63', 'Tingkat II', '2002-03-14', '$2y$10$77NwwZCQZ9Fu1ku0xt4I5ucSVBdWsl50HOW2fKxcNFEaMfbC6MXzO', 'Anggota', 'Gg. Sempit', 'Perempuan');
 
 --
 -- Indexes for dumped tables
@@ -319,7 +407,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `daftarhadir`
 --
 ALTER TABLE `daftarhadir`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `keuangan`
@@ -331,7 +419,7 @@ ALTER TABLE `keuangan`
 -- AUTO_INCREMENT untuk tabel `logaktivitas`
 --
 ALTER TABLE `logaktivitas`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -343,7 +431,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `quotes`
@@ -355,7 +443,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
