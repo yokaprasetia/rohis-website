@@ -35,7 +35,6 @@
                     <div class="card-header">
                         <h3 class="card-title">Riwayat Daftar Hadir</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-hover">
                             <thead>
@@ -45,9 +44,6 @@
                                     <th>Tempat</th>
                                     <th>Tanggal</th>
                                     <th>Kehadiran</th>
-                                    <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
-                                    <th>Lihat Kehadiran</th>
-                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,9 +57,6 @@
                                         <td><?php echo $kegiatan['tempat'] ?></td>
                                         <td><?php echo $kegiatan['tanggal'] ?></td>
                                         <td><?php echo $kehadiran[$i - 1] ?></td>
-                                        <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
-                                        <td><a class="btn btn-primary" href="<?php echo base_url('detailKehadiran'); ?>/<?php echo $kegiatan['id']; ?>"><i class="fas fa-eye"></i></a></td>
-                                        <?php endif; ?>
                                     </tr>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>
@@ -75,37 +68,38 @@
                 <!-- /.card -->
 
                 <?php if ($role == 'Admin' || $role == 'Ketua' || $role == 'Humas') : ?>
-                <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
-                    <div class="card-header">
-                        <h3 class="card-title">Riwayat Kehadiran Anggota</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>NIM</th>
-                                    <th>Kehadiran Total (%)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
+                        <div class="card-header">
+                            <h3 class="card-title">Riwayat Kehadiran Anggota</h3>
+                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#lihatKehadiran">Lihat Kehadiran</button>
+                            <div class="card-body">
+                            </div>
 
-                                <?php for ($i = 0; $i < count($daftarAnggota); $i++) : ?>
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $i + 1; ?></td>
-                                        <td><?php echo $daftarAnggota[$i]['nama']; ?></td>
-                                        <td><?php echo $daftarAnggota[$i]['nim']; ?></td>
-                                        <td><?php echo round($presentaseHadir[$i]); ?></td>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>NIM</th>
+                                        <th>Kehadiran Total (%)</th>
                                     </tr>
-                                <?php endfor; ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+
+                                    <?php for ($i = 0; $i < count($daftarAnggota); $i++) : ?>
+                                        <tr>
+                                            <td><?php echo $i + 1; ?></td>
+                                            <td><?php echo $daftarAnggota[$i]['nama']; ?></td>
+                                            <td><?php echo $daftarAnggota[$i]['nim']; ?></td>
+                                            <td><?php echo round($presentaseHadir[$i]); ?></td>
+                                        </tr>
+                                    <?php endfor; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+                    <!-- /.card -->
                 <?php endif; ?>
 
             </div>
@@ -117,7 +111,7 @@
 </div>
 
 <div class="modal fade" id="presensi">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Presensi Kehadiran</h4>
@@ -142,6 +136,45 @@
                     <button type="submit" class="btn btn-primary">Presensi Sekarang</button>
                 </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="lihatKehadiran">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Daftar Kegiatan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <table id="example3" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Tanggal</th>
+                            <th>Lihat Kehadiran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php $i = 1; ?>
+                        <?php foreach ($full_kegiatan as $kegiatan) : ?>
+                            <tr>
+                                <td class="col-1"><?php echo $i; ?></td>
+                                <td class="col-8"><?php echo $kegiatan['nama'] ?></td>
+                                <td class="col-8"><?php echo $kegiatan['tanggal'] ?></td>
+                                <td class="col-3"><a class="btn btn-primary" href="<?php echo base_url('detailKehadiran'); ?>/<?php echo $kegiatan['id']; ?>"><i class="fas fa-eye"></i></a></td>
+                            </tr>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

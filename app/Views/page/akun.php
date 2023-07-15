@@ -35,42 +35,32 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th class="col-2">Aksi</th>
+                        <th class="col-1">Opsi</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th>NIM</th>
                         <th>Jabatan</th>
-                        <th>Kelas</th>
-                        <th>Angkatan</th>
-                        <th>No. HP</th>
-                        <th>Domisili</th>
-                        <th>Tingkat</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Alamat Kost</th>
                         <th>Jenis Kelamin</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($database as $db) : ?>
+                    <?php foreach ($database_aktif as $db) : ?>
                         <tr>
                             <td><?php echo $i; ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editAkun<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
                                 <a class="btn btn-danger btn-sm akun-hapus" href="<?php echo base_url('deleteAkun'); ?>/<?php echo $db['id']; ?>"><i class="fas fa-trash"></i></a>
                             </td>
                             <td><?php echo $db['nama']; ?></td>
                             <td><?php echo $db['email']; ?></td>
-                            <td><?php echo $db['nim']; ?></td>
                             <td><?php echo $db['role']; ?></td>
-                            <td><?php echo $db['kelas']; ?></td>
-                            <td><?php echo $db['angkatan']; ?></td>
-                            <td><?php echo $db['no_hp']; ?></td>
-                            <td><?php echo $db['domisili']; ?></td>
-                            <td><?php echo $db['tingkat']; ?></td>
-                            <td><?php echo $db['tanggal_lahir']; ?></td>
-                            <td><?php echo $db['alamat_kost']; ?></td>
                             <td><?php echo $db['jenis_kelamin']; ?></td>
+                            <td><?php echo $db['status']; ?></td>
+                            <td>
+                                <a href="<?php echo base_url('akunDetail'); ?>/<?php echo $db['id']; ?>" class="btn btn-secondary">Selengkapnya</a>
+                            </td>
 
                         </tr>
                         <?php $i++; ?>
@@ -78,7 +68,50 @@
                 </tbody>
             </table>
         </div>
-        <!-- /.card-body -->
+    </div>
+
+    <div class="card card-outline card-<?php echo $warnaQuotes; ?>">
+        <div class="card-header">
+            <h3 class="card-title">Riwayat Akun yang Dinonaktifkan</h3>
+        </div>
+        <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th class="col-1">Opsi</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Jabatan</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($database_nonaktif as $db) : ?>
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editAkun<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
+                                <a class="btn btn-danger btn-sm akun-hapus" href="<?php echo base_url('deleteAkun'); ?>/<?php echo $db['id']; ?>"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td><?php echo $db['nama']; ?></td>
+                            <td><?php echo $db['email']; ?></td>
+                            <td><?php echo $db['role']; ?></td>
+                            <td><?php echo $db['jenis_kelamin']; ?></td>
+                            <td><?php echo $db['status']; ?></td>
+                            <td>
+                                <a href="<?php echo base_url('akunDetail'); ?>/<?php echo $db['id']; ?>" class="btn btn-secondary">Selengkapnya</a>
+                            </td>
+
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -178,13 +211,75 @@
     </div>
 </div>
 
-
 <?php foreach ($database as $db) : ?>
-    <div class="modal fade" id="modal<?php echo $db['id']; ?>">
+    <!-- EDIT PAGE -->
+    <div class="modal fade" id="editAkun<?php echo $db['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Akun - <?php echo $db['nama']; ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">No.</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th style="width: 100px">Label</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Ubah Profil</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubahProfil<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Ubah Password</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubahPassword<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Ubah Status</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubahStatus<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="ubahProfil<?php echo $db['id']; ?>">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Update Akun</h4>
+                    <h4 class="modal-title">Ubah Profil</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -192,7 +287,7 @@
 
                 <div class="modal-body">
                     <!-- Mulai dari sini -->
-                    <form method="post" action="<?php echo base_url('prosesUpdateAkun'); ?>">
+                    <form method="post" action="<?php echo base_url('prosesUbahProfil'); ?>">
                         <div class="card-body">
 
                             <input type="hidden" class="form-control" name="id" id="id['<?php echo $db['id']; ?>']" placeholder="Masukkan id Kegiatan" value="<?php echo $db['id']; ?>" required>
@@ -276,13 +371,85 @@
                         </div>
                         <div class="card-footer">
                             <a href="<?php echo base_url('akun'); ?>" class="btn btn-secondary">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Update Akun</button>
+                            <button type="submit" class="btn btn-primary">Ubah Profil</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ubahPassword<?php echo $db['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ubah Password</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Mulai dari sini -->
+                    <form method="post" action="<?php echo base_url('prosesUbahPassword'); ?>">
+                        <div class="card-body">
+
+                            <input type="hidden" class="form-control" name="id" id="id['<?php echo $db['id']; ?>']" placeholder="Masukkan id Kegiatan" value="<?php echo $db['id']; ?>" required>
+
+                            <div class="form-group">
+                                <label for="password['<?php echo $db['id']; ?>']">Password Baru <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" name="password" id="password['<?php echo $db['id']; ?>']" placeholder="Masukkan password baru" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="konfirmasi_password['<?php echo $db['id']; ?>']">Konfirmasi Password <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasi_password['<?php echo $db['id']; ?>']" placeholder="Masukkan konfirmasi password" required>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="<?php echo base_url('akun'); ?>" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Ubah Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ubahStatus<?php echo $db['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ubah Status</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Mulai dari sini -->
+                    <form method="post" action="<?php echo base_url('prosesUbahStatus'); ?>">
+                        <div class="card-body">
+
+                            <input type="hidden" class="form-control" name="id" id="id['<?php echo $db['id']; ?>']" placeholder="Masukkan id Kegiatan" value="<?php echo $db['id']; ?>" required>
+
+                            <div class="form-group pb-5">
+                                <label for="status['<?php echo $db['id']; ?>']">Status Akun <span class="text-danger">*</span></label>
+                                <select name="status" id="status['<?php echo $db['id']; ?>']" class="form-control" required>
+                                    <option value="Aktif" <?php echo ($db['status'] == 'Aktif') ? 'selected="selected"' : '' ?>>Aktif</option>
+                                    <option value="Tidak Aktif" <?php echo ($db['status'] == 'Tidak Aktif') ? 'selected="selected"' : '' ?>>Tidak Aktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="<?php echo base_url('akun'); ?>" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Ubah Status</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php endforeach; ?>
 
 <?php $this->endSection(); ?>

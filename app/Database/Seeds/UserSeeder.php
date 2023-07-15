@@ -25,10 +25,11 @@ class UserSeeder extends Seeder
                 'role'          => 'Admin',
                 'alamat_kost'   => 'Jl. Solihun',
                 'jenis_kelamin' => 'laki-laki',
+                'status'        => 'Aktif',
             ],
             [
                 // ============================================================== KETUA
-                'nama'          => 'Ridwan Syech Nawawi',
+                'nama'          => 'Ketua Rohis',
                 'email'         => '221112213@stis.ac.id',
                 'no_hp'         => '0895379261943',
                 'domisili'      => 'Jakarta',
@@ -41,10 +42,11 @@ class UserSeeder extends Seeder
                 'role'          => 'Ketua',
                 'alamat_kost'   => 'Jl. Solihun',
                 'jenis_kelamin' => 'laki-laki',
+                'status'        => 'Aktif',
             ],
             // ============================================================== Humas
             [
-                'nama'          => 'Muhammad Sasmito',
+                'nama'          => 'Humas Rohis',
                 'email'         => '212110880@stis.ac.id',
                 'no_hp'         => '0895123456786',
                 'domisili'      => 'Tangerang',
@@ -57,10 +59,11 @@ class UserSeeder extends Seeder
                 'role'          => 'Humas',
                 'alamat_kost'   => 'Jl. Sensus II',
                 'jenis_kelamin' => 'laki-laki',
+                'status'        => 'Aktif',
             ],
             // ============================================================== BENDAHARA
             [
-                'nama'          => 'Siti Marfuthoh',
+                'nama'          => 'Bendahara Rohis',
                 'email'         => '222210886@stis.ac.id',
                 'no_hp'         => '0895123456785',
                 'domisili'      => 'Bengkulu',
@@ -73,10 +76,11 @@ class UserSeeder extends Seeder
                 'role'          => 'Bendahara',
                 'alamat_kost'   => 'Gg. Asem',
                 'jenis_kelamin' => 'Perempuan',
+                'status'        => 'Aktif',
             ],
             // ============================================================== ANGGOTA
             [
-                'nama'          => 'Muhammad Barbara',
+                'nama'          => 'Anggota Rohis 01',
                 'email'         => '221910740@stis.ac.id',
                 'no_hp'         => '0895123456784',
                 'domisili'      => 'Aceh',
@@ -89,9 +93,10 @@ class UserSeeder extends Seeder
                 'role'          => 'Anggota',
                 'alamat_kost'   => 'Gg. Ayub',
                 'jenis_kelamin' => 'Laki-Laki',
+                'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Muhammad Sariro Niro Kakawin',
+                'nama'          => 'Anggota Rohis 02',
                 'email'         => '211913422@stis.ac.id',
                 'no_hp'         => '0895123456783',
                 'domisili'      => 'Bangka',
@@ -104,9 +109,10 @@ class UserSeeder extends Seeder
                 'role'          => 'Anggota',
                 'alamat_kost'   => 'Gg. Ayub',
                 'jenis_kelamin' => 'Laki-Laki',
+                'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Banendra Hayuk Saputri',
+                'nama'          => 'Anggota Rohis 03',
                 'email'         => '212008898@stis.ac.id',
                 'no_hp'         => '0895123456782',
                 'domisili'      => 'Yogyakarta',
@@ -119,9 +125,10 @@ class UserSeeder extends Seeder
                 'role'          => 'Anggota',
                 'alamat_kost'   => 'Gg. Santai',
                 'jenis_kelamin' => 'Perempuan',
+                'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Rhuhul Sulfahmi Kun',
+                'nama'          => 'Anggota Rohis 04',
                 'email'         => '221910845@stis.ac.id',
                 'no_hp'         => '0895123456781',
                 'domisili'      => 'Yogyakarta',
@@ -134,9 +141,10 @@ class UserSeeder extends Seeder
                 'role'          => 'Anggota',
                 'alamat_kost'   => 'Gg. Ggu',
                 'jenis_kelamin' => 'Laki-Laki',
+                'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Siti Sowan Rumiyin',
+                'nama'          => 'Anggota Rohis 05',
                 'email'         => '222208451@stis.ac.id',
                 'no_hp'         => '0895123456781',
                 'domisili'      => 'Jawa Timur',
@@ -149,6 +157,7 @@ class UserSeeder extends Seeder
                 'role'          => 'Anggota',
                 'alamat_kost'   => 'Gg. Sempit',
                 'jenis_kelamin' => 'Perempuan',
+                'status'        => 'Aktif',
             ],
         ];
         // Banyak data

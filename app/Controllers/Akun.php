@@ -21,10 +21,29 @@ class Akun extends BaseController
             'subjudul' => 'Akun',
             'active' => 'akun',
             'role' => $role,
-            'database' => $modelUser->findAll(),
+            'database' => $modelUser->orderBy('status ASC, nama ASC')->findAll(),
+            'database_aktif' => $modelUser->orderBy('status ASC, nama ASC')->where('status', 'Aktif')->findAll(),
+            'database_nonaktif' => $modelUser->orderBy('status ASC, nama ASC')->where('status', 'Tidak Aktif')->findAll(),
         ];
 
         return view('page/akun', $data);
+    }
+
+    public function detail($id)
+    {
+        $session = session();
+        $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
+
+        $modelUser = new UserModel();
+        $data = [
+            'judul' => 'SiROHIS | Detail Akun',
+            'subjudul' => 'Detail Akun',
+            'active' => 'akun',
+            'role'  => $role,
+            'detail' => $modelUser->where('id', $id)->first(),
+        ];
+
+        return view('page/detailAkun', $data);
     }
 
     public function tambah()
@@ -71,69 +90,6 @@ class Akun extends BaseController
                 $session->setFlashdata('error', 'Konfirmasi Tidak Sesuai!');
                 return redirect()->to('/akun');
             }
-        }
-    }
-
-    public function delete($id)
-    {
-        $session = session();
-        $modelUser = new UserModel();
-        $modelLogAktivitas = new LogAktivitasModel();
-
-        $delete = $modelUser->delete(['id' => $id]);
-        if ($delete) {
-            $session->setFlashdata('success', 'Berhasil Dihapus!');
-
-            // Buat Log Aktivitas
-            $data_log = [
-                'nama_user'         => session()->get('nama'),
-                'nim'               => session()->get('nim'),
-                'jabatan'           => session()->get('role'),
-                'waktu'             => Time::now('Asia/Jakarta'),
-                'jenis_aktivitas'   => 'Menu Akun',
-                'id_aktivitas'      => $id,
-                'aksi'              => 'Delete Akun Pengguna'
-            ];
-            $modelLogAktivitas->save($data_log);
-
-            return redirect()->to('/akun');
-        } else {
-            $session->setFlashdata('error', 'Gagal Dihapus!');
-            return redirect()->to('/akun');
-        }
-    }
-
-    public function prosesUpdate()
-    {
-        $session = session();
-        $modelUser = new UserModel();
-        $modelLogAktivitas = new LogAktivitasModel();
-
-        // biar querinya jadi update, maka ID juga harus diikutsertakan dalam $data (update -> id yang di update sudah ada di database)
-        $info = $this->request->getVar();
-        $proses = $modelUser->save($info);
-
-        $id_akun = $this->request->getVar('id');
-
-        if ($proses) {
-            $session->setFlashdata('success', 'Berhasil Diupdate!');
-
-            // Buat Log Aktivitas
-            $data_log = [
-                'nama_user'         => session()->get('nama'),
-                'nim'               => session()->get('nim'),
-                'jabatan'           => session()->get('role'),
-                'waktu'             => Time::now('Asia/Jakarta'),
-                'jenis_aktivitas'   => 'Menu Akun',
-                'id_aktivitas'      => $id_akun,
-                'aksi'              => 'Update Akun Pengguna'
-            ];
-            $modelLogAktivitas->save($data_log);
-
-            return redirect()->to('/akun');
-        } else {
-            $session->setFlashdata('error', 'Gagal Diupdate!');
-            return redirect()->to('/akun');
         }
     }
 
@@ -265,6 +221,136 @@ class Akun extends BaseController
                 $session->setFlashdata('error', 'File Tidak Ditemukan!');
                 return redirect()->to('/akun');
             }
+        }
+    }
+
+    public function prosesUbahProfil()
+    {
+        $session = session();
+        $modelUser = new UserModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        // biar querinya jadi update, maka ID juga harus diikutsertakan dalam $data (update -> id yang di update sudah ada di database)
+        $info = $this->request->getVar();
+        $proses = $modelUser->save($info);
+
+        $id_akun = $this->request->getVar('id');
+
+        if ($proses) {
+            $session->setFlashdata('success', 'Berhasil Diupdate!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Akun',
+                'id_aktivitas'      => $id_akun,
+                'aksi'              => 'Ubah Profil Pengguna'
+            ];
+            $modelLogAktivitas->save($data_log);
+
+            return redirect()->to('/akun');
+        } else {
+            $session->setFlashdata('error', 'Gagal Diupdate!');
+            return redirect()->to('/akun');
+        }
+    }
+
+    public function prosesUbahPassword()
+    {
+        $session = session();
+        $modelUser = new UserModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        $data = $this->request->getVar();
+        if ($data['password'] == $data['konfirmasi_password']) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+            $proses = $modelUser->save($data);
+            if ($proses) {
+                $session->setFlashdata('success', 'Password Berhasil Diperbarui!');
+
+                // Buat Log Aktivitas
+                $data_log = [
+                    'nama_user'         => session()->get('nama'),
+                    'nim'               => session()->get('nim'),
+                    'jabatan'           => session()->get('role'),
+                    'waktu'             => Time::now('Asia/Jakarta'),
+                    'jenis_aktivitas'   => 'Menu Akun',
+                    'id_aktivitas'      => $data['id'],
+                    'aksi'              => 'Ubah Password Pengguna'
+                ];
+                $modelLogAktivitas->save($data_log);
+
+                return redirect()->to('/akun');
+            }
+        } else {
+            $session->setFlashdata('error', 'Gagal Diperbarui - Konfirmasi Password Tidak Sesuai!');
+            return redirect()->to('/akun');
+        }
+    }
+
+    public function prosesUbahStatus()
+    {
+        $session = session();
+        $modelUser = new UserModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        $data = $this->request->getVar();
+        $proses = $modelUser->save($data);
+
+        if ($proses) {
+            $session->setFlashdata('success', 'Status Berhasil Diperbarui!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Akun',
+                'id_aktivitas'      => $data['id'],
+                'aksi'              => 'Ubah Status Pengguna'
+            ];
+            $modelLogAktivitas->save($data_log);
+
+            return redirect()->to('/akun');
+        } else {
+            if ($proses) {
+                $session->setFlashdata('error', 'Status Gagal Diperbarui!');
+                return redirect()->to('/akun');
+            }
+        }
+    }
+
+    public function delete($id)
+    {
+        $session = session();
+        $modelUser = new UserModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        $delete = $modelUser->delete(['id' => $id]);
+        if ($delete) {
+            $session->setFlashdata('success', 'Berhasil Dihapus!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Akun',
+                'id_aktivitas'      => $id,
+                'aksi'              => 'Delete Akun Pengguna'
+            ];
+            $modelLogAktivitas->save($data_log);
+
+            return redirect()->to('/akun');
+        } else {
+            $session->setFlashdata('error', 'Gagal Dihapus!');
+            return redirect()->to('/akun');
         }
     }
 }

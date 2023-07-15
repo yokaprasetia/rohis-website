@@ -196,7 +196,7 @@ use CodeIgniter\I18n\Time; ?>
                                                     $time = Time::parse($p['tanggal']);
                                                     if (!$time->isBefore($waktu_sekarang)) :
                                                     ?>
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?php echo $p['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal<?php echo $p['id']; ?>"><i class="fas fa-edit"></i></button>
                                                         <a class="btn btn-danger pengumuman-hapus" href="<?php echo base_url('deletePengumuman'); ?>/<?php echo $p['id']; ?>"><i class="fas fa-trash"></i></a>
                                                     <?php endif; ?>
                                                 </div>

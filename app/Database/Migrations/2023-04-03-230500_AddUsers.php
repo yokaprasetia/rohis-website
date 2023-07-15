@@ -73,6 +73,10 @@ class AddUsers extends Migration
                 'constraint' => '50',
                 'null'      => true,
             ],
+            'status' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '20',
+            ],
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('users');

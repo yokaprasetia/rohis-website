@@ -74,11 +74,17 @@ class DaftarHadir extends BaseController
         $tanggal_sekarang = $now->toDateString();
 
         $cek_kegiatan_sekarang = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
-        if ($cek_kegiatan_sekarang) {
-            $berlangsung = true;
+        $cek_tingkat = explode(', ', $cek_kegiatan_sekarang['peserta']);
+
+        $berlangsung = false;
+        for ($i = 0; $i < count($cek_tingkat); $i++) {
+            if ($cek_tingkat[$i] == $session->get('tingkat')) {
+                $berlangsung = true;
+            }
+        }
+        if ($$berlangsung = true) {
             $kegiatan_berlangsung = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
-        } else {
-            $berlangsung = false;
+        } elseif ($berlangsung = false) {
             $kegiatan_berlangsung = ''; // gak dipake
         }
 
@@ -167,6 +173,18 @@ class DaftarHadir extends BaseController
             $presentaseHadir[] = $presentaseKehadiran;
         endforeach;
 
+        // DAFTAR FULL KEGIATAN
+        $peserta = $modelDaftarHadir->findAll();
+        $full_kegiatan = $modelPengumuman->orderBy('tanggal', 'DESC')->findAll();
+        $full_keg_before_now = [];
+        foreach ($full_kegiatan as $kegiatan) :
+            $time = Time::parse($kegiatan['tanggal']);
+            $proses = $time->isBefore($waktu_sekarang);
+            if ($proses) {
+                $full_keg_before_now[] = $kegiatan;
+            }
+        endforeach;
+
         $data = [
             'judul' => 'SiROHIS | Daftar Hadir',
             'subjudul' => 'Daftar Hadir',
@@ -179,6 +197,7 @@ class DaftarHadir extends BaseController
             'status_presensi' => $status_presensi,
             'daftarAnggota' => $daftarAnggota,
             'presentaseHadir' => $presentaseHadir,
+            'full_kegiatan' => $full_keg_before_now,
         ];
 
         return view('page/daftarHadir', $data);
@@ -246,10 +265,10 @@ class DaftarHadir extends BaseController
             return view('page/daftarHadir', $data);
         }
 
-        // proses upload file ke folder public/bukti-transaksi
-        $fileTransaksi = $this->request->getFile('file');
-        $namaTransaksi = 'bukti-' . $fileTransaksi->getRandomName();
-        $pindah = $fileTransaksi->move('bukti-transaksi', $namaTransaksi);
+        // proses upload file ke folder public/bukti-kehadiran
+        $fileKehadiran = $this->request->getFile('file');
+        $namaKehadiran = 'bukti-' . $fileKehadiran->getRandomName();
+        $pindah = $fileKehadiran->move('bukti-kehadiran', $namaKehadiran);
 
         if ($pindah) {
 
@@ -263,7 +282,7 @@ class DaftarHadir extends BaseController
                 'nama' =>  $session->get('nama'),
                 'nim' => $session->get('nim'),
                 'tanggal' => $kegiatan_berlangsung['tanggal'],
-                'file' => $fileTransaksi->getName(),
+                'file' => $fileKehadiran->getName(),
                 'updated_at' => Time::now('Asia/Jakarta'),
             ];
 

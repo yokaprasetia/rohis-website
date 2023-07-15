@@ -28,7 +28,14 @@ class Login extends BaseController
         $email =  $this->request->getVar('email');
         $password = $this->request->getVar('password');
         $data = $modelUser->where('email', $email)->first();
+
         if ($data) {
+            // Cek Status Akun
+            if ($data['status'] == 'Tidak Aktif') {
+                $session->setFlashdata('error', 'Akun Dinonakifkan!');
+                return redirect()->to('/login');
+            }
+
             $pass = $data['password'];
             $verify_password = password_verify($password, $pass);
             if ($verify_password) {

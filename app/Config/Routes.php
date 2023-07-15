@@ -52,11 +52,15 @@ $routes->get('/beranda', 'Beranda::index');
 
 //AKUN
 $routes->get('/akun', 'Akun::index');
+$routes->get('/akunDetail/(:segment)', 'Akun::detail/$1');
 $routes->post('/tambahAkun', 'Akun::tambah');
 $routes->get('/deleteAkun/(:segment)', 'Akun::delete/$1');
-$routes->post('/prosesUpdateAkun', 'Akun::prosesUpdate');
+$routes->post('/prosesUbahProfil', 'Akun::prosesUbahProfil');
+$routes->post('/prosesUbahPassword', 'Akun::prosesUbahPassword');
+$routes->post('/prosesUbahStatus', 'Akun::prosesUbahStatus');
 $routes->post('/importExcel', 'Akun::import');
 $routes->get('/downloadFile/(:segment)', 'Akun::downloadFile/$1');
+
 
 //PENGUMUMAN
 $routes->get('/pengumuman', 'Pengumuman::index');

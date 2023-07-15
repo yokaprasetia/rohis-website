@@ -77,7 +77,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img class="" style="width:100%" src="<?php echo base_url('bukti-transaksi'); ?>/<?php echo $peserta['file']; ?>">
+                    <img class="" style="width:100%" src="<?php echo base_url('bukti-kehadiran'); ?>/<?php echo $peserta['file']; ?>">
                 </div>
             </div>
             <!-- /.modal-content -->
