@@ -61,10 +61,15 @@
 
                 <?php
                 $list_peserta = explode(', ', $pengumuman_terbaru['peserta']);
+                $listJk = explode(', ', $pengumuman_terbaru['jenis_kelamin']);
                 $wajib = false;
                 for ($i = 0; $i < count($list_peserta); $i++) {
                     if ($list_peserta[$i] == session()->get('tingkat')) {
-                        $wajib = true;
+                        for ($j = 0; $j < count($listJk); $j++) {
+                            if ($listJk[$j] == session()->get('jenis_kelamin')) {
+                                $wajib = true;
+                            }
+                        }
                     }
                 }
                 ?>

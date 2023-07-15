@@ -17,23 +17,41 @@ class DaftarHadir extends BaseController
         $modelUser = new UserModel();
         $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
-
         $waktu_sekarang = Time::now('Asia/Jakarta');
 
         $semua_kegiatan = $modelPengumuman->orderBy('updated_at', 'DESC')->findAll();
+
+        // DAFTAR FULL KEGIATAN YANG SUDAH TERJADI =====================================================================================
+        $full_kegiatan = $modelPengumuman->orderBy('tanggal', 'DESC')->findAll();
+        $full_keg_before_now = [];
+        foreach ($full_kegiatan as $kegiatan) :
+            $time = Time::parse($kegiatan['tanggal']);
+            $proses = $time->isBefore($waktu_sekarang);
+            if ($proses) {
+                $full_keg_before_now[] = $kegiatan;
+            }
+        endforeach;
+
+        // DAFTAR KEGIATAN WAJIB YANG SUDAH TERJADI (UNTUK RIWAYAT DAFTAR HADIR) =======================================================
         $daftar_kegiatan = [];
         foreach ($semua_kegiatan as $kegiatan) :
 
-            // FILTER KEGIATAN WAJIB USER
+            // FILTER KEGIATAN WAJIB USER =======================================================
             $listTingkat = explode(', ', $kegiatan['peserta']);
+            $listJk = explode(', ', $kegiatan['jenis_kelamin']);
             $wajib = false;
+
             for ($i = 0; $i < count($listTingkat); $i++) {
                 if ($listTingkat[$i] == session()->get('tingkat')) {
-                    $wajib = true;
+                    for ($j = 0; $j < count($listJk); $j++) {
+                        if ($listJk[$j] == session()->get('jenis_kelamin')) {
+                            $wajib = true;
+                        }
+                    }
                 }
             }
 
-            // FILTER KEGIATAN YANG SUDAH TERJADI - isBefore()
+            // FILTER KEGIATAN YANG SUDAH TERJADI - isBefore() ==================================
             if ($wajib == true) {
                 $time = Time::parse($kegiatan['tanggal']);
                 $proses = $time->isBefore($waktu_sekarang);
@@ -43,8 +61,9 @@ class DaftarHadir extends BaseController
             }
         endforeach;
 
-        // Cek kehadiran setiap kegiatan yang !AfterNow
-        // MENGGUNAKAN VARIABEL $daftar_kegiatan;
+
+
+        // CEK KEHADIRAN SETIAP KEGIATAN (!AfterNow) MENGGUNAKAN VARIABEL $daftar_kegiatan; ============================================
         $nim_user = $session->get('nim');
 
         $kehadiran = [];
@@ -69,26 +88,35 @@ class DaftarHadir extends BaseController
             }
         endforeach;
 
-        // Cek kegiatan yang sedang berlangsung sameAs()
+        // CEK KEGIATAN YANG SEDANG BERLANGSUNG PADA AKUN sameAs() =====================================================================
         $now = Time::now('Asia/Jakarta');
         $tanggal_sekarang = $now->toDateString();
 
         $cek_kegiatan_sekarang = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
-        $cek_tingkat = explode(', ', $cek_kegiatan_sekarang['peserta']);
 
         $berlangsung = false;
-        for ($i = 0; $i < count($cek_tingkat); $i++) {
-            if ($cek_tingkat[$i] == $session->get('tingkat')) {
-                $berlangsung = true;
+        if (isset($cek_kegiatan_sekarang)) {
+            $cek_tingkat = explode(', ', $cek_kegiatan_sekarang['peserta']);
+            $cek_jk = explode(', ', $cek_kegiatan_sekarang['jenis_kelamin']);
+
+            for ($i = 0; $i < count($cek_tingkat); $i++) {
+                if ($cek_tingkat[$i] == session()->get('tingkat')) {
+                    for ($j = 0; $j < count($cek_jk); $j++) {
+                        if ($cek_jk[$j] == session()->get('jenis_kelamin')) {
+                            $berlangsung = true;
+                        }
+                    }
+                }
             }
         }
-        if ($$berlangsung = true) {
+
+        if ($berlangsung == true) {
             $kegiatan_berlangsung = $modelPengumuman->where('tanggal', $tanggal_sekarang)->orderBy('updated_at', 'DESC')->first();
-        } elseif ($berlangsung = false) {
+        } elseif ($berlangsung == false) {
             $kegiatan_berlangsung = ''; // gak dipake
         }
 
-        // cek kehadiran akun pada kegiatan yang sedang berlangsung
+        // CEK KEHADIRAN AKUN PADA KEGIATAN YANG SEDANG BERLANGSUNG ====================================================================
         if ($berlangsung === true) {
             $nim = $session->get('nim');
             $proses = $modelDaftarHadir->where(['id_kegiatan' => $kegiatan_berlangsung['id'], 'nim' => $nim])->first();
@@ -101,88 +129,151 @@ class DaftarHadir extends BaseController
             $status_presensi = '';
         }
 
-        /////////// PRESENTASE KEHADIRAN SETIAP ANGGOTA
 
-        // 1. Menentukan jumlah kegiatan wajib setiap tingkat
-        $kegiatan_wajib_1 = 0;
-        $kegiatan_wajib_2 = 0;
-        $kegiatan_wajib_3 = 0;
-        $kegiatan_wajib_4 = 0;
+
+
+
+        // PRESENTASE KEHADIRAN SETIAP ANGGOTA =========================================================================================
+
+        // 1. Menentukan jumlah kegiatan wajib setiap tingkat ========================================
+        $kegiatan_wajib_1_pria = 0;
+        $kegiatan_wajib_1_wanita = 0;
+        $kegiatan_wajib_2_pria = 0;
+        $kegiatan_wajib_2_wanita = 0;
+        $kegiatan_wajib_3_pria = 0;
+        $kegiatan_wajib_3_wanita = 0;
+        $kegiatan_wajib_4_pria = 0;
+        $kegiatan_wajib_4_wanita = 0;
         foreach ($semua_kegiatan as $kegiatan) :
 
             // FILTER KEGIATAN WAJIB USER
             $listTingkat = explode(', ', $kegiatan['peserta']);
+            $listJenisKelamin = explode(', ', $kegiatan['jenis_kelamin']);
 
             for ($i = 0; $i < count($listTingkat); $i++) {
                 // Tingkat I
                 if ($listTingkat[$i] == 'Tingkat I') {
-                    $time = Time::parse($kegiatan['tanggal']);
-                    $proses = $time->isBefore($waktu_sekarang);
-                    if ($proses) {
-                        $kegiatan_wajib_1 += 1;
+                    for ($j = 0; $j < count($listJenisKelamin); $j++) {
+                        if ($listJenisKelamin[$j] == 'Laki-Laki') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_1_pria += 1;
+                            }
+                        }
+                        if ($listJenisKelamin[$j] == 'Perempuan') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_1_wanita += 1;
+                            }
+                        }
                     }
                 }
                 // Tingkat II
                 if ($listTingkat[$i] == 'Tingkat II') {
-                    $time = Time::parse($kegiatan['tanggal']);
-                    $proses = $time->isBefore($waktu_sekarang);
-                    if ($proses) {
-                        $kegiatan_wajib_2 += 1;
+                    for ($j = 0; $j < count($listJenisKelamin); $j++) {
+                        if ($listJenisKelamin[$j] == 'Laki-Laki') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_2_pria += 1;
+                            }
+                        }
+                        if ($listJenisKelamin[$j] == 'Perempuan') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_2_wanita += 1;
+                            }
+                        }
                     }
                 }
                 // Tingkat III
                 if ($listTingkat[$i] == 'Tingkat III') {
-                    $time = Time::parse($kegiatan['tanggal']);
-                    $proses = $time->isBefore($waktu_sekarang);
-                    if ($proses) {
-                        $kegiatan_wajib_3 += 1;
+                    for ($j = 0; $j < count($listJenisKelamin); $j++) {
+                        if ($listJenisKelamin[$j] == 'Laki-Laki') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_3_pria += 1;
+                            }
+                        }
+                        if ($listJenisKelamin[$j] == 'Perempuan') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_3_wanita += 1;
+                            }
+                        }
                     }
                 }
                 // Tingkat IV
                 if ($listTingkat[$i] == 'Tingkat IV') {
-                    $time = Time::parse($kegiatan['tanggal']);
-                    $proses = $time->isBefore($waktu_sekarang);
-                    if ($proses) {
-                        $kegiatan_wajib_4 += 1;
+                    for ($j = 0; $j < count($listJenisKelamin); $j++) {
+                        if ($listJenisKelamin[$j] == 'Laki-Laki') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_4_pria += 1;
+                            }
+                        }
+                        if ($listJenisKelamin[$j] == 'Perempuan') {
+                            $time = Time::parse($kegiatan['tanggal']);
+                            $proses = $time->isBefore($waktu_sekarang);
+                            if ($proses) {
+                                $kegiatan_wajib_4_wanita += 1;
+                            }
+                        }
                     }
                 }
             }
         endforeach;
 
-        // 2. count kehadiran setiap anggota
+        // 2. count kehadiran setiap anggota ==========================================================
         $daftarAnggota = $modelUser->orderBy('nim', 'ASC')->findAll();
-        $daftarKehadiran = $modelDaftarHadir->findAll();
+
         $presentaseHadir = [];
         foreach ($daftarAnggota as $anggota) :
             $nim_anggota = $anggota['nim'];
             $tingkat_anggota = $anggota['tingkat'];
-            $daftarKehadiran = $modelDaftarHadir->where('nim', $nim_anggota)->findAll();
-            $jumlah_kehadiran = count($daftarKehadiran);
+            $jenis_kelamin_anggota = $anggota['jenis_kelamin'];
+            $daftarKehadiranAnggota = $modelDaftarHadir->where('nim', $nim_anggota)->findAll();
+            $jumlah_kehadiran = count($daftarKehadiranAnggota);
+
             if ($tingkat_anggota == 'Tingkat I') {
-                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_1 * 100;
+                if ($jenis_kelamin_anggota == 'Laki-Laki') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_1_pria * 100;
+                }
+                if ($jenis_kelamin_anggota == 'Perempuan') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_1_wanita * 100;
+                }
             }
             if ($tingkat_anggota == 'Tingkat II') {
-                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_2 * 100;
+                if ($jenis_kelamin_anggota == 'Laki-Laki') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_2_pria * 100;
+                }
+                if ($jenis_kelamin_anggota == 'Perempuan') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_2_wanita * 100;
+                }
             }
             if ($tingkat_anggota == 'Tingkat III') {
-                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_3 * 100;
+                if ($jenis_kelamin_anggota == 'Laki-Laki') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_3_pria * 100;
+                }
+                if ($jenis_kelamin_anggota == 'Perempuan') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_3_wanita * 100;
+                }
             }
             if ($tingkat_anggota == 'Tingkat IV') {
-                $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_4 * 100;
+                if ($jenis_kelamin_anggota == 'Laki-Laki') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_4_pria * 100;
+                }
+                if ($jenis_kelamin_anggota == 'Perempuan') {
+                    $presentaseKehadiran = $jumlah_kehadiran / $kegiatan_wajib_4_wanita * 100;
+                }
             }
             $presentaseHadir[] = $presentaseKehadiran;
-        endforeach;
-
-        // DAFTAR FULL KEGIATAN
-        $peserta = $modelDaftarHadir->findAll();
-        $full_kegiatan = $modelPengumuman->orderBy('tanggal', 'DESC')->findAll();
-        $full_keg_before_now = [];
-        foreach ($full_kegiatan as $kegiatan) :
-            $time = Time::parse($kegiatan['tanggal']);
-            $proses = $time->isBefore($waktu_sekarang);
-            if ($proses) {
-                $full_keg_before_now[] = $kegiatan;
-            }
         endforeach;
 
         $data = [
@@ -190,7 +281,7 @@ class DaftarHadir extends BaseController
             'subjudul' => 'Daftar Hadir',
             'active' => 'daftarHadir',
             'role' => $role,
-            'daftar_kegiatan' => $daftar_kegiatan,
+            'daftar_kegiatan_wajib' => $daftar_kegiatan,
             'berlangsung' => $berlangsung,
             'kegiatan_berlangsung' => $kegiatan_berlangsung,
             'kehadiran' => $kehadiran,

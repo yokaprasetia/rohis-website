@@ -30,6 +30,9 @@
                             <dt class="col-sm-2">Peserta</dt>
                             <dd class="col-sm-10"><?php echo $detail['peserta']; ?></dd>
 
+                            <dt class="col-sm-2">Jenis Kelamin</dt>
+                            <dd class="col-sm-10"><?php echo $detail['jenis_kelamin']; ?></dd>
+
                             <dt class="col-sm-2">Link</dt>
                             <dd class="col-sm-10"><?php echo ($detail['link'] != '') ? $detail['link'] : '<i>(offline)</i>' ?></dd>
                         </dl>

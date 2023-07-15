@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'password'      => password_hash('221910846', PASSWORD_DEFAULT),
                 'role'          => 'Admin',
                 'alamat_kost'   => 'Jl. Solihun',
-                'jenis_kelamin' => 'laki-laki',
+                'jenis_kelamin' => 'Laki-Laki',
                 'status'        => 'Aktif',
             ],
             [
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
                 'password'      => password_hash('221112213', PASSWORD_DEFAULT),
                 'role'          => 'Ketua',
                 'alamat_kost'   => 'Jl. Solihun',
-                'jenis_kelamin' => 'laki-laki',
+                'jenis_kelamin' => 'Laki-Laki',
                 'status'        => 'Aktif',
             ],
             // ============================================================== Humas
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
                 'password'      => password_hash('212110880', PASSWORD_DEFAULT),
                 'role'          => 'Humas',
                 'alamat_kost'   => 'Jl. Sensus II',
-                'jenis_kelamin' => 'laki-laki',
+                'jenis_kelamin' => 'Laki-Laki',
                 'status'        => 'Aktif',
             ],
             // ============================================================== BENDAHARA

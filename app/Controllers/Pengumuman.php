@@ -51,6 +51,7 @@ class Pengumuman extends BaseController
 
         $data = $this->request->getVar();
         $data['peserta'] = implode(', ', $data['listPeserta']);
+        $data['jenis_kelamin'] = implode(', ', $data['listJenisKelamin']);
         $tanggal_data = $this->request->getVar('tanggal'); // untuk log aktivitas
         $data['updated_at'] = Time::now('Asia/Jakarta');
         list($tahun_up, $bulan_up, $tanggal_up) = explode('-', $data['tanggal']);
@@ -64,7 +65,6 @@ class Pengumuman extends BaseController
         $tanggal_now = $tanggal->format('d');
         $jam_now = $tanggal->Format('H');
         $menit_now = $tanggal->Format('i');
-
 
         if ($tahun_up > $tahun_now) {
             // proses

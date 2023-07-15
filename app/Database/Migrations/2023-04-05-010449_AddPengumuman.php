@@ -40,6 +40,10 @@ class AddPengumuman extends Migration
                 'type'          => 'VARCHAR',
                 'constraint'    => '250',
             ],
+            'jenis_kelamin' => [
+                'type'          => 'VARCHAR',
+                'constraint'    => '250',
+            ],
             'link' => [
                 'type'          => 'VARCHAR',
                 'constraint'    => '250',

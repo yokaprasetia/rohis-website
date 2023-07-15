@@ -48,15 +48,21 @@ class Beranda extends BaseController
         // Daftar kegiatan yang sudah terjadi - isBefore()
         $waktu_sekarang = Time::now('Asia/Jakarta');
         $semua_kegiatan = $modelPengumuman->orderBy('updated_at', 'DESC')->findAll();
+
         $daftar_kegiatan = [];
         foreach ($semua_kegiatan as $kegiatan) :
 
             // FILTER KEGIATAN WAJIB USER
             $listTingkat = explode(', ', $kegiatan['peserta']);
+            $listJk = explode(', ', $kegiatan['jenis_kelamin']);
             $wajib = false;
             for ($i = 0; $i < count($listTingkat); $i++) {
                 if ($listTingkat[$i] == session()->get('tingkat')) {
-                    $wajib = true;
+                    for ($j = 0; $j < count($listJk); $j++) {
+                        if ($listJk[$j] == session()->get('jenis_kelamin')) {
+                            $wajib = true;
+                        }
+                    }
                 }
             }
 

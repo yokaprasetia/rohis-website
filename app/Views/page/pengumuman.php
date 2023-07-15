@@ -45,16 +45,22 @@ use CodeIgniter\I18n\Time; ?>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php $i = 1; ?>
                                 <?php foreach ($pengumuman as $p) : ?>
 
                                     <!-- Bintang untuk kegiatan wajib -->
                                     <?php
                                     $listTingkat = explode(', ', $p['peserta']);
+                                    $listJk = explode(', ', $p['jenis_kelamin']);
                                     $wajib = false;
                                     for ($j = 0; $j < count($listTingkat); $j++) {
                                         if ($listTingkat[$j] == session()->get('tingkat')) {
-                                            $wajib = true;
+                                            for ($k = 0; $k < count($listJk); $k++) {
+                                                if ($listJk[$k] == session()->get('jenis_kelamin')) {
+                                                    $wajib = true;
+                                                }
+                                            }
                                         }
                                     }
                                     ?>
@@ -139,6 +145,14 @@ use CodeIgniter\I18n\Time; ?>
                                 <option value="Tingkat III">Tingkat III</option>
                                 <option value="Tingkat IV">Tingkat IV</option>
                                 <option value="Umum">Umum</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jenis_kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
+                            <select id="jenis_kelamin" name="listJenisKelamin[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                                <option value="Laki-Laki" selected="selected">Laki-Laki</option>
+                                <option value="Perempuan" selected="selected">Perempuan</option>
                             </select>
                         </div>
 
@@ -300,6 +314,27 @@ use CodeIgniter\I18n\Time; ?>
                                     <option value="Tingkat III" <?php echo ($tingkat3 == true) ? 'selected="selected"' : '' ?>>Tingkat III</option>
                                     <option value="Tingkat IV" <?php echo ($tingkat4 == true) ? 'selected="selected"' : '' ?>>Tingkat IV</option>
                                     <option value="Umum" <?php echo ($umum == true) ? 'selected="selected"' : '' ?>>Umum</option>
+                                </select>
+                            </div>
+
+                            <?php
+                            $laki_laki = false;
+                            $perempuan = false;
+                            $jenis_kelamin = explode(', ', $p['jenis_kelamin']);
+                            for ($i = 0; $i < count($jenis_kelamin); $i++) {
+                                if ($jenis_kelamin[$i] == 'Laki-Laki') {
+                                    $laki_laki = true;
+                                }
+                                if ($jenis_kelamin[$i] == 'Perempuan') {
+                                    $perempuan = true;
+                                }
+                            }
+                            ?>
+                            <div class="form-group">
+                                <label for="jenis_kelamin<?php echo $p['id']; ?>">Jenis Kelamin <span class="text-danger">*</span></label>
+                                <select id="jenis_kelamin<?php echo $p['id']; ?>" name="listJenisKelamin[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                                    <option value="Laki-Laki" <?php echo ($laki_laki == true) ? 'selected="selected"' : '' ?>>Laki-Laki</option>
+                                    <option value="Perempuan" <?php echo ($perempuan == true) ? 'selected="selected"' : '' ?>>Perempuan</option>
                                 </select>
                             </div>
 

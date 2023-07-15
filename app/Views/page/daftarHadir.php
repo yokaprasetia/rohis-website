@@ -49,7 +49,7 @@
                             <tbody>
 
                                 <?php $i = 1; ?>
-                                <?php foreach ($daftar_kegiatan as $kegiatan) : ?>
+                                <?php foreach ($daftar_kegiatan_wajib as $kegiatan) : ?>
 
                                     <tr>
                                         <td><?php echo $i; ?></td>
