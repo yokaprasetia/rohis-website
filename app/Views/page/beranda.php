@@ -16,11 +16,10 @@
         </div>
 
         <div class="row">
-
             <div class="col-12 col-lg-6">
                 <div class="small-box bg-success">
                     <div class="inner ml-3">
-                        <p>Jumlah Saudara User Rohis</p>
+                        <p>JUMLAH USER ROHIS</p>
                         <h3><?php echo $jumlah_pengguna; ?></h3>
                     </div>
                     <div class="icon">
@@ -32,7 +31,7 @@
             <div class="col-12 col-lg-6">
                 <div class="small-box bg-warning">
                     <div class="inner ml-3">
-                        <p>Total Keuangan (Kas)</p>
+                        <p>TOTAL KEUANGAN (KAS)</p>
                         <h3>Rp<?php echo $total_kas; ?>,00</h3>
                     </div>
                     <div class="icon">
@@ -40,13 +39,15 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="row">
             <!-- Pengumuman Terbaru -->
-            <div class="card card-<?php echo $warna_quotes; ?> card-outline col-12 col-lg-7">
+            <div class="card card-<?php echo $warna_quotes; ?> card-outline col-12 col-lg-6">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-calendar-check mr-2"></i>
-                        Pengumuman Terbaru
+                        PENGUMUMAN TERBARU
                     </h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -81,8 +82,8 @@
             </div>
 
             <!-- Progres Presensi -->
-            <div class="row col-12 col-lg-4 ml-lg-3">
-                <div class="card col-12">
+            <div class="row col-12 col-lg-5 ml-lg-3">
+                <div class="card card-<?php echo $warna_quotes; ?> card-outline col-12">
                     <div class="card-header">
 
                         <h3 class="card-title">
@@ -109,7 +110,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
