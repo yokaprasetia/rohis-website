@@ -2,7 +2,7 @@
 if (!isset($_SESSION['logged_in'])) {
     echo "
     <script>
-    alert('Maaf, Silakan login terlebih dahulu');
+    alert('Maaf, Silakan login terlebih dahulu...');
     document.location = 'login';
     </script>
     ";
@@ -165,6 +165,8 @@ if (!isset($_SESSION['logged_in'])) {
     <script src="<?php echo base_url(); ?>/js/sweetAlert.js"></script>
     <script src="<?php echo base_url(); ?>/js/keuangan.js"></script>
     <script src="<?php echo base_url(); ?>/js/importData.js"></script>
+    <script src="<?php echo base_url(); ?>/js/dataKeuangan.js"></script>
+    <script src="<?php echo base_url(); ?>/js/roleValidationInput.js"></script>
 </body>
 
 </html>

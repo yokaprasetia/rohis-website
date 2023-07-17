@@ -104,42 +104,42 @@ use CodeIgniter\I18n\Time; ?>
             </div>
 
             <div class="modal-body">
-                <form method="post" action="<?php echo base_url('tambahPengumuman'); ?>">
+                <form method="post" action="<?php echo base_url('tambahPengumuman'); ?>" onsubmit="return validate_tambahPengumuman()">
                     <div class="card-body">
 
                         <div class="form-group">
                             <label for="nama">Nama <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama Kegiatan" required>
+                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama Kegiatan">
                         </div>
 
                         <div class="form-group">
                             <label for="isi">Deskripsi <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="isi" id="isi" placeholder="Masukkan Deskripsi Kegiatan" required>
+                            <input type="text" class="form-control" name="isi" id="isi" placeholder="Masukkan Deskripsi Kegiatan">
                         </div>
 
                         <div class="form-group">
                             <label for="tempat">Tempat <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Masukkan Tempat Kegiatan" required>
+                            <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Masukkan Tempat Kegiatan">
                         </div>
 
                         <div class="form-group">
                             <label for="tanggal">Tanggal <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Kegiatan" required>
+                            <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Kegiatan">
                         </div>
 
                         <div class="form-group">
                             <label for="waktu_mulai">Waktu Mulai <span class="text-danger">*</span></label>
-                            <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai" placeholder="Masukkan Waktu Mulai Kegiatan" required>
+                            <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai" placeholder="Masukkan Waktu Mulai Kegiatan">
                         </div>
 
                         <div class="form-group">
                             <label for="waktu_selesai">Waktu Selesai <span class="text-danger">*</span></label>
-                            <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai" placeholder="Masukkan Waktu Selesai Kegiatan" required>
+                            <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai" placeholder="Masukkan Waktu Selesai Kegiatan">
                         </div>
 
                         <div class="form-group">
                             <label for="peserta">Peserta <span class="text-danger">*</span></label>
-                            <select id="peserta" name="listPeserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                            <select id="peserta" name="listPeserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;">
                                 <option value="Tingkat I">Tingkat I</option>
                                 <option value="Tingkat II">Tingkat II</option>
                                 <option value="Tingkat III">Tingkat III</option>
@@ -150,7 +150,7 @@ use CodeIgniter\I18n\Time; ?>
 
                         <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
-                            <select id="jenis_kelamin" name="listJenisKelamin[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                            <select id="jenis_kelamin" name="listJenisKelamin[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;">
                                 <option value="Laki-Laki" selected="selected">Laki-Laki</option>
                                 <option value="Perempuan" selected="selected">Perempuan</option>
                             </select>
@@ -244,39 +244,39 @@ use CodeIgniter\I18n\Time; ?>
                 </div>
 
                 <div class="modal-body">
-                    <form method="post" action="<?php echo base_url('tambahPengumuman') ?>">
+                    <form method="post" action="<?php echo base_url('tambahPengumuman') ?>" onsubmit="return validate_updatePengumuman(<?php echo $p['id']; ?>)">
                         <div class="card-body">
 
                             <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id Kegiatan" value="<?php echo $p['id']; ?>" required>
 
                             <div class="form-group">
                                 <label for="nama<?php echo $p['id']; ?>">Nama <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nama" id="nama<?php echo $p['id']; ?>" placeholder="Masukkan Nama Kegiatan" value="<?php echo $p['nama']; ?>" required>
+                                <input type="text" class="form-control" name="nama" id="nama<?php echo $p['id']; ?>" placeholder="Masukkan Nama Kegiatan" value="<?php echo $p['nama']; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="isi<?php echo $p['id']; ?>">Deskripsi <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="isi" id="isi<?php echo $p['id']; ?>" placeholder="Masukkan Deskripsi Kegiatan" value="<?php echo $p['isi']; ?>" required>
+                                <input type="text" class="form-control" name="isi" id="isi<?php echo $p['id']; ?>" placeholder="Masukkan Deskripsi Kegiatan" value="<?php echo $p['isi']; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="tempat<?php echo $p['id']; ?>">Tempat <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="tempat" id="tempat<?php echo $p['id']; ?>" placeholder="Masukkan Tempat Kegiatan" value="<?php echo $p['tempat']; ?>" required>
+                                <input type="text" class="form-control" name="tempat" id="tempat<?php echo $p['id']; ?>" placeholder="Masukkan Tempat Kegiatan" value="<?php echo $p['tempat']; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="tanggal<?php echo $p['id']; ?>">Tanggal <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="tanggal" id="tanggal<?php echo $p['id']; ?>" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" required readonly>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal<?php echo $p['id']; ?>" placeholder="Masukkan Tanggal Kegiatan" value="<?php echo $p['tanggal']; ?>" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="waktu_mulai<?php echo $p['id']; ?>">Waktu Mulai <span class="text-danger">*</span></label>
-                                <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai<?php echo $p['id']; ?>" placeholder="Masukkan Waktu Mulai Kegiatan" value="<?php echo $p['waktu_mulai']; ?>" required>
+                                <input type="time" class="form-control" name="waktu_mulai" id="waktu_mulai<?php echo $p['id']; ?>" placeholder="Masukkan Waktu Mulai Kegiatan" value="<?php echo $p['waktu_mulai']; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="waktu_selesai<?php echo $p['id']; ?>">Waktu Selesai <span class="text-danger">*</span></label>
-                                <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai<?php echo $p['id']; ?>" placeholder="Masukkan Waktu Selesai Kegiatan" value="<?php echo $p['waktu_selesai']; ?>" required>
+                                <input type="time" class="form-control" name="waktu_selesai" id="waktu_selesai<?php echo $p['id']; ?>" placeholder="Masukkan Waktu Selesai Kegiatan" value="<?php echo $p['waktu_selesai']; ?>">
                             </div>
 
                             <?php
@@ -308,7 +308,7 @@ use CodeIgniter\I18n\Time; ?>
 
                             <div class="form-group">
                                 <label for="updatePeserta<?php echo $p['id']; ?>">Peserta <span class="text-danger">*</span></label>
-                                <select id="updatePeserta<?php echo $p['id']; ?>" name="listPeserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                                <select id="updatePeserta<?php echo $p['id']; ?>" name="listPeserta[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;">
                                     <option value="Tingkat I" <?php echo ($tingkat1 == true) ? 'selected="selected"' : '' ?>>Tingkat I</option>
                                     <option value="Tingkat II" <?php echo ($tingkat2 == true) ? 'selected="selected"' : '' ?>>Tingkat II</option>
                                     <option value="Tingkat III" <?php echo ($tingkat3 == true) ? 'selected="selected"' : '' ?>>Tingkat III</option>
@@ -332,7 +332,7 @@ use CodeIgniter\I18n\Time; ?>
                             ?>
                             <div class="form-group">
                                 <label for="jenis_kelamin<?php echo $p['id']; ?>">Jenis Kelamin <span class="text-danger">*</span></label>
-                                <select id="jenis_kelamin<?php echo $p['id']; ?>" name="listJenisKelamin[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;" required>
+                                <select id="jenis_kelamin<?php echo $p['id']; ?>" name="listJenisKelamin[]" class="select2" multiple="multiple" data-placeholder="Pilih..." style="width: 100%;">
                                     <option value="Laki-Laki" <?php echo ($laki_laki == true) ? 'selected="selected"' : '' ?>>Laki-Laki</option>
                                     <option value="Perempuan" <?php echo ($perempuan == true) ? 'selected="selected"' : '' ?>>Perempuan</option>
                                 </select>

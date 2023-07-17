@@ -16,14 +16,19 @@ class Akun extends BaseController
         $modelUser = new UserModel();
         $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
+        // BUAT ROLE VALIDATION TAMBAH
+        $data_email = [];
+        foreach ($modelUser->select('email')->findAll() as $email) {
+            $data_email[] = $email['email'];
+        }
+
         $data = [
             'judul' => 'SiROHIS | Akun',
             'subjudul' => 'Akun',
             'active' => 'akun',
             'role' => $role,
             'database' => $modelUser->orderBy('status ASC, nama ASC')->findAll(),
-            'database_aktif' => $modelUser->orderBy('status ASC, nama ASC')->where('status', 'Aktif')->findAll(),
-            'database_nonaktif' => $modelUser->orderBy('status ASC, nama ASC')->where('status', 'Tidak Aktif')->findAll(),
+            'data_email' => $data_email,
         ];
 
         return view('page/akun', $data);
@@ -53,43 +58,32 @@ class Akun extends BaseController
         $modelLogAktivitas = new LogAktivitasModel();
 
         $data = $this->request->getVar();
+        $data['status'] = 'Aktif'; // karena akun yang ditambahkan pasti aktif
 
-        // cek apakah nim sudah ada di db
-        $cek_nim = $modelUser->where('nim', $data['nim'])->first();
-        if ($cek_nim) {
-            $session->setFlashdata('error', 'Sudah Terdaftar!');
+        // ROLE VALIDATION TERPISAH DI BAGIAN JAVASCRIPT
+
+        // Enkripsi Password
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $proses = $modelUser->save($data);
+        if ($proses) {
+            $session->setFlashdata('success', 'Berhasil Ditambahkan!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Akun',
+                'id_aktivitas'      => '<i>(nim)</i> ' . $data['nim'],
+                'aksi'              => 'Tambah Akun Pengguna'
+            ];
+            $modelLogAktivitas->save($data_log);
+
             return redirect()->to('/akun');
         } else {
-            // cek konfirmasi password
-            if ($data['password'] === $data['konfirmasi_password']) {
-
-                // enkripsi password dulu
-                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-                $proses = $modelUser->save($data);
-                if ($proses) {
-                    $session->setFlashdata('success', 'Berhasil Ditambahkan!');
-
-                    // Buat Log Aktivitas
-                    $data_log = [
-                        'nama_user'         => session()->get('nama'),
-                        'nim'               => session()->get('nim'),
-                        'jabatan'           => session()->get('role'),
-                        'waktu'             => Time::now('Asia/Jakarta'),
-                        'jenis_aktivitas'   => 'Menu Akun',
-                        'id_aktivitas'      => '<i>(nim)</i> ' . $data['nim'],
-                        'aksi'              => 'Tambah Akun Pengguna'
-                    ];
-                    $modelLogAktivitas->save($data_log);
-
-                    return redirect()->to('/akun');
-                } else {
-                    $session->setFlashdata('error', 'Gagal Ditambahkan!');
-                    return redirect()->to('/akun');
-                }
-            } else {
-                $session->setFlashdata('error', 'Konfirmasi Tidak Sesuai!');
-                return redirect()->to('/akun');
-            }
+            $session->setFlashdata('error', 'Gagal Ditambahkan!');
+            return redirect()->to('/akun');
         }
     }
 
@@ -99,46 +93,31 @@ class Akun extends BaseController
         $modelUser = new UserModel();
         $modelLogAktivitas = new LogAktivitasModel();
 
-        $validate = [
-            'fileUpload' => [
-                'label' => 'File Upload',
-                'rules' => [
-                    'uploaded[fileUpload]',
-                    'mime_in[fileUpload,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/csv]',
-                ],
-            ],
-        ];
-
-        if (!$this->validate($validate)) {
-            $session->setFlashdata('error', 'Gagal Membaca Data, Pastikan Ekstensi Benar!');
-            return redirect()->to('/akun');
-        }
+        // ROLE VALIDATION TERPISAH DI BAGIAN JAVASCRIPT
 
         $file_excel = $this->request->getFile('fileUpload');
         $ekstensi = $file_excel->getClientExtension();
 
-        if ($ekstensi == 'xls') {
+        if (strtolower($ekstensi) == 'xls') {
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-        } elseif ($ekstensi == 'xlsx') {
+        } elseif (strtolower($ekstensi) == 'xlsx') {
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-        } elseif ($ekstensi == 'csv') {
+        } elseif (strtolower($ekstensi) == 'csv') {
             $reader = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         }
 
         $spreadsheet = $reader->load($file_excel);
         $data_excel = $spreadsheet->getActiveSheet()->toArray();
 
+        // PENGECEKAN TERLEBIH DAHULU 
         foreach ($data_excel as $data => $row) {
 
+            // Baris Pertama Tidak Diambil
             if ($data == 0) {
                 continue;
             }
 
-            // validasi jika baris kosong tidak berisi
-            if (!isset($row[1]) && !isset($row[2]) && !isset($row[3]) && !isset($row[4]) && !isset($row[5]) && !isset($row[6])) {
-                continue;
-            }
-
+            // Ambil Data
             $data = [
                 'nama'      => $row[1],
                 'email'     => $row[2],
@@ -147,11 +126,32 @@ class Akun extends BaseController
                 'kelas'     => $row[5],
                 'angkatan'  => $row[6],
                 'role'      => 'Anggota',
-                'password'  => password_hash($row[3], PASSWORD_DEFAULT)
+                'password'  => password_hash($row[3], PASSWORD_DEFAULT),
+                'status'    => 'Aktif',
             ];
 
-            // cek apakah isian file excel sudah benar atau belum (cek nama, email, dan nim harus terisi)
+            // Validasi Jika Barisnya Kosong & Tidak Berisi
+            if (!isset($row[1]) && !isset($row[2]) && !isset($row[3]) && !isset($row[4]) && !isset($row[5]) && !isset($row[6])) {
+                continue;
+            }
+
+            // Cek Nama, Email, dan NIM Harus Terisi
             if (isset($data['nama']) && isset($data['email']) && isset($data['nim'])) {
+                // VALIDASI NAMA
+                $rule_nama = "/^[a-zA-Z\s'-]{1,100}$/";
+                if (!preg_match($rule_nama, $data['nama'])) {
+                    $session->setFlashdata('error', 'Terdapat Nama Yang Tidak Valid!');
+                    return redirect()->to('/akun');
+                }
+
+                // VALIDASI NIM
+                $rule_nim = "/^[0-9]{9}$/";
+                if (!preg_match($rule_nim, $data['nim'])) {
+                    $session->setFlashdata('error', 'Terdapat NIM Yang Tidak Valid!');
+                    return redirect()->to('/akun');
+                }
+
+                // VALIDASI EMAIL UNIK - SKIP AJA
                 $cek_nim = $modelUser->where('nim', $data['nim'])->first();
                 if ($cek_nim) {
                     continue;
@@ -163,10 +163,11 @@ class Akun extends BaseController
                 return redirect()->to('/akun');
             }
         }
+
+        // Buat Log Aktivitas
         if (isset($proses)) {
             $session->setFlashdata('success', 'Berhasil Diimport!');
 
-            // Buat Log Aktivitas
             $data_log = [
                 'nama_user'         => session()->get('nama'),
                 'nim'               => session()->get('nim'),
@@ -232,10 +233,11 @@ class Akun extends BaseController
 
         // biar querinya jadi update, maka ID juga harus diikutsertakan dalam $data (update -> id yang di update sudah ada di database)
         $info = $this->request->getVar();
-        $proses = $modelUser->save($info);
-
         $id_akun = $this->request->getVar('id');
 
+        // ROLE VALIDATION TERPISAH DI BAGiAN JAVASCRIPT
+
+        $proses = $modelUser->save($info);
         if ($proses) {
             $session->setFlashdata('success', 'Berhasil Diupdate!');
 
@@ -264,30 +266,27 @@ class Akun extends BaseController
         $modelUser = new UserModel();
         $modelLogAktivitas = new LogAktivitasModel();
 
+        // ROLE VALIDATION TERPISAH DI BAGiAN JAVASCRIPT
+
         $data = $this->request->getVar();
-        if ($data['password'] == $data['konfirmasi_password']) {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            $proses = $modelUser->save($data);
-            if ($proses) {
-                $session->setFlashdata('success', 'Password Berhasil Diperbarui!');
+        $proses = $modelUser->save($data);
+        if ($proses) {
+            $session->setFlashdata('success', 'Password Berhasil Diperbarui!');
 
-                // Buat Log Aktivitas
-                $data_log = [
-                    'nama_user'         => session()->get('nama'),
-                    'nim'               => session()->get('nim'),
-                    'jabatan'           => session()->get('role'),
-                    'waktu'             => Time::now('Asia/Jakarta'),
-                    'jenis_aktivitas'   => 'Menu Akun',
-                    'id_aktivitas'      => $data['id'],
-                    'aksi'              => 'Ubah Password Pengguna'
-                ];
-                $modelLogAktivitas->save($data_log);
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Akun',
+                'id_aktivitas'      => $data['id'],
+                'aksi'              => 'Ubah Password Pengguna'
+            ];
+            $modelLogAktivitas->save($data_log);
 
-                return redirect()->to('/akun');
-            }
-        } else {
-            $session->setFlashdata('error', 'Gagal Diperbarui - Konfirmasi Password Tidak Sesuai!');
             return redirect()->to('/akun');
         }
     }

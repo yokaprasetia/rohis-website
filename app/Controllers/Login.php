@@ -11,11 +11,20 @@ class Login extends BaseController
     public function index()
     {
         $session = session();
+        $modelUser = new UserModel();
+
+        // BUAT ROLE VALIDATION TAMBAH
+        $data_email = [];
+        foreach ($modelUser->select('email')->findAll() as $email) {
+            $data_email[] = $email['email'];
+        }
+
         $data = [
-            'judul' => 'SiROHIS | Login'
+            'judul' => 'SiROHIS | Login',
+            'data_email' => $data_email,
         ];
 
-        return view('auth/login', $data);
+        return view('page/login', $data);
     }
 
     public function proses()
@@ -70,7 +79,7 @@ class Login extends BaseController
                 return redirect()->to('/login');
             }
         } else {
-            $session->setFlashdata('error', 'Email Tidak Ditemukan!');
+            $session->setFlashdata('error', 'Email Belum Terdaftar!');
             return redirect()->to('/login');
         }
     }

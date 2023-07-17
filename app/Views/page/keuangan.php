@@ -42,7 +42,7 @@
             </div>
             <div class="callout callout-<?php echo $warnaQuotes; ?> col-lg-5">
                 <p class="text-center">TOTAL KEUANGAN (KAS)</p>
-                <h5 class="text-center uang-total"><strong>Rp<?php echo $kas['total']; ?>,00</strong></h5>
+                <h5 id="uang-total" class="text-center uang-total"><strong>Rp<?php echo $kas['total']; ?>,00</strong></h5>
             </div>
             <div class="callout callout-<?php echo $warnaQuotes; ?> col-lg-3">
                 <p class="text-center"><i class="fas fa-arrow-circle-up mr-2" style='color: red'></i>TRANSAKSI KELUAR</p>
@@ -147,23 +147,22 @@
             </div>
 
             <div class="modal-body">
-                <!-- Mulai dari sini -->
-                <?php echo form_open_multipart('tambahTransaksi'); ?>
+                <?php echo form_open_multipart('tambahTransaksi', array('onsubmit' => 'return validate_tambahTransaksi();')); ?>
                 <div class="card-body">
 
                     <div class="form-group">
                         <label for="tanggal">Tanggal <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal transaksi" required>
+                        <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal transaksi">
                     </div>
 
                     <div class="form-group">
                         <label for="nominal">Nominal <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal Transaksi" required>
+                        <input type="text" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal Transaksi">
                     </div>
 
                     <div class="form-group">
                         <label for="jenis">Jenis <span class="text-danger">*</span></label>
-                        <select name="jenis" id="jenis" class="form-control" required>
+                        <select name="jenis" id="jenis" class="form-control">
                             <option value="Masuk">Masuk</option>
                             <option value="Keluar">Keluar</option>
                         </select>
@@ -171,12 +170,12 @@
 
                     <div class="form-group">
                         <label for="keterangan">Keterangan <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan Transaksi" required>
+                        <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan Transaksi">
                     </div>
 
                     <div class="form-group">
                         <label for="file">Bukti <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Transaksi" required>
+                        <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Transaksi">
                     </div>
 
                 </div>
@@ -190,9 +189,9 @@
     </div>
 </div>
 
-<!-- BUKTI TRANSAKSI -->
 <?php foreach ($keuangan as $k) : ?>
 
+    <!-- BUKTI TRANSAKSI -->
     <div class="modal fade" id="bukti<?php echo $k['id']; ?>">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -222,43 +221,39 @@
                 </div>
                 <div class="modal-body">
                     <!-- Mulai dari sini -->
-                    <?php echo form_open_multipart('tambahTransaksi'); ?>
-                    <div class="card-body">
-                        <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id transaksi" value="<?php echo $k['id']; ?>" required>
+                    <?php $id_update = $k['id']; ?>
+                    <form method="post" action="<?php echo base_url('tambahTransaksi') ?>" onsubmit="return validate_updateTransaksi(<?php echo $k['id']; ?>)">
+                        <div class="card-body">
+                            <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id transaksi" value="<?php echo $k['id']; ?>" required>
 
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal transaksi" value="<?php echo $k['tanggal']; ?>" required>
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal<?php echo $k['id']; ?>" placeholder="Masukkan Tanggal transaksi" value="<?php echo $k['tanggal']; ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nominal">Nominal <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="nominal" id="nominal<?php echo $k['id']; ?>" placeholder="Masukkan Nominal Transaksi" value="<?php echo $k['nominal']; ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jenis">Jenis <span class="text-danger">*</span></label>
+                                <select name="jenis" id="jenis<?php echo $k['id']; ?>" class="form-control">
+                                    <option value="Masuk" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Masuk</option>
+                                    <option value="Keluar" <?php echo ($k['jenis'] == 'Keluar') ? 'selected="selected"' : '' ?>>Keluar</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="keterangan" id="keterangan<?php echo $k['id']; ?>" placeholder="Masukkan Keterangan Transaksi" value="<?php echo $k['keterangan']; ?>">
+                            </div>
+
                         </div>
-
-                        <div class="form-group">
-                            <label for="nominal">Nominal <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal Transaksi" value="<?php echo $k['nominal']; ?>" required>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Update Transaksi</button>
                         </div>
-
-                        <div class="form-group">
-                            <label for="jenis">Jenis <span class="text-danger">*</span></label>
-                            <select name="jenis" id="jenis" class="form-control" required>
-                                <option value="Masuk" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Masuk</option>
-                                <option value="Keluar" <?php echo ($k['jenis'] == 'Keluar') ? 'selected="selected"' : '' ?>>Keluar</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="keterangan">Keterangan <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan Transaksi" value="<?php echo $k['keterangan']; ?>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="file">Bukti <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Transaksi" required>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Update Transaksi</button>
-                    </div>
                     </form>
                 </div>
             </div>

@@ -20,11 +20,11 @@ class Profil extends BaseController
         // $info = $modelUser->where('id', $id)->first();
 
         $data = [
-            'judul' => 'SiROHIS | Profil',
-            'subjudul' => 'Informasi Pribadi',
-            'active' => 'profil',
-            'role'  => $role,
-            'profil' => $modelUser->where('id', $id)->first(),
+            'judul'         => 'SiROHIS | Profil',
+            'subjudul'      => 'Informasi Pribadi',
+            'active'        => 'profil',
+            'role'          => $role,
+            'profil'        => $modelUser->where('id', $id)->first(),
         ];
 
         return view('page/profil', $data);
@@ -38,8 +38,10 @@ class Profil extends BaseController
 
         // biar querinya jadi update, maka ID juga harus diikutsertakan dalam $data (update -> id yang di update sudah ada di database)
         $info = $this->request->getVar();
-        $proses = $modelUser->save($info);
 
+        // ROLE VALIDATION TERPISAH DI BAGIAN JAVASCRIPT
+
+        $proses = $modelUser->save($info);
         if ($proses) {
             $session->setFlashdata('success', 'Berhasil Diupdate!');
 
@@ -51,7 +53,7 @@ class Profil extends BaseController
                 'waktu'             => Time::now('Asia/Jakarta'),
                 'jenis_aktivitas'   => 'Menu Profile',
                 'id_aktivitas'      => session()->get('id'),
-                'aksi'              => 'Update User Profile'
+                'aksi'              => 'Update User Profile',
             ];
             $modelLogAktivitas->save($data_log);
 
@@ -70,43 +72,39 @@ class Profil extends BaseController
 
         $id = $session->get('id');
         $database = $modelUser->where('id', $id)->first();
-
         $info = $this->request->getVar();
+
+        // ROLE VALIDATION TERPISAH DI BAGIAN JAVASCRIPT
+
         $verify = password_verify($info['passwordLama'], $database['password']);
         if ($verify) {
-            //cek konfirmasi
-            if ($info['passwordBaru'] === $info['konfirmasiPassword']) {
-                $ubah = [
-                    'id' => $id,
-                    'password' => password_hash($info['passwordBaru'], PASSWORD_DEFAULT),
+            $ubah = [
+                'id' => $id,
+                'password' => password_hash($info['passwordBaru'], PASSWORD_DEFAULT),
+            ];
+            $proses = $modelUser->save($ubah);
+            if ($proses) {
+                $session->setFlashdata('success', 'Berhasil Diubah!');
+
+                // Buat Log Aktivitas
+                $data_log = [
+                    'nama_user'         => session()->get('nama'),
+                    'nim'               => session()->get('nim'),
+                    'jabatan'           => session()->get('role'),
+                    'waktu'             => Time::now('Asia/Jakarta'),
+                    'jenis_aktivitas'   => 'Menu Profile',
+                    'id_aktivitas'      => session()->get('id'),
+                    'aksi'              => 'Update User Password'
                 ];
-                $proses = $modelUser->save($ubah);
-                if ($proses) {
-                    $session->setFlashdata('success', 'Berhasil Diubah!');
+                $modelLogAktivitas->save($data_log);
 
-                    // Buat Log Aktivitas
-                    $data_log = [
-                        'nama_user'         => session()->get('nama'),
-                        'nim'               => session()->get('nim'),
-                        'jabatan'           => session()->get('role'),
-                        'waktu'             => Time::now('Asia/Jakarta'),
-                        'jenis_aktivitas'   => 'Menu Profile',
-                        'id_aktivitas'      => session()->get('id'),
-                        'aksi'              => 'Update User Password'
-                    ];
-                    $modelLogAktivitas->save($data_log);
-
-                    return redirect()->to('/profil');
-                } else {
-                    $session->setFlashdata('error', 'Gagal Diubah!');
-                    return redirect()->to('/profil');
-                }
+                return redirect()->to('/profil');
             } else {
-                $session->setFlashdata('error', 'Gagal, Konfirmasi Password Salah!');
+                $session->setFlashdata('error', 'Gagal Diubah!');
                 return redirect()->to('/profil');
             }
         } else {
-            $session->setFlashdata('error', 'Gagal, Password Tidak Cocok!');
+            $session->setFlashdata('error', 'Gagal, Password Lama Tidak Cocok!');
             return redirect()->to('/profil');
         }
     }

@@ -58,80 +58,55 @@ class Keuangan extends BaseController
             'keuangan' => $modelKeuangan->orderBy('updated_at', 'DESC')->findAll(),
         ];
 
-        $validationRule = [
-            'file' => [
-                'label' => 'Image File',
-                'rules' => [
-                    'uploaded[file]',
-                    'is_image[file]',
-                    'mime_in[file,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
-                    'max_size[file,5000]', // 1000 = 1 MB
-                ],
-            ],
-        ];
-
-        // Cek validasi
-        if (!$this->validate($validationRule)) {
-
-            $cek = $this->request->getVar();
-            if (isset($cek['id'])) {
-                $kegiatan = 'Update';
-            } else {
-                $kegiatan = 'Tambah';
-            }
-
-            $session->setFlashdata('error', "Gagal Di $kegiatan!");
-            return redirect()->to('/keuangan');
-        }
+        // ROLE VALIDATION TERPISAH DI BAGIAN JAVASCRIPT
 
         $keterangan = $this->request->getVar('keterangan'); // untuk Log Aktivitas
 
-        // tentukan insert atau update (jika update maka unlink)
+        // Tentukan insert atau update
         $cek = $this->request->getVar();
         if (isset($cek['id'])) {
             $kegiatan = 'Update';
-
-            //menghapus file yang sudah diupload
-            $file_uploaded = $modelKeuangan->where('id', $cek['id'])->first();
-            $path = './bukti-transaksi/' . $file_uploaded['file'];
-            unlink($path);
         } else {
             $kegiatan = 'Tambah';
         }
 
-        // proses upload file ke folder public/bukti-transaksi
-        $fileTransaksi = $this->request->getFile('file');
-        $namaTransaksi = 'bukti-' . $fileTransaksi->getRandomName();
-        $pindah = $fileTransaksi->move('bukti-transaksi', $namaTransaksi);
+        // Ambil Data
+        $data = $this->request->getVar();
 
-        if ($pindah) {
-            $data = $this->request->getVar();
+        // Cek apakah ada file (insert method)
+        if ($this->request->getFile('file')) {
+
+            // proses upload file ke folder public/bukti-transaksi
+            $fileTransaksi = $this->request->getFile('file');
+            $namaTransaksi = 'bukti-' . $fileTransaksi->getRandomName();
+            $fileTransaksi->move('bukti-transaksi', $namaTransaksi);
+
             $data['file'] = $fileTransaksi->getName();
-            $data['updated_at'] = Time::now('Asia/Jakarta');
+        }
+        $data['updated_at'] = Time::now('Asia/Jakarta');
 
-            // simpan ke data base seluruh isi form
-            $proses = $modelKeuangan->save($data);
+        // Simpan ke data base seluruh isi form
+        $proses = $modelKeuangan->save($data);
 
-            if ($proses) {
-                $session->setFlashdata('success', "Berhasil Di $kegiatan!");
+        if ($proses) {
+            $session->setFlashdata('success', "Berhasil Di $kegiatan!");
 
-                // Buat Log Aktivitas
-                $data_log = [
-                    'nama_user'         => session()->get('nama'),
-                    'nim'               => session()->get('nim'),
-                    'jabatan'           => session()->get('role'),
-                    'waktu'             => Time::now('Asia/Jakarta'),
-                    'jenis_aktivitas'   => 'Menu Keuangan',
-                    'id_aktivitas'      => (isset($cek['id'])) ? $cek['id'] : '<i>(keterangan)</i> ' . $keterangan,
-                    'aksi'              => $kegiatan . ' Transaksi Keuangan'
-                ];
-                $modelLogAktivitas->save($data_log);
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Keuangan',
+                'id_aktivitas'      => (isset($cek['id'])) ? $cek['id'] : '<i>(keterangan)</i> ' . $keterangan,
+                'aksi'              => $kegiatan . ' Transaksi Keuangan'
+            ];
+            $modelLogAktivitas->save($data_log);
 
-                return redirect()->to('/keuangan');
-            } else {
-                $session->setFlashdata('error', "Gagal Di $kegiatan!");
-                return redirect()->to('/keuangan');
-            }
+            return redirect()->to('/keuangan');
+        } else {
+            $session->setFlashdata('error', "Gagal Di $kegiatan!");
+            return redirect()->to('/keuangan');
         }
     }
 
