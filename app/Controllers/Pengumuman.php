@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\PengumumanModel;
 use App\Models\DaftarHadirModel;
 use App\Models\LogAktivitasModel;
+use App\Models\UserModel;
 use CodeIgniter\I18n\Time;
 
 class Pengumuman extends BaseController
@@ -48,6 +49,7 @@ class Pengumuman extends BaseController
         $session = session();
         $modelPengumuman = new PengumumanModel();
         $modelLogAktivitas = new LogAktivitasModel();
+        $modelUser = new UserModel();
 
         $data = $this->request->getVar();
         $data['peserta'] = implode(', ', $data['listPeserta']);
@@ -64,7 +66,49 @@ class Pengumuman extends BaseController
             $kegiatan = 'Tambah';
         }
 
-        $proses = $modelPengumuman->save($data);
+        // VALIDASI PENGIRIMAN EMAIL ===================================
+        $dataEmail = \Config\Services::email();
+        $daftarPengguna = $modelUser->select('email, tingkat, jenis_kelamin')->findAll();
+        $penerima_email = [];
+        for ($i = 0; $i < count($data['listPeserta']); $i++) {
+            foreach ($daftarPengguna as $d) {
+                if ($d['tingkat'] == $data['listPeserta'][$i]) {
+                    for ($j = 0; $j < count($data['listJenisKelamin']); $j++) {
+                        if ($d['jenis_kelamin'] == $data['listJenisKelamin'][$j]) {
+                            $penerima_email[] = $d['email'];
+                        }
+                    }
+                }
+            }
+        }
+        // CEK APAKAH BUTUH DIKIRIMKAN EMAIL ATAU TIDAK
+        $cek_pengiriman_email = $data['send_email'];
+        if ($cek_pengiriman_email == 'Ya') {
+            // PROSES KIRIM EMAIL KE PESERTA ============================
+            // $email_tujuan = ['221910846@stis.ac.id', 'prasetia356@gmail.com', 'yokamobile123@gmail.com', 'prasetia123789@gmail.com'];
+            $email_tujuan = $penerima_email;
+            $email_pengirim = 'rohis@stis.ac.id';
+            $nama_pengirim = 'SIRohis';
+            $subject = '[SIRohis | ' . $data['nama'] . ']';
+            $message = view('email_message/message', ['data' => $data]);
+
+            $dataEmail->setFrom($email_pengirim, $nama_pengirim);
+            $dataEmail->setTo($email_tujuan);
+            $dataEmail->setSubject($subject);
+            $dataEmail->setMessage($message);
+
+            if ($dataEmail->send()) {
+                // Masukkan pengumuman ke database
+                $proses = $modelPengumuman->save($data);
+            } else {
+                $session->setFlashdata('error', "Gagal Mengirimkan Email!");
+                return redirect()->to('/pengumuman');
+            }
+        } else {
+            // Masukkan pengumuman ke database
+            $proses = $modelPengumuman->save($data);
+        }
+
         if (isset($proses)) {
             $session->setFlashdata('success', "Berhasil Di $kegiatan!");
 

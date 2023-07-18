@@ -160,6 +160,14 @@ use CodeIgniter\I18n\Time; ?>
                             <input type="text" class="form-control" name="link" id="link" placeholder="Masukkan Link (opsional)">
                         </div>
 
+                        <div class="form-group">
+                            <label for="send_email">Notifikasi Email <span class="text-danger">*</span></label>
+                            <select name="send_email" id="send_email" class="form-control">
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak" selected>Tidak</option>
+                            </select>
+                        </div>
+
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -341,6 +349,15 @@ use CodeIgniter\I18n\Time; ?>
                                 <label for="link<?php echo $p['id']; ?>">Link</label>
                                 <input type="text" class="form-control" name="link" id="link<?php echo $p['id']; ?>" placeholder="Masukkan Link (opsional)" value="<?php echo $p['link']; ?>">
                             </div>
+
+                            <div class="form-group">
+                                <label for="send_email<?php echo $p['id']; ?>">Notifikasi Email <span class="text-danger">*</span></label>
+                                <select name="send_email" id="send_email<?php echo $p['id']; ?>" class="form-control">
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak" selected>Tidak</option>
+                                </select>
+                            </div>
+
                         </div>
                         <div class="card-footer">
                             <a href="<?php echo base_url('pengumuman'); ?>" class="btn btn-secondary">Kembali</a>
