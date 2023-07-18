@@ -31,13 +31,27 @@ if (isset($_SESSION['logged_in'])) {
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url('assets'); ?>/dist/img/logo-rohis.png" type="image/x-icon">
+    <style>
+        body {
+            background-image: url(img/background.png);
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .bagian-luar {
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0px 0px 5px #000000;
+        }
+    </style>
 </head>
 
 <body class="hold-transition login-page">
 
     <!-- SWEET ALERT -->
     <?php if (session()->getFlashdata('success')) : ?>
-        <div class="flash-data" data-judul="<?php echo session()->getFlashdata('success'); ?>" data-flashdata="Berhasil Log Out!" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
+        <div class=" flash-data" data-judul="<?php echo session()->getFlashdata('success'); ?>" data-flashdata="Berhasil Log Out!" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>">
+        </div>
     <?php endif; ?>
     <?php if (session()->getFlashdata('error')) : ?>
         <div class="flash-data" data-judul="Login Gagal" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
@@ -45,7 +59,7 @@ if (isset($_SESSION['logged_in'])) {
 
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-success">
+        <div class="card bagian-luar">
             <div class="card-header text-center">
                 <a href="<?php echo base_url('login'); ?>" class="h1"><b>Si</b>ROHIS</a>
             </div>
