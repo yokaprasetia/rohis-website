@@ -32,7 +32,7 @@
                 <div class="small-box bg-warning">
                     <div class="inner ml-3">
                         <p>TOTAL KEUANGAN (KAS)</p>
-                        <h3>Rp<?php echo $total_kas; ?>,00</h3>
+                        <h3 id="beranda-totalKeuangan"><?php echo $total_kas; ?></h3>
                     </div>
                     <div class="icon">
                         <i class="fas fa-dollar-sign mr-3"></i>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="row">
-            <!-- Pengumuman Terbaru -->
+            <!-- PENGUMUMAN TERBARU -->
             <div class="card card-<?php echo $warna_quotes; ?> card-outline col-12 col-lg-6">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -75,18 +75,16 @@
                 ?>
 
                 <div class="card-body">
-                    <p class="card-title col-12 pl-0"><strong><?php echo $pengumuman_terbaru['nama']; ?><?php echo ($wajib == true) ? " (<i class='fa fa-star'></i>)" : '' ?></strong></p>
+                    <p class="card-title col-12 pl-0"><strong><?php echo $pengumuman_terbaru['nama']; ?><?php echo ($wajib == true) ? " <i class='fa fa-star'></i>" : '' ?></strong></p>
                     <small class="text-muted">Updated at : <?php echo $pengumuman_terbaru['updated_at']; ?> WIB</small>
                     <p><?php echo $pengumuman_terbaru['isi']; ?></p>
                 </div>
-                <!-- /.card-body -->
                 <div class="card-footer">
                     <a href="<?php echo base_url('pengumuman'); ?>" class="btn btn-secondary">Selengkapnya</a>
                 </div>
-                <!-- /.card-footer-->
             </div>
 
-            <!-- Progres Presensi -->
+            <!-- PROGRESS PRESENSI -->
             <div class="row col-12 col-lg-5 ml-lg-3">
                 <div class="card card-<?php echo $warna_quotes; ?> card-outline col-12">
                     <div class="card-header">

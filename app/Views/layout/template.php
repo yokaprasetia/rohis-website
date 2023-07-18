@@ -163,9 +163,9 @@ if (!isset($_SESSION['logged_in'])) {
     <script src="<?php echo base_url(); ?>/js/presensi.js"></script>
     <script src="<?php echo base_url(); ?>/js/multipleSelect.js"></script>
     <script src="<?php echo base_url(); ?>/js/sweetAlert.js"></script>
-    <script src="<?php echo base_url(); ?>/js/keuangan.js"></script>
+    <script src="<?php echo base_url(); ?>/js/kasBeranda.js"></script>
+    <script src="<?php echo base_url(); ?>/js/kasKeuangan.js"></script>
     <script src="<?php echo base_url(); ?>/js/importData.js"></script>
-    <script src="<?php echo base_url(); ?>/js/dataKeuangan.js"></script>
     <script src="<?php echo base_url(); ?>/js/roleValidationInput.js"></script>
 </body>
 

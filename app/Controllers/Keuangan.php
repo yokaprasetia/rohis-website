@@ -16,21 +16,22 @@ class Keuangan extends BaseController
         $session = session();
         $role = $session->get('role'); // ------------------------ // AUTENTIKASI AKUN
 
-        $model = new KeuanganModel();
-        // $baris = $model->countAllResults();
-        $kas_masuk = $model->where('jenis', 'Masuk')->findAll();
-        $kas_keluar = $model->where('jenis', 'Keluar')->findAll();
+        $modelKeuangan = new KeuanganModel();
+        // $baris = $modelKeuangan->countAllResults();
+        $kas_masuk = $modelKeuangan->where('jenis', 'Masuk')->findAll();
+        $kas_keluar = $modelKeuangan->where('jenis', 'Keluar')->findAll();
 
-        $masuk = $model->jumlah($kas_masuk, 0);
-        $keluar = $model->jumlah($kas_keluar, 0);
-        $total_kas = $model->hitung($kas_masuk, $kas_keluar);
+        // Jalankan fungsi
+        $masuk = $modelKeuangan->jumlah($kas_masuk, 0);
+        $keluar = $modelKeuangan->jumlah($kas_keluar, 0);
+        $total_kas = $modelKeuangan->hitung($kas_masuk, $kas_keluar);
 
         $data = [
             'judul' => 'SiROHIS | Keuangan',
             'subjudul' => 'Transaksi',
             'active' => 'keuangan',
             'role'  => $role,
-            'keuangan' => $model->orderBy('tanggal', 'DESC')->findAll(),
+            'keuangan' => $modelKeuangan->orderBy('tanggal', 'DESC')->findAll(),
             'kas' => [
                 'total' => $total_kas,
                 'masuk' => $masuk,

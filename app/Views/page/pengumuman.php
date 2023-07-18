@@ -40,7 +40,7 @@ use CodeIgniter\I18n\Time; ?>
                                 <tr>
                                     <th>No</th>
                                     <th>Kegiatan</th>
-                                    <th>Isi</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -70,11 +70,10 @@ use CodeIgniter\I18n\Time; ?>
                                         <td>
                                             <?php echo $p['nama']; ?>
                                             <?php if ($wajib == true) : ?>
-                                                (<i class='fa fa-star'></i>)
+                                                <i class='fa fa-star'></i>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?php echo $p['peserta']; ?></td>
-                                        <!-- <td><?php echo $p['isi']; ?></td> -->
+                                        <td><?php echo $p['tanggal']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url('pengumumanDetail'); ?>/<?php echo $p['id']; ?>" class="btn btn-secondary">Selengkapnya</a>
                                         </td>

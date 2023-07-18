@@ -35,7 +35,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th class="col-1">Opsi</th>
+                        <th>Opsi</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Jabatan</th>

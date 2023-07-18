@@ -1,3 +1,16 @@
+
+var itemMasuk = document.getElementsByClassName('uang-masuk')[0].getElementsByTagName('strong')[0];
+var itemTotal = document.getElementsByClassName('uang-total')[0].getElementsByTagName('strong')[0];
+var itemKeluar = document.getElementsByClassName('uang-keluar')[0].getElementsByTagName('strong')[0];
+
+var jumlahMasuk = document.getElementsByClassName('uang-masuk')[0].getElementsByTagName('strong')[0].textContent;
+var jumlahTotal = document.getElementsByClassName('uang-total')[0].getElementsByTagName('strong')[0].textContent;
+var jumlahKeluar = document.getElementsByClassName('uang-keluar')[0].getElementsByTagName('strong')[0].textContent;
+
+itemMasuk.innerHTML = 'Rp' + jumlahMasuk.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ',00';
+itemTotal.innerHTML = 'Rp' + jumlahTotal.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ',00';
+itemKeluar.innerHTML = 'Rp' + jumlahKeluar.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ',00';
+
 function GetSelectedItem(el) {
     var e = document.getElementById(el);
     var value = e.options[e.selectedIndex].value;
@@ -63,28 +76,7 @@ function GetSelectedItem(el) {
     var uangTotal = document.getElementsByClassName('uang-total')[0].getElementsByTagName('strong')[0];
     var uangKeluar = document.getElementsByClassName('uang-keluar')[0].getElementsByTagName('strong')[0];
 
-    uangMasuk.innerText = 'Rp' + tdUangMasuk + ',00';
-    uangTotal.innerText = 'Rp' + tdUangTotal + ',00';
-    uangKeluar.innerText = 'Rp' + tdUangKeluar + ',00';
-    console.log(uangMasuk);
-    console.log(uangKeluar);
-    console.log(uangTotal);
+    uangMasuk.innerText = 'Rp' + tdUangMasuk.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ',00';
+    uangTotal.innerText = 'Rp' + tdUangTotal.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ',00';
+    uangKeluar.innerText = 'Rp' + tdUangKeluar.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ',00';
 }
-
-// function GetFitur(el) {
-//     var e = document.getElementById(el);
-//     var value = e.options[e.selectedIndex].value;
-
-//     var element = document.getElementsByClassName('tabel-tujuan');
-//     var target = element[0].getAttribute('id');
-//     element[0].removeAttribute('id');
-
-//     if (target == 'example1') {
-//         element[0].setAttribute('id', value)
-//     }
-//     if (target == 'example2') {
-//         element[0].setAttribute('id', value)
-//     }
-
-//     console.log(element[0].getAttribute('id'));
-// }

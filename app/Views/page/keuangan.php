@@ -38,15 +38,15 @@
         <div class="d-flex flex-wrap justify-content-between">
             <div class="callout callout-<?php echo $warnaQuotes; ?> col-lg-3">
                 <p class="text-center"><i class="fas fa-arrow-circle-down mr-2" style='color: green'></i>TRANSAKSI MASUK</p>
-                <h5 class="text-center uang-masuk"><strong>Rp<?php echo $kas['masuk']; ?>,00</strong></h5>
+                <h5 class="text-center uang-masuk"><strong><?php echo $kas['masuk']; ?></strong></h5>
             </div>
             <div class="callout callout-<?php echo $warnaQuotes; ?> col-lg-5">
                 <p class="text-center">TOTAL KEUANGAN (KAS)</p>
-                <h5 id="uang-total" class="text-center uang-total"><strong>Rp<?php echo $kas['total']; ?>,00</strong></h5>
+                <h5 id="uang-total" class="text-center uang-total"><strong><?php echo $kas['total']; ?></strong></h5>
             </div>
             <div class="callout callout-<?php echo $warnaQuotes; ?> col-lg-3">
                 <p class="text-center"><i class="fas fa-arrow-circle-up mr-2" style='color: red'></i>TRANSAKSI KELUAR</p>
-                <h5 class="text-center uang-keluar"><strong>Rp<?php echo $kas['keluar']; ?>,00</strong></h5>
+                <h5 class="text-center uang-keluar"><strong><?php echo $kas['keluar']; ?></strong></h5>
             </div>
         </div>
 
