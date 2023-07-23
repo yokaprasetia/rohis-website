@@ -45,7 +45,8 @@
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
                     <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Struktur</a></li>
+                    <li><a class="nav-link scrollto" href="#testimonials">Testimoni</a></li>
+                    <li><a class="nav-link scrollto" href="#recent-blog-posts">Event</a></li>
                     <li><a class="getstarted scrollto" href="<?php echo base_url('login'); ?>">Log In</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -175,9 +176,35 @@
                                     Ada keuntungan ketika menjadi anggota rohis. Kita akan terbawa suasana pro aktif dan terdorong untuk berkarya, baik itu di kegiatan mentoring, pengabdian kepada masyarakat, dan sebagainya. Kamu juga akan mendapat banyak teman. Lebih dari sekedar teman, tapi teman yang sholeh-sholehah.
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="<?php echo base_url('assets-landing'); ?>/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                    <h3>Saul Goodman</h3>
-                                    <h4>Sosialisator</h4>
+                                    <h3>- Pejuang Islam -</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    Dapat mementukan prioritas kegiatan dengan baik adalah suatu keahlian yang harus dimiliki setiap orang. Amanah jangan dianggap sebagai beban di tangan, namun sebagai tanggung jawab yang diemban. Ketika ingin mencapai tujuan, raiahlah dengan semangat membara.
+                                </p>
+                                <div class="profile mt-auto">
+                                    <h3>- Anonimus -</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    Dakwah tidak bersifat kaku dan terikat dengan masjid. Setiap napas, setiap langkah, bahkan setiap denyut nadi yang mengalir dapat menjadi dakwah jika dimanfaatkan untuk kebaikan.
+                                </p>
+                                <div class="profile mt-auto">
+                                    <h3>- Pejuang Islam -</h3>
                                 </div>
                             </div>
                         </div>
@@ -191,9 +218,21 @@
                                     Di rohis kita terbuka. Ada masalah pribadi bisa dishare dan direspon tanpa harus dibully atas kelemahan kita. Manusia memang makhluk yang lemah bukan? Kakak-kakak mentor akan membantu mencari jawaban dari permasalahan. Rohis feels like home…
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="<?php echo base_url('assets-landing'); ?>/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                    <h3>Sara Wilsson</h3>
-                                    <h4>Mentor</h4>
+                                    <h3>- Pejuang Islam -</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    Rohis memang bukanlah UKM yang dapat memberikan banyak manfaat materialistis, tetapi Rohis dapat memberikan sebuah ikatan persaudaraan dan dakwah yang kuat hingga akhirat nanti.
+                                </p>
+                                <div class="profile mt-auto">
+                                    <h3>- Pejuang Islam -</h3>
                                 </div>
                             </div>
                         </div>
@@ -207,9 +246,7 @@
                                     Di Rohis kita akan diajarin cara membaca Al-Qur’an. Lebih dari itu kita juga akan belajar ilmu tajwid, ilmu tahsin, ilmu tafsir, dan ilmu tadabbur. Ilmu-ilmu itu adalah pondasi yang penting dalam mempelajari Al-Qur’an.
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="<?php echo base_url('assets-landing'); ?>/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                    <h3>Jena Karlis</h3>
-                                    <h4>Islamic Fighter</h4>
+                                    <h3>- Anonimus -</h3>
                                 </div>
                             </div>
                         </div>
@@ -223,9 +260,7 @@
                                     Rohis memang bukan UKM olahraga. Tapi rohis peduli kesehatan! Sesuai anjuran Rasulullah untuk menjaga kesehatan. Meskipun di Rohis gak latihan fisik, tapi di sini kita dibiasakan dengan suasan shaum sunnah, tafakur alam, dan berlatih mengontrol emosi. Kesemuanya itu juga bisa membuatmu sehat.
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="<?php echo base_url('assets-landing'); ?>/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                                    <h3>Matt Brandon</h3>
-                                    <h4>Encourager</h4>
+                                    <h3>- Pejuang Islam -</h3>
                                 </div>
                             </div>
                         </div>
@@ -239,9 +274,7 @@
                                     Di Rohis juga mengusahakan suntikan dana dari bisnis ala Rohis. Banyak anggota yang diajarkan berjualan. Item jualannya bervariasi seperti donat, kue, gorengan, atau bisa juga bazar buku, majalah, kaset dan vcd islami.
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="<?php echo base_url('assets-landing'); ?>/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                                    <h3>John Larson</h3>
-                                    <h4>Entrepreneur</h4>
+                                    <h3>- Anonimus -</h3>
                                 </div>
                             </div>
                         </div>
@@ -253,76 +286,6 @@
             </div>
 
         </section>
-
-        <!-- ======= BAGIAN STRUKTUR ORGANISASI ======= -->
-        <section id="team" class="team">
-
-            <div class="container" data-aos="fade-up">
-
-                <header class="section-header">
-                    <h2>Team</h2>
-                    <p>Struktur Organisasi</p>
-                </header>
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="<?php echo base_url('assets-landing'); ?>/img/team/team-1.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Ketua Umum</span>
-                                <p>Semangat dan pantang menyerah untuk maju dalam mencapai hal yang kita inginkan.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="<?php echo base_url('assets-landing'); ?>/img/team/team-3.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>Humas</span>
-                                <p>Soft skill juga diperlukan dalam suatu organisasi, sehingga hadapi semua rintangan yang menghadang.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="<?php echo base_url('assets-landing'); ?>/img/team/team-4.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Bendahara</span>
-                                <p>Manajemen waktu sangat dibutuhkan dalam suatu kehidupan. Jalanilah kehidupan dengan optimis dan penuh semangat.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="<?php echo base_url('assets-landing'); ?>/img/team/team-2.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Anggota</span>
-                                <p>Bertanggung jawab dan dapat dipercaya adalah hal yang harus dimiliki oleh seorang pemimpin.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section><!-- End Team Section -->
 
         <!-- ======= Recent Blog Posts Section ======= -->
         <section id="recent-blog-posts" class="recent-blog-posts">

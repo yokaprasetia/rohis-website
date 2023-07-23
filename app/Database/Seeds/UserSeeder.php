@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
                 'password'      => password_hash('333312213', PASSWORD_DEFAULT),
                 'role'          => 'Ketua',
                 'alamat_kost'   => 'Jl. Solihun',
-                'jenis_kelamin' => 'Laki-Laki',
+                'jenis_kelamin' => 'Perempuan',
                 'status'        => 'Aktif',
             ],
             // ============================================================== Humas
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             ],
             // ============================================================== ANGGOTA
             [
-                'nama'          => 'Anggota Rohis 01',
+                'nama'          => 'Anggota Rohis Pertama',
                 'email'         => '333310740@stis.ac.id',
                 'no_hp'         => '0895123456784',
                 'domisili'      => 'Aceh',
@@ -96,7 +96,7 @@ class UserSeeder extends Seeder
                 'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Anggota Rohis 02',
+                'nama'          => 'Anggota Rohis Kedua',
                 'email'         => '333313422@stis.ac.id',
                 'no_hp'         => '0895123456783',
                 'domisili'      => 'Bangka',
@@ -112,7 +112,7 @@ class UserSeeder extends Seeder
                 'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Anggota Rohis 03',
+                'nama'          => 'Anggota Rohis Ketiga',
                 'email'         => '333308898@stis.ac.id',
                 'no_hp'         => '0895123456782',
                 'domisili'      => 'Yogyakarta',
@@ -128,7 +128,7 @@ class UserSeeder extends Seeder
                 'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Anggota Rohis 04',
+                'nama'          => 'Anggota Rohis Keempat',
                 'email'         => '333310845@stis.ac.id',
                 'no_hp'         => '0895123456781',
                 'domisili'      => 'Yogyakarta',
@@ -144,7 +144,7 @@ class UserSeeder extends Seeder
                 'status'        => 'Aktif',
             ],
             [
-                'nama'          => 'Anggota Rohis 05',
+                'nama'          => 'Anggota Rohis Kelima',
                 'email'         => '333308451@stis.ac.id',
                 'no_hp'         => '0895123456443',
                 'domisili'      => 'Jawa Timur',

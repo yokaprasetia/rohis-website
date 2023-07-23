@@ -14,7 +14,7 @@ class DaftarHadirSeeder extends Seeder
         $data = [
             [ // =============================================================== Kegiatan 1
                 'id_kegiatan'   => 1,
-                'nim'           => 221112213,
+                'nim'           => 333312213,
                 'nama'          => 'Ketua Rohis',
                 'tanggal'       => '2023-02-20',
                 'file'          => 'bukti-default1.png',
@@ -22,7 +22,7 @@ class DaftarHadirSeeder extends Seeder
             ],
             [
                 'id_kegiatan'   => 1,
-                'nim'           => 212110880,
+                'nim'           => 333310880,
                 'nama'          => 'Humas Rohis',
                 'tanggal'       => '2023-02-20',
                 'file'          => 'bukti-default3.png',
@@ -30,7 +30,7 @@ class DaftarHadirSeeder extends Seeder
             ],
             [
                 'id_kegiatan'   => 1,
-                'nim'           => 222210886,
+                'nim'           => 333310886,
                 'nama'          => 'Bendahara Rohis',
                 'tanggal'       => '2023-02-20',
                 'file'          => 'bukti-default4.png',
@@ -38,16 +38,16 @@ class DaftarHadirSeeder extends Seeder
             ],
             [
                 'id_kegiatan'   => 1,
-                'nim'           => 221910740,
-                'nama'          => 'Anggota Rohis 01',
+                'nim'           => 333310740,
+                'nama'          => 'Anggota Rohis Pertama',
                 'tanggal'       => '2023-02-20',
                 'file'          => 'bukti-default1.png',
                 'updated_at'    => Time::now('Asia/Jakarta'),
             ],
             [
                 'id_kegiatan'   => 1,
-                'nim'           => 211913422,
-                'nama'          => 'Anggota Rohis 02',
+                'nim'           => 333313422,
+                'nama'          => 'Anggota Rohis Kedua',
                 'tanggal'       => '2023-02-20',
                 'file'          => 'bukti-default2.png',
                 'updated_at'    => Time::now('Asia/Jakarta'),
@@ -64,7 +64,7 @@ class DaftarHadirSeeder extends Seeder
 
             [ //============================================================== Kegiatan 3
                 'id_kegiatan'   => 3,
-                'nim'           => 221112213,
+                'nim'           => 333312213,
                 'nama'          => 'Ketua Rohis',
                 'tanggal'       => '2023-03-30',
                 'file'          => 'bukti-default2.png',
@@ -80,7 +80,7 @@ class DaftarHadirSeeder extends Seeder
             ],
             [
                 'id_kegiatan'   => 3,
-                'nim'           => 212110880,
+                'nim'           => 333310880,
                 'nama'          => 'Humas Rohis',
                 'tanggal'       => '2023-03-30',
                 'file'          => 'bukti-default4.png',
@@ -89,7 +89,7 @@ class DaftarHadirSeeder extends Seeder
 
             [ //============================================================== Kegiatan 4
                 'id_kegiatan'   => 4,
-                'nim'           => 221112213,
+                'nim'           => 333312213,
                 'nama'          => 'Ketua Rohis',
                 'tanggal'       => '2023-04-05',
                 'file'          => 'bukti-default3.png',
@@ -105,7 +105,7 @@ class DaftarHadirSeeder extends Seeder
             ],
             [
                 'id_kegiatan'   => 4,
-                'nim'           => 212110880,
+                'nim'           => 333310880,
                 'nama'          => 'Humas Rohis',
                 'tanggal'       => '2023-04-05',
                 'file'          => 'bukti-default2.png',
@@ -113,8 +113,8 @@ class DaftarHadirSeeder extends Seeder
             ],
             [
                 'id_kegiatan'   => 4,
-                'nim'           => 212008898,
-                'nama'          => 'Anggota Rohis 03',
+                'nim'           => 333308898,
+                'nama'          => 'Anggota Rohis Ketiga',
                 'tanggal'       => '2023-04-05',
                 'file'          => 'bukti-default2.png',
                 'updated_at'    => Time::now('Asia/Jakarta'),
@@ -122,16 +122,16 @@ class DaftarHadirSeeder extends Seeder
 
             [ //============================================================== Kegiatan 5
                 'id_kegiatan'   => 5,
-                'nim'           => 221910845,
-                'nama'          => 'Anggota Rohis 04',
+                'nim'           => 333310845,
+                'nama'          => 'Anggota Rohis Keempat',
                 'tanggal'       => '2023-04-05',
                 'file'          => 'bukti-default3.png',
                 'updated_at'    => Time::now('Asia/Jakarta'),
             ],
             [
                 'id_kegiatan'   => 5,
-                'nim'           => 222208451,
-                'nama'          => 'Anggota Rohis 05',
+                'nim'           => 333308451,
+                'nama'          => 'Anggota Rohis Kelima',
                 'tanggal'       => '2023-04-05',
                 'file'          => 'bukti-default1.png',
                 'updated_at'    => Time::now('Asia/Jakarta'),
