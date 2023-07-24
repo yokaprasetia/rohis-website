@@ -15,31 +15,33 @@
             <p></i><?php echo $quotes; ?></p>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="small-box bg-success">
-                    <div class="inner ml-3">
-                        <p>JUMLAH USER ROHIS</p>
-                        <h3><?php echo $jumlah_pengguna; ?></h3>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users mr-3"></i>
+        <?php if (session()->get('role') != 'Admin') : ?>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="small-box bg-success">
+                        <div class="inner ml-3">
+                            <p>JUMLAH USER ROHIS AKTIF</p>
+                            <h3><?php echo $jumlah_pengguna; ?></h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users mr-3"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-12 col-lg-6">
-                <div class="small-box bg-warning">
-                    <div class="inner ml-3">
-                        <p>TOTAL KEUANGAN (KAS)</p>
-                        <h3 id="beranda-totalKeuangan"><?php echo $total_kas; ?></h3>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-dollar-sign mr-3"></i>
+                <div class="col-12 col-lg-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner ml-3">
+                            <p>TOTAL KEUANGAN (KAS)</p>
+                            <h3 id="beranda-totalKeuangan"><?php echo $total_kas; ?></h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dollar-sign mr-3"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
 
         <div class="row">
             <!-- PENGUMUMAN TERBARU -->

@@ -16,7 +16,7 @@
         <div class="card card-widget widget-user">
 
             <div class="widget-user-header bg-success">
-                <h3 class="widget-user-desc "><?php echo $profil['nama']; ?></h3>
+                <h3 class="widget-user-desc "><?php echo strtoupper($profil['nama']); ?></h3>
             </div>
 
             <div class="widget-user-image">
@@ -33,8 +33,8 @@
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
-                            <h5 class="description-header">KELAS</h5>
-                            <span class="description-text"><?php echo $profil['kelas']; ?></span>
+                            <h5 class="description-header">EMAIL</h5>
+                            <span class="description-text"><?php echo $profil['email']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
@@ -57,14 +57,14 @@
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
-                            <h5 class="description-header">DOMISILI</h5>
-                            <span class="description-text"><?php echo $profil['domisili']; ?></span>
+                            <h5 class="description-header">KELAS</h5>
+                            <span class="description-text"><?php echo $profil['kelas']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
-                            <h5 class="description-header">EMAIL</h5>
-                            <span class="description-text"><?php echo $profil['email']; ?></span>
+                            <h5 class="description-header">JENIS KELAMIN</h5>
+                            <span class="description-text"><?php echo $profil['jenis_kelamin']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-4 border-top">
@@ -81,8 +81,8 @@
                     </div>
                     <div class="col-sm-4 border-top">
                         <div class="description-block">
-                            <h5 class="description-header">JENIS KELAMIN</h5>
-                            <span class="description-text"><?php echo $profil['jenis_kelamin']; ?></span>
+                            <h5 class="description-header">DOMISILI</h5>
+                            <span class="description-text"><?php echo $profil['domisili']; ?></span>
                         </div>
                     </div>
                     <div class="col-sm-12 border-top">
@@ -138,28 +138,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="no_hp">No HP <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan nomor HP" value="<?php echo $profil['no_hp']; ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="domisili">Domisili <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="domisili" id="domisili" placeholder="Masukkan domisili" value="<?php echo $profil['domisili']; ?>">
-                        </div>
-
-                        <div class="form-group">
                             <label for="nim">NIM <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="nim" id="nim" placeholder="Masukkan NIM" value="<?php echo $profil['nim']; ?>" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="kelas">Kelas <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Masukkan kelas" value="<?php echo $profil['kelas']; ?>">
+                            <label for="no_hp">No HP <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan nomor HP" value="<?php echo $profil['no_hp']; ?>">
                         </div>
 
                         <div class="form-group">
-                            <label for="angkatan">Angkatan <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="angkatan" id="angkatan" placeholder="Masukkan angkatan" value="<?php echo $profil['angkatan']; ?>">
+                            <label for="jenis_kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
+                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                <option value="Laki-Laki" <?php echo ($profil['jenis_kelamin'] == 'Laki-Laki') ? 'selected="selected"' : '' ?>>Laki Laki</option>
+                                <option value="Perempuan" <?php echo ($profil['jenis_kelamin'] == 'Perempuan') ? 'selected="selected"' : '' ?>>Perempuan</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -173,23 +166,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="tanggal_lahir">Tanggal Lahir <span class="text-danger">*</span></label>
+                            <label for="angkatan">Angkatan <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="angkatan" id="angkatan" placeholder="Masukkan angkatan" value="<?php echo $profil['angkatan']; ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kelas">Kelas</label>
+                            <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Masukkan kelas" value="<?php echo $profil['kelas']; ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="domisili">Domisili</label>
+                            <input type="text" class="form-control" name="domisili" id="domisili" placeholder="Masukkan domisili" value="<?php echo $profil['domisili']; ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="Masukkan tanggal lahir" value="<?php echo $profil['tanggal_lahir']; ?>">
                         </div>
 
                         <input type="hidden" class="form-control" name="password" password="password" value="<?php echo $profil['password']; ?>">
 
                         <div class="form-group">
-                            <label for="alamat_kost">Alamat Kost <span class="text-danger">*</span></label>
+                            <label for="alamat_kost">Alamat Kost</label>
                             <input type="text" class="form-control" name="alamat_kost" id="alamat_kost" placeholder="Masukkan alamat kost" value="<?php echo $profil['alamat_kost']; ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="jenis_kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
-                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
-                                <option value="Laki-Laki" <?php echo ($profil['jenis_kelamin'] == 'Laki-Laki') ? 'selected="selected"' : '' ?>>Laki Laki</option>
-                                <option value="Perempuan" <?php echo ($profil['jenis_kelamin'] == 'Perempuan') ? 'selected="selected"' : '' ?>>Perempuan</option>
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -218,17 +218,17 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="passwordLama">Password Lama <span class="text-danger">*</span></label>
+                            <label for="passwordLama">Password Lama</label>
                             <input type="password" class="form-control" name="passwordLama" id="passwordLama" placeholder="Masukkan Password yang Lama">
                         </div>
 
                         <div class="form-group">
-                            <label for="passwordBaru">Password Baru <span class="text-danger">*</span></label>
+                            <label for="passwordBaru">Password Baru</label>
                             <input type="password" class="form-control" name="passwordBaru" id="passwordBaru" placeholder="Masukkan Password yang Baru">
                         </div>
 
                         <div class="form-group">
-                            <label for="konfirmasiPassword">Konfirmasi Password <span class="text-danger">*</span></label>
+                            <label for="konfirmasiPassword">Konfirmasi Password</label>
                             <input type="password" class="form-control" name="konfirmasiPassword" id="konfirmasiPassword" placeholder="Konfirmasi Password">
                         </div>
                     </div>

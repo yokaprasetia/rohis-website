@@ -151,17 +151,17 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="tanggal">Tanggal <span class="text-danger">*</span></label>
+                        <label for="tanggal">Tanggal</label>
                         <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal transaksi">
                     </div>
 
                     <div class="form-group">
-                        <label for="nominal">Nominal <span class="text-danger">*</span></label>
+                        <label for="nominal">Nominal</label>
                         <input type="text" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal Transaksi">
                     </div>
 
                     <div class="form-group">
-                        <label for="jenis">Jenis <span class="text-danger">*</span></label>
+                        <label for="jenis">Jenis</label>
                         <select name="jenis" id="jenis" class="form-control">
                             <option value="Masuk">Masuk</option>
                             <option value="Keluar">Keluar</option>
@@ -169,12 +169,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="keterangan">Keterangan <span class="text-danger">*</span></label>
+                        <label for="keterangan">Keterangan</label>
                         <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan Transaksi">
                     </div>
 
                     <div class="form-group">
-                        <label for="file">Bukti <span class="text-danger">*</span></label>
+                        <label for="file">Bukti</label>
                         <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Transaksi">
                     </div>
 
@@ -227,17 +227,17 @@
                             <input type="hidden" class="form-control" name="id" id="id" placeholder="Masukkan id transaksi" value="<?php echo $k['id']; ?>" required>
 
                             <div class="form-group">
-                                <label for="tanggal">Tanggal <span class="text-danger">*</span></label>
+                                <label for="tanggal">Tanggal</label>
                                 <input type="date" class="form-control" name="tanggal" id="tanggal<?php echo $k['id']; ?>" placeholder="Masukkan Tanggal transaksi" value="<?php echo $k['tanggal']; ?>">
                             </div>
 
                             <div class="form-group">
-                                <label for="nominal">Nominal <span class="text-danger">*</span></label>
+                                <label for="nominal">Nominal</label>
                                 <input type="text" class="form-control" name="nominal" id="nominal<?php echo $k['id']; ?>" placeholder="Masukkan Nominal Transaksi" value="<?php echo $k['nominal']; ?>">
                             </div>
 
                             <div class="form-group">
-                                <label for="jenis">Jenis <span class="text-danger">*</span></label>
+                                <label for="jenis">Jenis</label>
                                 <select name="jenis" id="jenis<?php echo $k['id']; ?>" class="form-control">
                                     <option value="Masuk" <?php echo ($k['jenis'] == 'Masuk') ? 'selected="selected"' : '' ?>>Masuk</option>
                                     <option value="Keluar" <?php echo ($k['jenis'] == 'Keluar') ? 'selected="selected"' : '' ?>>Keluar</option>
@@ -245,7 +245,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="keterangan">Keterangan <span class="text-danger">*</span></label>
+                                <label for="keterangan">Keterangan</label>
                                 <input type="text" class="form-control" name="keterangan" id="keterangan<?php echo $k['id']; ?>" placeholder="Masukkan Keterangan Transaksi" value="<?php echo $k['keterangan']; ?>">
                             </div>
 

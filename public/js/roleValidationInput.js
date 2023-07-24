@@ -50,52 +50,6 @@ function validate_updateProfil() {
         }
     }
 
-    // Input Nomor HP
-    var no_hp = document.getElementById('no_hp').value;
-    if (no_hp == '') {
-        Swal.fire(
-            'Gagal',
-            'No HP Harus Diisi!',
-            'error'
-        )
-        return false;
-    } else {
-        var rule_hp = /08[0-9]{9,12}$/;
-        var cek_hp = rule_hp.test(no_hp);
-        if(cek_hp) {
-        } else {
-            Swal.fire(
-                'Gagal',
-                'Nomor HP Tidak Valid!',
-                'error'
-            )
-            return false;
-        }
-    }
-
-    // Input Domisili
-    var domisili = document.getElementById('domisili').value;
-    if (domisili == '') {
-        Swal.fire(
-            'Gagal',
-            'Domisili Harus Diisi!',
-            'error'
-        )
-        return false;
-    } else {
-        var rule_domisili = /^[a-zA-Z\s.]{1,100}$/;
-        var cek_domisili = rule_domisili.test(domisili);
-        if(cek_domisili) {
-        } else {
-            Swal.fire(
-                'Gagal',
-                'Domisili Tidak Valid!',
-                'error'
-            )
-            return false;
-        }
-    }
-
     // Input NIM == Tidak Digunakan Karena <input readonly>
     var nim = document.getElementById('nim').value;
     if (nim == '') {
@@ -129,23 +83,23 @@ function validate_updateProfil() {
         }
     }
 
-    // Input Kelas
-    var kelas = document.getElementById('kelas').value;
-    if (kelas == '') {
+    // Input Nomor HP
+    var no_hp = document.getElementById('no_hp').value;
+    if (no_hp == '') {
         Swal.fire(
             'Gagal',
-            'Kelas Harus Diisi!',
+            'No HP Harus Diisi!',
             'error'
         )
         return false;
     } else {
-        var rule_kelas = /^[a-zA-Z0-9]{4,5}$/;
-        var cek_kelas = rule_kelas.test(kelas);
-        if(cek_kelas) {
+        var rule_hp = /08[0-9]{9,12}$/;
+        var cek_hp = rule_hp.test(no_hp);
+        if(cek_hp) {
         } else {
             Swal.fire(
                 'Gagal',
-                'Kelas Tidak Valid!',
+                'Nomor HP Tidak Valid!',
                 'error'
             )
             return false;
@@ -185,6 +139,42 @@ function validate_updateProfil() {
         }
     }
 
+    // Input Kelas
+    var kelas = document.getElementById('kelas').value;
+    if (kelas == '') {
+    } else {
+        var rule_kelas = /^[a-zA-Z0-9]{4,5}$/;
+        var cek_kelas = rule_kelas.test(kelas);
+        if(cek_kelas) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Kelas Tidak Valid!',
+                'error'
+            )
+            return false;
+        }
+    }
+
+    // Input Domisili
+    var domisili = document.getElementById('domisili').value;
+    if (domisili == '') {
+    } else {
+        var rule_domisili = /^[a-zA-Z\s.]{1,100}$/;
+        var cek_domisili = rule_domisili.test(domisili);
+        if(cek_domisili) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Domisili Tidak Valid!',
+                'error'
+            )
+            return false;
+        }
+    }
+
+    
+
     // Input Tanggal Lahir
     var tanggal = document.getElementById('tanggal_lahir').value;
     var pisah_tanggal_lahir = tanggal.split('-');
@@ -197,12 +187,6 @@ function validate_updateProfil() {
     var tanggal_current = new Date().getDate();
 
     if (tanggal == '') {
-        Swal.fire(
-            'Gagal',
-            'Tanggal Harus Diisi!',
-            'error'
-        )
-        return false;
     } else {
         if (tahun_lahir > tahun_current) {
             Swal.fire(
@@ -235,12 +219,6 @@ function validate_updateProfil() {
     // Input Alamat Kost
     var alamat_kost = document.getElementById('alamat_kost').value;
     if (alamat_kost == '') {
-        Swal.fire(
-            'Gagal',
-            'Alamat Kost Harus Diisi!',
-            'error'
-        )
-        return false;
     } else {
         var rule_kost = /^[a-zA-Z0-9\s.,-]{1,100}$/;
         var cek_kost = rule_kost.test(alamat_kost);
@@ -526,52 +504,6 @@ function validate_ubahProfil(i) {
         }
     }
 
-    // input Nomor HP
-    var no_hp = document.getElementById('no_hpUbahProfil'+i).value;
-    if (no_hp == '') {
-        Swal.fire(
-            'Gagal',
-            'No HP Harus Diisi!',
-            'error'
-        )
-        return false;
-    } else {
-        var rule_hp = /08[0-9]{9,12}$/;
-        var cek_hp = rule_hp.test(no_hp);
-        if(cek_hp) {
-        } else {
-            Swal.fire(
-                'Gagal',
-                'Nomor HP Tidak Valid!',
-                'error'
-            )
-            return false;
-        }
-    }
-
-    // Input Domisili 
-    var domisili = document.getElementById('domisiliUbahProfil'+i).value;
-    if (domisili == '') {
-        Swal.fire(
-            'Gagal',
-            'Domisili Harus Diisi!',
-            'error'
-        )
-        return false;
-    } else {
-        var rule_domisili = /^[a-zA-Z\s.]{1,100}$/;
-        var cek_domisili = rule_domisili.test(domisili);
-        if(cek_domisili) {
-        } else {
-            Swal.fire(
-                'Gagal',
-                'Domisili Tidak Valid!',
-                'error'
-            )
-            return false;
-        }
-    }
-
     // Input NIM
     var nim = document.getElementById('nimUbahProfil'+i).value;
     if (nim == '') {
@@ -605,23 +537,23 @@ function validate_ubahProfil(i) {
         }
     }
 
-    // Input Kelas
-    var kelas = document.getElementById('kelasUbahProfil'+i).value;
-    if (kelas == '') {
+    // input Nomor HP
+    var no_hp = document.getElementById('no_hpUbahProfil'+i).value;
+    if (no_hp == '') {
         Swal.fire(
             'Gagal',
-            'Kelas Harus Diisi!',
+            'No HP Harus Diisi!',
             'error'
         )
         return false;
     } else {
-        var rule_kelas = /^[a-zA-Z0-9]{4,5}$/;
-        var cek_kelas = rule_kelas.test(kelas);
-        if(cek_kelas) {
+        var rule_hp = /08[0-9]{9,12}$/;
+        var cek_hp = rule_hp.test(no_hp);
+        if(cek_hp) {
         } else {
             Swal.fire(
                 'Gagal',
-                'Kelas Tidak Valid!',
+                'Nomor HP Tidak Valid!',
                 'error'
             )
             return false;
@@ -661,6 +593,40 @@ function validate_ubahProfil(i) {
         }
     }
 
+    // Input Kelas
+    var kelas = document.getElementById('kelasUbahProfil'+i).value;
+    if (kelas == '') {
+    } else {
+        var rule_kelas = /^[a-zA-Z0-9]{4,5}$/;
+        var cek_kelas = rule_kelas.test(kelas);
+        if(cek_kelas) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Kelas Tidak Valid!',
+                'error'
+            )
+            return false;
+        }
+    }
+
+    // Input Domisili 
+    var domisili = document.getElementById('domisiliUbahProfil'+i).value;
+    if (domisili == '') {
+    } else {
+        var rule_domisili = /^[a-zA-Z\s.]{1,100}$/;
+        var cek_domisili = rule_domisili.test(domisili);
+        if(cek_domisili) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Domisili Tidak Valid!',
+                'error'
+            )
+            return false;
+        }
+    }
+
     // Input Tanggal Lahir
     var tanggal = document.getElementById('tanggal_lahirUbahProfil'+i).value;
     var pisah_tanggal_lahir = tanggal.split('-');
@@ -673,12 +639,6 @@ function validate_ubahProfil(i) {
     var tanggal_current = new Date().getDate();
 
     if (tanggal == '') {
-        Swal.fire(
-            'Gagal',
-            'Tanggal Harus Diisi!',
-            'error'
-        )
-        return false;
     } else {
         if (tahun_lahir > tahun_current) {
             Swal.fire(
@@ -711,12 +671,6 @@ function validate_ubahProfil(i) {
     // Input Alamat Kost
     var alamat_kost = document.getElementById('alamat_kostUbahProfil'+i).value;
     if (alamat_kost == '') {
-        Swal.fire(
-            'Gagal',
-            'Alamat Kost Harus Diisi!',
-            'error'
-        )
-        return false;
     } else {
         var rule_kost = /^[a-zA-Z0-9\s.,-]{1,100}$/;
         var cek_kost = rule_kost.test(alamat_kost);

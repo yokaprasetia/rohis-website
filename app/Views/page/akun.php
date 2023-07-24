@@ -97,22 +97,22 @@
 
 
                         <div class="form-group">
-                            <label for="nama">Nama <span class="text-danger">*</span></label>
+                            <label for="nama">Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
                         </div>
 
                         <div class="form-group">
-                            <label for="nim">NIM <span class="text-danger">*</span></label>
+                            <label for="nim">NIM</label>
                             <input type="text" class="form-control" name="nim" id="nim" placeholder="Masukkan NIM">
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email <span class="text-danger">*</span></label>
+                            <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                         </div>
 
                         <div class="form-group">
-                            <label for="role">Jabatan <span class="text-danger">*</span></label>
+                            <label for="role">Jabatan</label>
                             <select name="role" id="role" class="form-control">
                                 <option value="Admin">Admin</option>
                                 <option value="Ketua">Ketua</option>
@@ -123,12 +123,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Password <span class="text-danger">*</span></label>
+                            <label for="password">Password</label>
                             <input type="password" class="form-control" name="password" id="password" placeholder="Default Password adalah NIM">
                         </div>
 
                         <div class="form-group">
-                            <label for="konfirmasi_password">Konfirmasi Password <span class="text-danger">*</span></label>
+                            <label for="konfirmasi_password">Konfirmasi Password</label>
                             <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasi_password" placeholder="Masukkan Konfirmasi Password">
                         </div>
 
@@ -268,28 +268,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="no_hpUbahProfil<?php echo $db['id']; ?>">No HP <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="no_hp" id="no_hpUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Nomor HP" value="<?php echo $db['no_hp']; ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="domisiliUbahProfil<?php echo $db['id']; ?>">Domisili <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="domisili" id="domisiliUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Domisili" value="<?php echo $db['domisili']; ?>">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="nimUbahProfil<?php echo $db['id']; ?>">NIM <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="nim" id="nimUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan NIM" value="<?php echo $db['nim']; ?>">
                             </div>
 
                             <div class="form-group">
-                                <label for="kelasUbahProfil<?php echo $db['id']; ?>">Kelas <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="kelas" id="kelasUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Kelas" value="<?php echo $db['kelas']; ?>">
+                                <label for="no_hpUbahProfil<?php echo $db['id']; ?>">No HP <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="no_hp" id="no_hpUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Nomor HP" value="<?php echo $db['no_hp']; ?>">
                             </div>
 
                             <div class="form-group">
-                                <label for="angkatanUbahProfil<?php echo $db['id']; ?>">Angkatan <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="angkatan" id="angkatanUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Angkatan" value="<?php echo $db['angkatan']; ?>">
+                                <label for="jenis_kelaminUbahProfil<?php echo $db['id']; ?>">Jenis Kelamin <span class="text-danger">*</span></label>
+                                <select name="jenis_kelamin" id="jenis_kelaminUbahProfil<?php echo $db['id']; ?>" class="form-control">
+                                    <option value="Laki-Laki" <?php echo ($db['role'] == 'Laki-Laki') ? 'selected="selected"' : '' ?>>Laki-Laki</option>
+                                    <option value="Perempuan" <?php echo ($db['role'] == 'Perempuan') ? 'selected="selected"' : '' ?>>Perempuan</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -303,11 +296,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="tanggal_lahirUbahProfil<?php echo $db['id']; ?>">Tanggal Lahir <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahirUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Tanggal Lahir" value="<?php echo $db['tanggal_lahir']; ?>">
+                                <label for="angkatanUbahProfil<?php echo $db['id']; ?>">Angkatan <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="angkatan" id="angkatanUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Angkatan" value="<?php echo $db['angkatan']; ?>">
                             </div>
-
-                            <input type="hidden" class="form-control" name="password" password="password" value="<?php echo $db['password']; ?>">
 
                             <div class="form-group">
                                 <label for="roleUbahProfil<?php echo $db['id']; ?>">Jabatan <span class="text-danger">*</span></label>
@@ -321,16 +312,25 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="alamat_kostUbahProfil<?php echo $db['id']; ?>">Alamat Kost <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="alamat_kost" id="alamat_kostUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Alamat Kost" value="<?php echo $db['alamat_kost']; ?>">
+                                <label for="kelasUbahProfil<?php echo $db['id']; ?>">Kelas</label>
+                                <input type="text" class="form-control" name="kelas" id="kelasUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Kelas" value="<?php echo $db['kelas']; ?>">
                             </div>
 
                             <div class="form-group">
-                                <label for="jenis_kelaminUbahProfil<?php echo $db['id']; ?>">Jenis Kelamin <span class="text-danger">*</span></label>
-                                <select name="jenis_kelamin" id="jenis_kelaminUbahProfil<?php echo $db['id']; ?>" class="form-control">
-                                    <option value="Laki-Laki" <?php echo ($db['role'] == 'Laki-Laki') ? 'selected="selected"' : '' ?>>Laki-Laki</option>
-                                    <option value="Perempuan" <?php echo ($db['role'] == 'Perempuan') ? 'selected="selected"' : '' ?>>Perempuan</option>
-                                </select>
+                                <label for="domisiliUbahProfil<?php echo $db['id']; ?>">Domisili</label>
+                                <input type="text" class="form-control" name="domisili" id="domisiliUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Domisili" value="<?php echo $db['domisili']; ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tanggal_lahirUbahProfil<?php echo $db['id']; ?>">Tanggal Lahir</label>
+                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahirUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Tanggal Lahir" value="<?php echo $db['tanggal_lahir']; ?>">
+                            </div>
+
+                            <input type="hidden" class="form-control" name="password" password="password" value="<?php echo $db['password']; ?>">
+
+                            <div class="form-group">
+                                <label for="alamat_kostUbahProfil<?php echo $db['id']; ?>">Alamat Kost</label>
+                                <input type="text" class="form-control" name="alamat_kost" id="alamat_kostUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Alamat Kost" value="<?php echo $db['alamat_kost']; ?>">
                             </div>
 
                         </div>
@@ -362,11 +362,11 @@
                             <input type="hidden" class="form-control" name="id" id="idUbahPassword<?php echo $db['id']; ?>" placeholder="Masukkan id Kegiatan" value="<?php echo $db['id']; ?>" required>
 
                             <div class="form-group">
-                                <label for="passwordUbahPassword<?php echo $db['id']; ?>">Password Baru <span class="text-danger">*</span></label>
+                                <label for="passwordUbahPassword<?php echo $db['id']; ?>">Password Baru</label>
                                 <input type="password" class="form-control" name="password" id="passwordUbahPassword<?php echo $db['id']; ?>" placeholder="Masukkan password baru">
                             </div>
                             <div class="form-group">
-                                <label for="konfirmasi_passwordUbahPassword<?php echo $db['id']; ?>">Konfirmasi Password <span class="text-danger">*</span></label>
+                                <label for="konfirmasi_passwordUbahPassword<?php echo $db['id']; ?>">Konfirmasi Password</label>
                                 <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasi_passwordUbahPassword<?php echo $db['id']; ?>" placeholder="Masukkan konfirmasi password">
                             </div>
                         </div>
@@ -398,7 +398,7 @@
                             <input type="hidden" class="form-control" name="id" id="idUbahStatus<?php echo $db['id']; ?>" placeholder="Masukkan id Kegiatan" value="<?php echo $db['id']; ?>" required>
 
                             <div class="form-group pb-5">
-                                <label for="statusUbahStatus<?php echo $db['id']; ?>">Status Akun <span class="text-danger">*</span></label>
+                                <label for="statusUbahStatus<?php echo $db['id']; ?>">Status Akun</label>
                                 <select name="status" id="statusUbahStatus<?php echo $db['id']; ?>" class="form-control" required>
                                     <option value="Aktif" <?php echo ($db['status'] == 'Aktif') ? 'selected="selected"' : '' ?>>Aktif</option>
                                     <option value="Tidak Aktif" <?php echo ($db['status'] == 'Tidak Aktif') ? 'selected="selected"' : '' ?>>Tidak Aktif</option>

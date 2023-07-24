@@ -32,7 +32,7 @@ class Beranda extends BaseController
 
 
         // Jumlah Pengguna
-        $jumlah_pengguna = count($modelUsers->findAll());
+        $jumlah_pengguna = count($modelUsers->where('status', 'Aktif')->findAll());
 
         // Total Kas
         $kas_masuk = $modelKeuangan->where('jenis', 'Masuk')->findAll();
