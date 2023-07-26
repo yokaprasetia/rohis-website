@@ -22,6 +22,13 @@ class Akun extends BaseController
             $data_email[] = $email['email'];
         }
 
+        $daftar_role = [];
+        foreach ($modelUser->select('role')->where('status', 'Aktif')->findAll() as $role) {
+            if (!in_array($role['role'], $daftar_role)) {
+                $daftar_role[] = $role['role'];
+            }
+        }
+
         $data = [
             'judul' => 'SiROHIS | Akun',
             'subjudul' => 'Akun',
@@ -29,6 +36,7 @@ class Akun extends BaseController
             'role' => $role,
             'database' => $modelUser->orderBy('status ASC, nama ASC')->findAll(),
             'data_email' => $data_email,
+            'daftar_role' => $daftar_role,
         ];
 
         return view('page/akun', $data);
@@ -288,6 +296,39 @@ class Akun extends BaseController
             $modelLogAktivitas->save($data_log);
 
             return redirect()->to('/akun');
+        }
+    }
+
+    public function prosesUbahJabatan()
+    {
+        $session = session();
+        $modelUser = new UserModel();
+        $modelLogAktivitas = new LogAktivitasModel();
+
+        $data = $this->request->getVar();
+        $proses = $modelUser->save($data);
+
+        if ($proses) {
+            $session->setFlashdata('success', 'Jabatan Berhasil Diperbarui!');
+
+            // Buat Log Aktivitas
+            $data_log = [
+                'nama_user'         => session()->get('nama'),
+                'nim'               => session()->get('nim'),
+                'jabatan'           => session()->get('role'),
+                'waktu'             => Time::now('Asia/Jakarta'),
+                'jenis_aktivitas'   => 'Menu Akun',
+                'id_aktivitas'      => $data['id'],
+                'aksi'              => 'Ubah Jabatan Pengguna'
+            ];
+            $modelLogAktivitas->save($data_log);
+
+            return redirect()->to('/akun');
+        } else {
+            if ($proses) {
+                $session->setFlashdata('error', 'Jabatan Gagal Diperbarui!');
+                return redirect()->to('/akun');
+            }
         }
     }
 

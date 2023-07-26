@@ -391,6 +391,29 @@ function validate_tambahAkun() {
         }
     }
 
+    // Input Jabatan - Cek Untuk Ketua, Humas, Bendahara harus ada 1 tidak boleh lebih
+    var jumlah_role = $('.panjang-jabatan').data('value');
+    var daftar_role = [];
+    for (let i = 0; i < jumlah_role; i++) {
+        daftar_role[i] = $('.nilai-role'+i).data('value');
+    }
+    var role = document.getElementById('role').value;
+
+    if ((role == 'Admin') || (role == 'Ketua') || (role == 'Humas') || (role == 'Bendahara')) {
+        for (let i = 0; i < jumlah_role; i++) {
+            if (role == daftar_role[i]) {
+                Swal.fire(
+                    'Gagal',
+                    'Role Sudah Ada!',
+                    'error'
+                )
+                return false;
+            }
+        }
+    }
+
+
+
     // Input Password - Default adalah NIM
     var password = document.getElementById('password').value;
     if (password == '') {
@@ -718,7 +741,86 @@ function validate_ubahPassword(i) {
         }
     }
 }
+// UBAH JABATAN =========================================================================================
+function validate_ubahJabatan(id) {
+    var jumlah_ubahJabatan = $('.panjang-ubahJabatan').data('value');
+    var daftar_ubahJabatan = [];
+    for (let i = 0; i < jumlah_ubahJabatan; i++) {
+        daftar_ubahJabatan[i] = $('.nilai-roleUbahJabatan'+i).data('value');
+    }
+    var targetUbahJabatan = document.getElementById('roleUbahJabatan'+id).value;
 
+    if (targetUbahJabatan == 'Admin') {
+        var jumlahAdmin = 0;
+
+        for (let i = 0; i < jumlah_ubahJabatan; i++) {
+            if (targetUbahJabatan == daftar_ubahJabatan[i]) {
+                jumlahAdmin += 1; 
+            }
+        }
+
+        if (jumlahAdmin <= 1) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Jabatan Admin Sudah Terisi!',
+                'error'
+            )
+            return false;
+        }
+    }
+    if (targetUbahJabatan == 'Ketua') {
+        var jumlahKetua = 0;
+        for (let i = 0; i < jumlah_ubahJabatan; i++) {
+            if (targetUbahJabatan == daftar_ubahJabatan[i]) {
+                jumlahKetua += 1; 
+            }
+        }
+        if (jumlahKetua <= 1) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Jabatan Ketua udah Terisi!',
+                'error'
+            )
+            return false;
+        }
+    }
+    if (targetUbahJabatan == 'Humas') {
+        var jumlahHumas = 0;
+        for (let i = 0; i < jumlah_ubahJabatan; i++) {
+            if (targetUbahJabatan == daftar_ubahJabatan[i]) {
+                jumlahHumas += 1; 
+            }
+        }
+        if (jumlahHumas <= 1) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Jabatan Humas Sudah Terisi!',
+                'error'
+            )
+            return false;
+        }
+    }
+    if (targetUbahJabatan == 'Bendahara') {
+        var jumlahBendahara = 0;
+        for (let i = 0; i < jumlah_ubahJabatan; i++) {
+            if (targetUbahJabatan == daftar_ubahJabatan[i]) {
+                jumlahBendahara += 1; 
+            }
+        }
+        if (jumlahBendahara == 0) {
+        } else {
+            Swal.fire(
+                'Gagal',
+                'Jabatan Bendahara Sudah Terisi!',
+                'error'
+            )
+            return false;
+        }
+    }
+}
 
 
 

@@ -111,6 +111,14 @@
                             <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                         </div>
 
+                        <!-- CEK ISSET jABATAN - PENGURUS -->
+                        <div class="panjang-jabatan" data-value="<?php echo count($daftar_role); ?>"></div>
+                        <?php $j = 0;
+                        foreach ($daftar_role as $role) : ?>
+                            <div class="nilai-role<?php echo $j; ?>" data-value="<?php echo $role; ?>"></div>
+                        <?php $j++;
+                        endforeach; ?>
+
                         <div class="form-group">
                             <label for="role">Jabatan</label>
                             <select name="role" id="role" class="form-control">
@@ -222,6 +230,15 @@
                                         </tr>
                                         <tr>
                                             <td>3</td>
+                                            <td>Ubah Jabatan</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubahJabatan<?php echo $db['id']; ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
                                             <td>Ubah Status</td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
@@ -264,12 +281,12 @@
 
                             <div class="form-group">
                                 <label for="emailUbahProfil<?php echo $db['id']; ?>">Email <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" name="email" id="emailUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan email" value="<?php echo $db['email']; ?>">
+                                <input type="email" class="form-control" name="email" id="emailUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan email" value="<?php echo $db['email']; ?>" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="nimUbahProfil<?php echo $db['id']; ?>">NIM <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nim" id="nimUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan NIM" value="<?php echo $db['nim']; ?>">
+                                <input type="text" class="form-control" name="nim" id="nimUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan NIM" value="<?php echo $db['nim']; ?>" readonly>
                             </div>
 
                             <div class="form-group">
@@ -298,17 +315,6 @@
                             <div class="form-group">
                                 <label for="angkatanUbahProfil<?php echo $db['id']; ?>">Angkatan <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="angkatan" id="angkatanUbahProfil<?php echo $db['id']; ?>" placeholder="Masukkan Angkatan" value="<?php echo $db['angkatan']; ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="roleUbahProfil<?php echo $db['id']; ?>">Jabatan <span class="text-danger">*</span></label>
-                                <select name="role" id="roleUbahProfil<?php echo $db['id']; ?>" class="form-control">
-                                    <option value="Admin" <?php echo ($db['role'] == 'Admin') ? 'selected="selected"' : '' ?>>Admin</option>
-                                    <option value="Ketua" <?php echo ($db['role'] == 'Ketua') ? 'selected="selected"' : '' ?>>Ketua</option>
-                                    <option value="Humas" <?php echo ($db['role'] == 'Humas') ? 'selected="selected"' : '' ?>>Humas</option>
-                                    <option value="Bendahara" <?php echo ($db['role'] == 'Bendahara') ? 'selected="selected"' : '' ?>>Bendahara</option>
-                                    <option value="Anggota" <?php echo ($db['role'] == 'Anggota') ? 'selected="selected"' : '' ?>>Anggota</option>
-                                </select>
                             </div>
 
                             <div class="form-group">
@@ -373,6 +379,52 @@
                         <div class="card-footer">
                             <a href="<?php echo base_url('akun'); ?>" class="btn btn-secondary">Kembali</a>
                             <button type="submit" class="btn btn-primary">Ubah Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ubahJabatan<?php echo $db['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ubah Jabatan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Mulai dari sini -->
+                    <form method="post" action="<?php echo base_url('prosesUbahJabatan'); ?>" onsubmit="return validate_ubahJabatan(<?php echo $db['id']; ?>)">
+                        <div class="card-body">
+
+                            <input type="hidden" class="form-control" name="id" id="idUbahJabatan<?php echo $db['id']; ?>" placeholder="Masukkan id Kegiatan" value="<?php echo $db['id']; ?>" required>
+
+                            <!-- CEK ISSET jABATAN - PENGURUS -->
+                            <div class="panjang-ubahJabatan" data-value="<?php echo count($daftar_role); ?>"></div>
+                            <?php $j = 0;
+                            foreach ($daftar_role as $role) : ?>
+                                <div class="nilai-roleUbahJabatan<?php echo $j; ?>" data-value="<?php echo $role; ?>"></div>
+                            <?php $j++;
+                            endforeach; ?>
+
+                            <div class="form-group">
+                                <label for="roleUbahJabatan<?php echo $db['id']; ?>">Jabatan <span class="text-danger">*</span></label>
+                                <select name="role" id="roleUbahJabatan<?php echo $db['id']; ?>" class="form-control">
+                                    <option value="Admin" <?php echo ($db['role'] == 'Admin') ? 'selected="selected"' : '' ?>>Admin</option>
+                                    <option value="Ketua" <?php echo ($db['role'] == 'Ketua') ? 'selected="selected"' : '' ?>>Ketua</option>
+                                    <option value="Humas" <?php echo ($db['role'] == 'Humas') ? 'selected="selected"' : '' ?>>Humas</option>
+                                    <option value="Bendahara" <?php echo ($db['role'] == 'Bendahara') ? 'selected="selected"' : '' ?>>Bendahara</option>
+                                    <option value="Anggota" <?php echo ($db['role'] == 'Anggota') ? 'selected="selected"' : '' ?>>Anggota</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="<?php echo base_url('akun'); ?>" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Ubah Status</button>
                         </div>
                     </form>
                 </div>
