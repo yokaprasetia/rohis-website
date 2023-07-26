@@ -337,24 +337,7 @@ class DaftarHadir extends BaseController
             'role' => $role,
         ];
 
-        $validationRule = [
-            'file' => [
-                'label' => 'Image File',
-                'rules' => [
-                    'uploaded[file]',
-                    'is_image[file]',
-                    'mime_in[file,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
-                    'max_size[file,5000]', // 1000 = 1 MB
-                ],
-            ],
-        ];
-
-        // Cek validasi
-        if (!$this->validate($validationRule)) {
-            $data['errors'] = $this->validator->getErrors();
-
-            return view('page/daftarHadir', $data);
-        }
+        // ROLE VALIDATION TERPISAH DI BAGIAN JAVASCRIPT
 
         // proses upload file ke folder public/bukti-kehadiran
         $fileKehadiran = $this->request->getFile('file');

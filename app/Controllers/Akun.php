@@ -22,10 +22,10 @@ class Akun extends BaseController
             $data_email[] = $email['email'];
         }
 
-        $daftar_role = [];
-        foreach ($modelUser->select('role')->where('status', 'Aktif')->findAll() as $role) {
-            if (!in_array($role['role'], $daftar_role)) {
-                $daftar_role[] = $role['role'];
+        $daftar_jabatan = [];
+        foreach ($modelUser->select('role')->where('status', 'Aktif')->findAll() as $jabatan) {
+            if (!in_array($jabatan['role'], $daftar_jabatan)) {
+                $daftar_jabatan[] = $jabatan['role'];
             }
         }
 
@@ -36,7 +36,7 @@ class Akun extends BaseController
             'role' => $role,
             'database' => $modelUser->orderBy('status ASC, nama ASC')->findAll(),
             'data_email' => $data_email,
-            'daftar_role' => $daftar_role,
+            'daftar_role' => $daftar_jabatan,
         ];
 
         return view('page/akun', $data);

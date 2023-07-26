@@ -1384,3 +1384,32 @@ function validate_updateTransaksi(i) {
     }
 }
 
+
+
+
+// BAGIAN MENU DAFTAR HADIR ========================================================================================================================================
+
+function validate_daftarHadir() {
+var file_kehadiran = document.getElementById('file').value;
+var ekstensi = file_kehadiran.split('.').pop();
+
+if (file_kehadiran == '') {
+    Swal.fire(  
+        'Gagal',
+        'File Harus Diisi!',
+        'error'
+    )
+    return false;
+} else {
+    if((ekstensi.toLowerCase() == 'jpg') || (ekstensi.toLowerCase() == 'jpeg') || (ekstensi.toLowerCase() == 'png') || (ekstensi.toLowerCase() == 'webp') || (ekstensi.toLowerCase() == 'gif')) {
+    } else {
+        Swal.fire(
+            'Gagal',
+            'Jenis File Tidak Valid!',
+            'error'
+            )
+            return false;
+    }
+}
+}
+

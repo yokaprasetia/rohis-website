@@ -4,6 +4,16 @@
 <!-- ISI KONTEN -->
 <div class="content">
     <div class="container-fluid">
+
+        <!-- SWEET ALERT -->
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('success'); ?>" data-flashkey="<?php echo session()->getFlashKeys('success')[0]; ?>"></div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="flash-data" data-judul="<?php echo $subjudul; ?>" data-flashdata="<?php echo session()->getFlashdata('error'); ?>" data-flashkey="<?php echo session()->getFlashKeys('error')[0]; ?>"></div>
+        <?php endif; ?>
+
+
         <div class="row">
             <div class="col-12">
                 <?php if ($berlangsung === true) : ?>
@@ -16,7 +26,7 @@
                             <?php if ($status_presensi === 'Belum') : ?>
                                 <button type="button" class="btn btn-primary col-6 justify-content-center" data-toggle="modal" data-target="#presensi">Presensi Sekarang</button>
                             <?php elseif ($status_presensi === 'Sudah') : ?>
-                                <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#SudahPresensi">Anda Telah Melakukan Presensi</button>
+                                <button type="button" class="btn btn-secondary mb-4" data-toggle="modal" data-target="#SudahPresensi">Anda Telah Melakukan Presensi</button>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -122,12 +132,12 @@
 
             <div class="modal-body">
                 <!-- Mulai dari sini -->
-                <?php echo form_open_multipart('tambahKehadiran'); ?>
+                <?php echo form_open_multipart('tambahKehadiran', array('onsubmit' => 'return validate_daftarHadir();')); ?>
                 <div class="card-body">
 
                     <div class="form-group">
                         <label for="file">Bukti Kehadiran</label>
-                        <input type="file" class="form-control" name="file" id="file" placeholder="Masukkan Bukti Kehadiran" required>
+                        <input type="file" class="form-control" name="file" id="file">
                     </div>
 
                 </div>
